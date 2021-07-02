@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "647354428026",
+    "project_id": "getvaxinated",
+    "storage_bucket": "getvaxinated.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647354428026:android:644199ec6b4f0fd69ee9c3",
+        "android_client_info": {
+          "package_name": "com.team4.getvaxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647354428026-nlp32u591tg92aocs2gbbuue57lk2297.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXdt67LjwFq7OZHk61bhL38p79uXZFAks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647354428026-nlp32u591tg92aocs2gbbuue57lk2297.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647354428026:android:f03565bd57ccc8839ee9c3",
+        "android_client_info": {
+          "package_name": "com.team4.getvaxinated"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647354428026-nlp32u591tg92aocs2gbbuue57lk2297.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXdt67LjwFq7OZHk61bhL38p79uXZFAks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647354428026-nlp32u591tg92aocs2gbbuue57lk2297.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
