@@ -2,15 +2,14 @@ package com.team4.getvaxi;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,48 +17,47 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+  public static final String TAG = "LoginActivity";
+
+  //declaring the firebase auth variable
+  private FirebaseAuth mAuth;
+
+   //declaring the variables
+   Button but_login;
+   Button but_forpas;
+   Button but_singnUp;
 
 
-    public static final String TAG = "LoginActivity";
-
-    //declaring the firebase auth variable
-    private FirebaseAuth mAuth;
-
-    //declaring the variables
-    Button but_login;
-    Button but_forpas;
-    Context context = this;
-    EditText text_loginName;
-    EditText text_loginPass;
+   Context context = this;
+   EditText text_loginName;
+   EditText text_loginPass;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //binding the variable with the view elements.
-        text_loginName=findViewById(R.id.login_username);
-        text_loginPass = findViewById(R.id.login_password);
-        but_login = findViewById(R.id.but_login);
-        but_forpas =findViewById(R.id.but_forgotPas);
 
         //intializing the firebase auth instance.
         mAuth = FirebaseAuth.getInstance();
 
 
-        but_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                login();
-            }
-        });
+        //binding the variable with the view elements.
+        text_loginName=findViewById(R.id.login_username);
+        text_loginPass = findViewById(R.id.login_password);
 
-        but_forpas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                forgotPassword();
-            }
-        });
+        but_login = findViewById(R.id.LoginAc_but_login);
+        but_forpas =findViewById(R.id.LoginAc_but_forgotPas);
+        but_singnUp=findViewById(R.id.LoginAc_but_signup);
+
+
+
+
+        but_login.setOnClickListener(v->login());
+        but_forpas.setOnClickListener(v->forgotPassword());
+        but_singnUp.setOnClickListener(v-> signUp());
+
+
 
     }
 
@@ -79,9 +77,9 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
 
-                                FirebaseUser user = mAuth.getCurrentUser();  //if logged in navihate to the home activity
-//                                Intent intent = new Intent(context,HomeActivity.class);
-//                                startActivity(intent);
+                                FirebaseUser user = mAuth.getCurrentUser();  //if logged in navigate to the home activity
+                                Intent intent = new Intent(context,HomeActivity.class);
+                                startActivity(intent);
 
                             } else {
                                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -106,11 +104,17 @@ public class LoginActivity extends AppCompatActivity {
 
     private  void forgotPassword()
     {
-//comment
+
 
 //        Intent intent = new Intent(context, ForgotpasswordActivity.class);
 //        startActivity(intent);
 
     }
+
+    private void signUp(){
+        Intent intent = new Intent(context,SignUpActivity.class);
+        startActivity(intent);
+    }
+
 
 }

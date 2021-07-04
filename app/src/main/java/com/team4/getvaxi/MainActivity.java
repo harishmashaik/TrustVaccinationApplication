@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         button_regisUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfileCompleteActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
 
             }

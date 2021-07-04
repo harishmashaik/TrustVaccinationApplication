@@ -10,7 +10,7 @@
         android:id="@+id/imageView3"
         android:layout_width="142dp"
         android:layout_height="143dp"
-        android:background="@mipmap/ic_launcher"
+        android:background="@mipmap/ic_launcher_logo"
         app:layout_constraintBottom_toTopOf="@+id/con_lay_eachitem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
