@@ -1,0 +1,9 @@
+
+>
+java:S1604"(Make this anonymous inner class a lambda(§ë
+C
+java:S1604#"(Make this anonymous inner class a lambda(±ìô“üÿÿÿÿ
+H
+java:S1128"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ
+u	java:S116"[Rename this field "button_regisUser" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ïæ‹óıÿÿÿÿ
+l	java:S116"WRename this field "button_login" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôŒ¡İ

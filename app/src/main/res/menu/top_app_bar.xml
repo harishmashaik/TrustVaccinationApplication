@@ -1,18 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/favorite"
-        android:icon="@drawable/ic_outline_favorite_24"
-        app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_baseline_search_24"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/appbar_help"
+        android:checkable="false"
+        android:enabled="false"
+        android:title="Help" />
 
-    <item
-        android:id="@+id/more"
-        app:showAsAction="always" />
 
 </menu>

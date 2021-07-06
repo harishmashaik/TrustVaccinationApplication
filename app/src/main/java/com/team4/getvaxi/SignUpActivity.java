@@ -92,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
 //                                                }
 //                                            });
 
-                                    Intent intent = new Intent(context,ProfileCompleteActivity.class);
+                                    Intent intent = new Intent(context,HomeActivity.class);
                                     startActivity(intent);
 
                                     //  updateUI(user);

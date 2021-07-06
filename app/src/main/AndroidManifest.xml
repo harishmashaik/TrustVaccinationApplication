@@ -13,6 +13,7 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ChildInfoActivity" />
+        <activity android:name=".ForgotpasswordActivity" />
         <activity android:name=".ProfileCompleteActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

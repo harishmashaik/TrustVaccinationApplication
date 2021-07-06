@@ -1,5 +1,6 @@
 package com.team4.getvaxi;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,7 +17,11 @@ public class WhyVaccinationActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         toolbar.setTitle("Whyvaccination");
+
     }
 
 

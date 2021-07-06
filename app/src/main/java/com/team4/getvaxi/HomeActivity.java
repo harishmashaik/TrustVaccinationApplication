@@ -3,6 +3,7 @@ package com.team4.getvaxi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,18 +45,21 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-        txtWhyVaccination.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,WhyVaccinationActivity.class);
-               startActivity(intent);
+        txtWhyVaccination.setOnClickListener(v-> {
+            try {
+                nextActivity("WhyVaccinationActivity");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         });
 
     }
+
+    public void nextActivity(String str) throws ClassNotFoundException {
+
+        Intent nextActivityRequested = new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + str));
+        startActivity(nextActivityRequested);
+    }
+
+
 }
