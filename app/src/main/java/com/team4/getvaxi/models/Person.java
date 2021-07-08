@@ -4,52 +4,101 @@ import java.util.ArrayList;
 
 public class Person {
 
-    private  String personUUID;
+  private String personUUID;
 
-    private String personName;
-    private String personGender;
-    private String personCommonLawPartnerName;
-    private int personKids;
-    private ArrayList<Child> personChildInfo;
-    private boolean profileCompletionStatus;
+  private String personName;
+  private String personGender;
+  private String personCommonLawPartnerName;
+  private int personKids;
+  private ArrayList<Child> personChildInfo;
+  private boolean profileCompletionStatus;
+  private String personEmail;
+  private String personPhoneNum;
 
-    public String getPersonName() {
-        return personName;
-    }
+  public String getPersonPhoneNum() {
+    return personPhoneNum;
+  }
 
-    public void setPersonName(String personName) {
-        this.personName = personName;
-    }
+  public void setPersonPhoneNum(String personPhoneNum) {
+    this.personPhoneNum = personPhoneNum;
+  }
 
-    public String getPersonGender() {
-        return personGender;
-    }
+  public String getPersonEmail() {
+    return personEmail;
+  }
 
-    public void setPersonGender(String personGender) {
-        this.personGender = personGender;
-    }
+  public void setPersonEmail(String personEmail) {
+    this.personEmail = personEmail;
+  }
 
-    public String getPersonCommonLawPartnerName() {
-        return personCommonLawPartnerName;
-    }
+  public String getPersonUUID() {
+    return personUUID;
+  }
 
-    public void setPersonCommonLawPartnerName(String personCommonLawPartnerName) {
-        this.personCommonLawPartnerName = personCommonLawPartnerName;
-    }
+  public void setPersonUUID(String personUUID) {
+    this.personUUID = personUUID;
+  }
 
-    public int getPersonKids() {
-        return personKids;
-    }
+  public boolean isProfileCompletionStatus() {
+    return profileCompletionStatus;
+  }
 
-    public void setPersonKids(int personKids) {
-        this.personKids = personKids;
-    }
+  public void setProfileCompletionStatus(boolean profileCompletionStatus) {
+    this.profileCompletionStatus = profileCompletionStatus;
+  }
 
-    public ArrayList<Child> getPersonChildInfo() {
-        return personChildInfo;
-    }
+  public String getPersonName() {
+    return personName;
+  }
 
-    public void setPersonChildInfo(ArrayList<Child> personChildInfo) {
-        this.personChildInfo = personChildInfo;
-    }
+  public void setPersonName(String personName) {
+    this.personName = personName;
+  }
+
+  public String getPersonGender() {
+    return personGender;
+  }
+
+  public void setPersonGender(String personGender) {
+    this.personGender = personGender;
+  }
+
+  public String getPersonCommonLawPartnerName() {
+    return personCommonLawPartnerName;
+  }
+
+  public void setPersonCommonLawPartnerName(String personCommonLawPartnerName) {
+    this.personCommonLawPartnerName = personCommonLawPartnerName;
+  }
+
+  public int getPersonKids() {
+    return personKids;
+  }
+
+  public void setPersonKids(int personKids) {
+    this.personKids = personKids;
+  }
+
+  public ArrayList<Child> getPersonChildInfo() {
+    return personChildInfo;
+  }
+
+  public void setPersonChildInfo(ArrayList<Child> personChildInfo) {
+    this.personChildInfo = personChildInfo;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+            "personUUID='" + personUUID + '\'' +
+            ", personName='" + personName + '\'' +
+            ", personGender='" + personGender + '\'' +
+            ", personCommonLawPartnerName='" + personCommonLawPartnerName + '\'' +
+            ", personKids=" + personKids +
+            ", personChildInfo=" + personChildInfo +
+            ", profileCompletionStatus=" + profileCompletionStatus +
+            ", personEmail='" + personEmail + '\'' +
+            ", personPhoneNum='" + personPhoneNum + '\'' +
+            '}';
+  }
 }
