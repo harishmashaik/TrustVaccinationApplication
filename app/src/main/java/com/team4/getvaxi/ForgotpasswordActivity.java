@@ -1,5 +1,6 @@
 package com.team4.getvaxi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -67,6 +68,8 @@ public class ForgotpasswordActivity extends AppCompatActivity {
                                 Log.i("mesg", "Email sent.");
                                 Toast toast = Toast.makeText(getApplicationContext(), "Email Send - Please check your Inbox", Toast.LENGTH_SHORT);
                                 toast.show();
+                                Intent routeToLoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(routeToLoginActivity);
                             }
                             else
                             {
