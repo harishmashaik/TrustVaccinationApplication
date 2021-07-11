@@ -53,7 +53,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="338dp"
                 android:layout_height="58dp"
-                android:hint="Email"
+                android:hint="@string/login_page_email_hint"
                 android:textColor="#000000"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +79,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="338dp"
                 android:layout_height="58dp"
-                android:hint="Password"
+                android:hint="@string/login_page_password_hint"
                 android:textColor="#FFFFFF"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +105,7 @@
                 android:layout_height="60dp"
                 android:layout_marginBottom="88dp"
                 android:background="@drawable/ic_wishlist_button_red_bg"
-                android:text="Login"
+                android:text="@string/login_page_login_button"
                 android:textColor="#FFFFFF"
                 android:visibility="visible"
                 app:icon="@drawable/ic_login_black_18dp"
@@ -121,7 +121,7 @@
                 android:layout_height="60dp"
                 android:layout_marginBottom="88dp"
                 android:background="@drawable/ic_wishlist_button_red_bg"
-                android:text="Forgot password"
+                android:text="@string/login_page_forgot_password"
                 android:textColor="#FFFFFF"
                 android:visibility="visible"
                 app:icon="@drawable/ic_lock"
@@ -138,7 +138,7 @@
                 android:layout_height="60dp"
 
                 android:background="@drawable/ic_wishlist_button_red_bg"
-                android:text="Sign Up"
+                android:text="@string/login_page_sign_up"
                 android:textColor="#FFFFFF"
                 android:visibility="visible"
                 app:icon="@drawable/ic_lock"
@@ -154,6 +154,7 @@
 
 
     </com.google.android.material.card.MaterialCardView>
+    
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

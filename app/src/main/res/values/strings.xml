@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GetVaxi</string>
+    <string name="login_page_email_hint">Email</string>
+    <string name="login_page_password_hint">Password</string>
+    <string name="login_page_login_button">Login</string>
+    <string name="login_page_forgot_password">Forget Password</string>
+    <string name="login_page_sign_up">Sign Up</string>
+
 </resources>

@@ -69,14 +69,11 @@ public class ProfileCompleteActivity extends AppCompatActivity {
                 Integer.parseInt(String.valueOf(text_comple_no_of_kids.getText())));
             personDetails.setPersonCommonLawPartnerName(
                 String.valueOf(text_common_law_partner.getText()));
-            if(String.valueOf(text_phone_number.getText()).length()!=10)
-            {
+            if (String.valueOf(text_phone_number.getText()).length() != 10) {
               showToast("Invalid Phone number");
-            }
-            else {
+            } else {
               personDetails.setPersonPhoneNum(String.valueOf(text_phone_number.getText()));
             }
-
 
             db.collection("person")
                 .document(user.getUid())
@@ -86,7 +83,8 @@ public class ProfileCompleteActivity extends AppCompatActivity {
                       @Override
                       public void onSuccess(Void aVoid) {
                         Log.d(TAG, "Document Snapshot successfully written!");
-                        Intent nextActivity = new Intent(getApplicationContext(),HomeActivity.class);
+                        Intent nextActivity =
+                            new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(nextActivity);
                       }
                     })
@@ -108,11 +106,8 @@ public class ProfileCompleteActivity extends AppCompatActivity {
     }
   }
 
-  private void showToast(String message)
-  {
-    Toast toast =
-            Toast.makeText(
-                    getApplicationContext(), message, Toast.LENGTH_SHORT);
+  private void showToast(String message) {
+    Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
     toast.show();
   }
 }

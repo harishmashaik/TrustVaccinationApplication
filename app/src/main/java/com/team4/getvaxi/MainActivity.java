@@ -1,44 +1,28 @@
 package com.team4.getvaxi;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    Button button_regisUser;
 
-    Button button_login;
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        button_regisUser =  findViewById(R.id.userRegis);
-        button_login=findViewById(R.id.main_but_login);
-
-        button_regisUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        button_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-
-            }
-        });
-    }
+    final Handler handler = new Handler();
+    handler.postDelayed(
+        new Runnable() {
+          @Override
+          public void run() {
+            Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(homeIntent);
+            finish();
+          }
+        },
+        3000);
+  }
 }
