@@ -3,30 +3,45 @@ package com.team4.getvaxi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.widget.Toolbar;
 
 public class WhyVaccinationActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
+  private Toolbar toolbar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_why_vaccination);
+  Button butMakingDesicion;
+  Button butWellChildVisit;
 
-        toolbar = findViewById(R.id.topAppBar);
-        setSupportActionBar(toolbar);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_why_vaccination);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
 
-        toolbar.setTitle("Whyvaccination");
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    }
+    toolbar.setTitle("Whyvaccination");
 
+    butMakingDesicion = findViewById(R.id.why_vaci_AC_making_vaccine_decison);
+    butMakingDesicion.setOnClickListener(v->navigateURL("https://www.cdc.gov/vaccines/parents/why-vaccinate/vaccine-decision.html"));
 
+    butWellChildVisit = findViewById(R.id.why_vaci_AC_well_child_visits);
+    butWellChildVisit.setOnClickListener
+            (v->navigateURL("https://www.cdc.gov/vaccines/parents/visit/vaccination-during-COVID-19.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fvaccines%2Fparents%2Fwhy-vaccinate%2Fwell-child-visits.html"));
+  }
 
+  public void navigateURL(String getLink) {
 
-
-
+      Intent i = new Intent(Intent.ACTION_VIEW);
+      i.setData(Uri.parse(getLink));
+      startActivity(i);
+  }
 }

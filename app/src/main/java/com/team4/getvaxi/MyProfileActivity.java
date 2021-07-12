@@ -54,7 +54,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
     getUserData();
 
-    buttonUpdate.setOnClickListener(v -> updateDetails());
+     buttonUpdate.setOnClickListener(v -> updateDetails());
   }
 
   private void updateDetails() {
@@ -105,8 +105,6 @@ public class MyProfileActivity extends AppCompatActivity {
               @Override
               public void onSuccess(Void aVoid) {
                 Log.d(TAG, "Document Snapshot successfully written!");
-                Intent nextActivity = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(nextActivity);
               }
             })
         .addOnFailureListener(

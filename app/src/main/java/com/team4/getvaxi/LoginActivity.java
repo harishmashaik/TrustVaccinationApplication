@@ -19,102 +19,97 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
   public static final String TAG = "LoginActivity";
 
-  //declaring the firebase auth variable
+  // declaring the firebase auth variable
   private FirebaseAuth mAuth;
 
-   //declaring the variables
-   Button but_login;
-   Button but_forpas;
-   Button but_singnUp;
+  // declaring the variables
+  Button but_login;
+  Button but_forpas;
+  Button but_singnUp;
 
+  Context context = this;
+  EditText text_loginName;
+  EditText text_loginPass;
 
-   Context context = this;
-   EditText text_loginName;
-   EditText text_loginPass;
-
-
-    @Override
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_login);
 
-        //intializing the firebase auth instance.
-        mAuth = FirebaseAuth.getInstance();
+    // intializing the firebase auth instance.
+    mAuth = FirebaseAuth.getInstance();
 
+    // binding the variable with the view elements.
+    text_loginName = findViewById(R.id.login_username);
+    text_loginPass = findViewById(R.id.login_password);
 
-        //binding the variable with the view elements.
-        text_loginName=findViewById(R.id.login_username);
-        text_loginPass = findViewById(R.id.login_password);
+    but_login = findViewById(R.id.LoginAc_but_login);
+    but_forpas = findViewById(R.id.LoginAc_but_forgotPas);
+    but_singnUp = findViewById(R.id.LoginAc_but_signup);
 
-        but_login = findViewById(R.id.LoginAc_but_login);
-        but_forpas =findViewById(R.id.LoginAc_but_forgotPas);
-        but_singnUp=findViewById(R.id.LoginAc_but_signup);
+    but_login.setOnClickListener(v -> login());
+    but_forpas.setOnClickListener(v -> forgotPassword());
+    but_singnUp.setOnClickListener(v -> signUp());
 
+    checkUserLogin();
+  }
 
+  // login with email and password
+  private void login() {
+    String email =
+        String.valueOf(
+            text_loginName.getText()); // getting details of email & password from the edittext
+    String password = String.valueOf(text_loginPass.getText());
+    Log.i("The mail is", email);
+    Log.i("the pass is ", password);
 
+    if (email.length() > 5 && password.length() > 5) {
+      mAuth
+          .signInWithEmailAndPassword(
+              email, password) // involking signin method with firebase auth instance.
+          .addOnCompleteListener(
+              this,
+              new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                  if (task.isSuccessful()) {
 
-        but_login.setOnClickListener(v->login());
-        but_forpas.setOnClickListener(v->forgotPassword());
-        but_singnUp.setOnClickListener(v-> signUp());
+                    FirebaseUser user =
+                        mAuth.getCurrentUser(); // if logged in navigate to the home activity
+                    Intent intent = new Intent(context, HomeActivity.class);
+                    startActivity(intent);
 
-
-
+                  } else {
+                    Toast toast =
+                        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
+                    toast.show();
+                  }
+                }
+              });
+    } else {
+      Toast toast =
+          Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
+      toast.show();
     }
+  }
 
-    //login with email and password
-    private void login()
-    {
-        String  email = String.valueOf(text_loginName.getText()); //getting details of email & password from the edittext
-        String password = String.valueOf(text_loginPass.getText());
-        Log.i("The mail is" , email);
-        Log.i("the pass is ", password);
+  // this method will navigate the user to forgot password activity.
 
-        if(email.length()>5&&password.length()>5)
-        {
-            mAuth.signInWithEmailAndPassword(email, password)    //involking signin method with firebase auth instance.
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+  private void forgotPassword() {
+    Intent intent = new Intent(context, ForgotpasswordActivity.class);
+    startActivity(intent);
+  }
 
-                                FirebaseUser user = mAuth.getCurrentUser();  //if logged in navigate to the home activity
-                                Intent intent = new Intent(context,HomeActivity.class);
-                                startActivity(intent);
+  private void signUp() {
+    Intent intent = new Intent(context, SignUpActivity.class);
+    startActivity(intent);
+  }
 
-                            } else {
-                                Toast toast = Toast.makeText(getApplicationContext(),
-                                        "Login Failed", Toast.LENGTH_SHORT);
-                                toast.show();
-                            }
-
-
-                        }
-                    });
-        }
-        else
-        {
-            Toast toast = Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-
+  private void checkUserLogin() {
+    FirebaseUser user = mAuth.getCurrentUser();
+    if (!(user == null)) {
+      Intent intent = new Intent(context, HomeActivity.class);
+      startActivity(intent);
     }
-
-    //this method will navigate the user to forgot password activity.
-
-    private  void forgotPassword()
-    {
-
-
-        Intent intent = new Intent(context, ForgotpasswordActivity.class);
-        startActivity(intent);
-
-    }
-
-    private void signUp(){
-        Intent intent = new Intent(context,SignUpActivity.class);
-        startActivity(intent);
-    }
-
-
+  }
 }
