@@ -1,14 +1,52 @@
 package com.team4.getvaxi.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class Booking {
+public class Booking implements Parcelable {
 
     String age;
     String name;
     String vaccineName;
     String appointmentDate;
     Date dateOfBooking;
+
+    public Booking() {
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.age);
+        dest.writeString(this.name);
+        dest.writeString(this.vaccineName);
+        dest.writeString(this.appointmentDate);
+
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Booking createFromParcel(Parcel in) {
+            return new Booking(in);
+        }
+
+        public Booking[] newArray(int size) {
+            return new Booking[size];
+        }
+    };
+
+
+    public Booking(Parcel in) {
+        this.age = in.readString();
+        this.name = in.readString();
+        this.vaccineName = in.readString();
+        this.appointmentDate = in.readString();
+    }
 
     public String getAge() {
         return age;
@@ -60,4 +98,6 @@ public class Booking {
                 ", dateOfBooking=" + dateOfBooking +
                 '}';
     }
+
+
 }

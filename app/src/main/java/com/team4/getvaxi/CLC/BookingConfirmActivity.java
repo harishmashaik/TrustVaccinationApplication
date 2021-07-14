@@ -2,7 +2,9 @@ package com.team4.getvaxi.CLC;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.common.collect.Lists;
 import com.team4.getvaxi.R;
+import com.team4.getvaxi.models.Booking;
+import com.team4.getvaxi.recycle.BookingViewHolder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +39,18 @@ public class BookingConfirmActivity extends AppCompatActivity {
         //(textField.editText as? AutoCompleteTextView)?.setAdapter(adapter);
 
         asedit.getText().toString();
+
+        Intent intent = getIntent();
+
+    if (intent.hasExtra(BookingViewHolder.booking)) {
+       Booking eachUserName = intent.getParcelableExtra(BookingViewHolder.booking);
+
+        Log.i(TAG, eachUserName.toString());
+
+    }
+
+
+
 
 
 
