@@ -36,13 +36,14 @@
         app:contentPaddingBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569">
+        app:layout_constraintVertical_bias="0.873">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="343dp"
-            android:layout_height="423dp"
+            android:layout_width="338dp"
+            android:layout_height="444dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
@@ -101,8 +102,8 @@
 
             <Button
                 android:id="@+id/LoginAc_but_login"
-                android:layout_width="327dp"
-                android:layout_height="60dp"
+                android:layout_width="296dp"
+                android:layout_height="37dp"
                 android:layout_marginBottom="88dp"
                 android:background="@drawable/ic_wishlist_button_red_bg"
                 android:text="@string/login_page_login_button"
@@ -113,12 +114,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password"
-                app:layout_constraintVertical_bias="0.248" />
+                app:layout_constraintVertical_bias="0.19" />
 
             <Button
                 android:id="@+id/LoginAc_but_forgotPas"
-                android:layout_width="327dp"
-                android:layout_height="60dp"
+                android:layout_width="296dp"
+                android:layout_height="37dp"
                 android:layout_marginBottom="88dp"
                 android:background="@drawable/ic_wishlist_button_red_bg"
                 android:text="@string/login_page_forgot_password"
@@ -127,16 +128,15 @@
                 app:icon="@drawable/ic_lock"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/but_login"
-                app:layout_constraintVertical_bias="0.333" />
+                app:layout_constraintTop_toBottomOf="@+id/LoginAc_but_login"
+                app:layout_constraintVertical_bias="0.171" />
 
             <Button
                 android:id="@+id/LoginAc_but_signup"
-                android:layout_width="327dp"
-                android:layout_height="60dp"
-
+                android:layout_width="296dp"
+                android:layout_height="37dp"
                 android:background="@drawable/ic_wishlist_button_red_bg"
                 android:text="@string/login_page_sign_up"
                 android:textColor="#FFFFFF"
@@ -144,17 +144,28 @@
                 app:icon="@drawable/ic_lock"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LoginAc_but_forgotPas"
+                app:layout_constraintVertical_bias="0.245" />
+
+            <Switch
+                android:id="@+id/LoginAc_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:text="CLC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/but_forgotPas"
-                app:layout_constraintVertical_bias="0.333" />
+                app:layout_constraintTop_toBottomOf="@+id/LoginAc_but_signup" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </com.google.android.material.card.MaterialCardView>
-    
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

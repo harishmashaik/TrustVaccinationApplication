@@ -8,4 +8,7 @@
 
     <string name="why_vaccinate_des">On-time vaccination throughout childhood is essential because it helps provide immunity before children are exposed to potentially life-threatening diseases. Vaccines are tested to ensure that they are safe and effective for children to receive at the recommended ages.</string>
     <string name="why_vaccine_well_chile_visit">As communities open up, it’s important your child goes in for their well-child visit.</string>
+
+    <string name="view_bookings_confirm">Confirm</string>
+    <string name="view_bookings_decline">Decline</string>
 </resources>

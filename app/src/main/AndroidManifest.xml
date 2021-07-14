@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VaccineByAgeActivity"></activity>
+        <activity android:name=".CLC.BookingDeclineActivity"></activity>
+        <activity android:name=".CLC.BookingConfirmActivity" />
+        <activity android:name=".CLCHomeActivity" />
+        <activity android:name=".VaccineByAgeActivity" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".VaccineScheduleActivity" />
         <activity android:name=".WhyVaccinationActivity" />
