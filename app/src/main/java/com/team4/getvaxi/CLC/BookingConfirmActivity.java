@@ -24,6 +24,13 @@ public class BookingConfirmActivity extends AppCompatActivity {
 
     AutoCompleteTextView asedit;
 
+    EditText txtVaccineName;
+    EditText txtchildName;
+    EditText txtchildAge;
+    EditText txtDateOfAppointment;
+
+
+
 
 
     @Override
@@ -31,6 +38,11 @@ public class BookingConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_confirm);
         asedit = findViewById(R.id.Booking_AC_hospital_menu);
+
+        txtVaccineName = findViewById(R.id.bookingCon_vaccinename);
+        txtchildAge=findViewById(R.id.bookingCon_childage);
+        txtchildName=findViewById(R.id.bookingCon_childname);
+        txtDateOfAppointment=findViewById(R.id.bookingCon_appoDate);
 
         List<String> items = Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4");
         ArrayAdapter<String > adapter = new ArrayAdapter(BookingConfirmActivity.this, R.layout.booking_confirm_hoslist_layout, items);
@@ -43,9 +55,13 @@ public class BookingConfirmActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
-       Booking eachUserName = intent.getParcelableExtra(BookingViewHolder.booking);
+       Booking eachBooking = intent.getParcelableExtra(BookingViewHolder.booking);
+        txtVaccineName.setText(eachBooking.getVaccineName());
+        txtchildName.setText(eachBooking.getName());
+        txtchildAge.setText(eachBooking.getAge());
+        txtDateOfAppointment.setText(eachBooking.getAppointmentDate());
 
-        Log.i(TAG, eachUserName.toString());
+
 
     }
 
