@@ -16,6 +16,8 @@ import java.util.List;
 
 public class BookingConfirmActivity extends AppCompatActivity {
 
+    public static final String TAG = "BookingConfirmActivity";
+
     AutoCompleteTextView asedit;
 
 
@@ -31,6 +33,8 @@ public class BookingConfirmActivity extends AppCompatActivity {
 
         asedit.setAdapter(adapter);
         //(textField.editText as? AutoCompleteTextView)?.setAdapter(adapter);
+
+        asedit.getText().toString();
 
 
 
