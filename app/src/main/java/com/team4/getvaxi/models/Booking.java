@@ -14,7 +14,16 @@ public class Booking implements Parcelable {
     String vaccineName;
     String appointmentDate;
     Date dateOfBooking;
+    Boolean bookingStatus = false;
     HashMap<String,String> vaccinationCenterDetails = new HashMap<>();
+
+    public Boolean getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(Boolean bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
 
     public String getFbDocID() {
         return fbDocID;
@@ -46,6 +55,7 @@ public class Booking implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.vaccineName);
         dest.writeString(this.appointmentDate);
+        dest.writeString(this.fbDocID);
 
     }
 
@@ -65,6 +75,7 @@ public class Booking implements Parcelable {
         this.name = in.readString();
         this.vaccineName = in.readString();
         this.appointmentDate = in.readString();
+        this.fbDocID =in.readString();
     }
 
     public String getAge() {
@@ -110,13 +121,13 @@ public class Booking implements Parcelable {
     @Override
     public String toString() {
         return "Booking{" +
-                "age='" + age + '\'' +
+                "fbDocID='" + fbDocID + '\'' +
+                ", age='" + age + '\'' +
                 ", name='" + name + '\'' +
                 ", vaccineName='" + vaccineName + '\'' +
                 ", appointmentDate='" + appointmentDate + '\'' +
                 ", dateOfBooking=" + dateOfBooking +
+                ", vaccinationCenterDetails=" + vaccinationCenterDetails +
                 '}';
     }
-
-
 }

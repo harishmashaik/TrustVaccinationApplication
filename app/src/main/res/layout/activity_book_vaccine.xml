@@ -67,27 +67,45 @@
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bookingConfirm_AC_appoDate"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="315dp"
-        android:layout_height="83dp"
-        android:hint="Appointment Date"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookingConfirm_AC_childage"
-        app:layout_constraintVertical_bias="0.127">
+        app:layout_constraintTop_toBottomOf="@+id/bookingConfirm_AC_childage">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/bookingCon_appoDate"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:enabled="false"
-            android:textStyle="bold" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bookingConfirm_AC_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="DOA">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bookingCon_date"
+                android:layout_width="203dp"
+                android:layout_height="38dp"
+                android:enabled="false"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/bookvaccine_AC_pickdate"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Date"
+            android:textColor="#FFFFFF"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"

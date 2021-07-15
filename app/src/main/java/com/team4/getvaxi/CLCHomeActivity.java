@@ -54,7 +54,6 @@ public class CLCHomeActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                   for (QueryDocumentSnapshot document : task.getResult()) {
                     String tempID= document.getId();
-
                     Booking b = document.toObject(Booking.class);
                     b.setFbDocID(tempID);
                     Log.i(TAG, document.getId() + " => " + b.toString());

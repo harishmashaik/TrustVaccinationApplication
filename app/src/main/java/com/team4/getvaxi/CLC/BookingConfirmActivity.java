@@ -38,7 +38,7 @@ public class BookingConfirmActivity extends AppCompatActivity {
   EditText txtchildAge;
   EditText txtDateOfAppointment;
 
-  Button confirmAppointment;
+  Button appointmentLocked;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,8 @@ public class BookingConfirmActivity extends AppCompatActivity {
     txtchildAge = findViewById(R.id.bookingCon_childage);
     txtchildName = findViewById(R.id.bookingCon_childname);
     txtDateOfAppointment = findViewById(R.id.bookingCon_appoDate);
+    appointmentLocked =findViewById(R.id.bookingconfirmAC_button);
+
 
     List<String> items = Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4");
     ArrayAdapter<String> adapter =
@@ -70,6 +72,8 @@ public class BookingConfirmActivity extends AppCompatActivity {
       txtchildAge.setText(eachBooking.getAge());
       txtDateOfAppointment.setText(eachBooking.getAppointmentDate());
     }
+
+    appointmentLocked.setOnClickListener(v->setConfirmAppointment());
   }
 
   private void setConfirmAppointment() {
@@ -78,6 +82,9 @@ public class BookingConfirmActivity extends AppCompatActivity {
     HashMap<String, String> tempCenter = new HashMap<>();
     tempCenter.put(dropdownCenterList.getText().toString(), dropdownCenterList.getText().toString());
     eachBooking.setVaccinationCenterDetails(tempCenter);
+    eachBooking.setBookingStatus(true);
+
+    Log.i(TAG, eachBooking.toString());
 
     db.collection("bookings")
             .document(eachBooking.getFbDocID())
