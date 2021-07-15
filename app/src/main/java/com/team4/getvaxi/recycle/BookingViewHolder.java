@@ -21,7 +21,7 @@ import com.team4.getvaxi.models.Booking;
 public class BookingViewHolder extends RecyclerView.ViewHolder {
 
     public static final String booking ="BOOKING";
-
+    public static final String docID ="DOCUMENTID";
 
     private final TextView vaccineName;
     private final TextView childNameAndAGe;

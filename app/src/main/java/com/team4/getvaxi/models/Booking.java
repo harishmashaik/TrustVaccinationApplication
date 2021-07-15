@@ -4,14 +4,33 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class Booking implements Parcelable {
 
+    String fbDocID;
     String age;
     String name;
     String vaccineName;
     String appointmentDate;
     Date dateOfBooking;
+    HashMap<String,String> vaccinationCenterDetails = new HashMap<>();
+
+    public String getFbDocID() {
+        return fbDocID;
+    }
+
+    public void setFbDocID(String fbDocID) {
+        this.fbDocID = fbDocID;
+    }
+
+    public HashMap<String, String> getVaccinationCenterDetails() {
+        return vaccinationCenterDetails;
+    }
+
+    public void setVaccinationCenterDetails(HashMap<String, String> vaccinationCenterDetails) {
+        this.vaccinationCenterDetails = vaccinationCenterDetails;
+    }
 
     public Booking() {
     }

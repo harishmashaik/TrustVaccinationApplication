@@ -110,7 +110,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/but_signup"
+        android:id="@+id/bookingConfirm_AC_button"
         android:layout_width="340dp"
         android:layout_height="56dp"
         android:text="Confirm Booking"

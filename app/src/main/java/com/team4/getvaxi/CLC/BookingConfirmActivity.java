@@ -1,5 +1,6 @@
 package com.team4.getvaxi.CLC;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,69 +8,96 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.google.common.collect.Lists;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
 import com.team4.getvaxi.recycle.BookingViewHolder;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class BookingConfirmActivity extends AppCompatActivity {
 
-    public static final String TAG = "BookingConfirmActivity";
+  public static final String TAG = "BookingConfirmActivity";
+  Booking eachBooking = new Booking();
 
-    AutoCompleteTextView asedit;
+  FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    EditText txtVaccineName;
-    EditText txtchildName;
-    EditText txtchildAge;
-    EditText txtDateOfAppointment;
+  AutoCompleteTextView dropdownCenterList;
 
+  EditText txtVaccineName;
+  EditText txtchildName;
+  EditText txtchildAge;
+  EditText txtDateOfAppointment;
 
+  Button confirmAppointment;
 
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_booking_confirm);
+    dropdownCenterList = findViewById(R.id.Booking_AC_hospital_menu);
 
+    txtVaccineName = findViewById(R.id.bookingCon_vaccinename);
+    txtchildAge = findViewById(R.id.bookingCon_childage);
+    txtchildName = findViewById(R.id.bookingCon_childname);
+    txtDateOfAppointment = findViewById(R.id.bookingCon_appoDate);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_confirm);
-        asedit = findViewById(R.id.Booking_AC_hospital_menu);
+    List<String> items = Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4");
+    ArrayAdapter<String> adapter =
+        new ArrayAdapter(
+            BookingConfirmActivity.this, R.layout.booking_confirm_hoslist_layout, items);
 
-        txtVaccineName = findViewById(R.id.bookingCon_vaccinename);
-        txtchildAge=findViewById(R.id.bookingCon_childage);
-        txtchildName=findViewById(R.id.bookingCon_childname);
-        txtDateOfAppointment=findViewById(R.id.bookingCon_appoDate);
+    dropdownCenterList.setAdapter(adapter);
+    // (textField.editText as? AutoCompleteTextView)?.setAdapter(adapter);
 
-        List<String> items = Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4");
-        ArrayAdapter<String > adapter = new ArrayAdapter(BookingConfirmActivity.this, R.layout.booking_confirm_hoslist_layout, items);
+    dropdownCenterList.getText().toString();
 
-        asedit.setAdapter(adapter);
-        //(textField.editText as? AutoCompleteTextView)?.setAdapter(adapter);
-
-        asedit.getText().toString();
-
-        Intent intent = getIntent();
+    Intent intent = getIntent();
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
-       Booking eachBooking = intent.getParcelableExtra(BookingViewHolder.booking);
-        txtVaccineName.setText(eachBooking.getVaccineName());
-        txtchildName.setText(eachBooking.getName());
-        txtchildAge.setText(eachBooking.getAge());
-        txtDateOfAppointment.setText(eachBooking.getAppointmentDate());
-
-
-
+      eachBooking = intent.getParcelableExtra(BookingViewHolder.booking);
+      txtVaccineName.setText(eachBooking.getVaccineName());
+      txtchildName.setText(eachBooking.getName());
+      txtchildAge.setText(eachBooking.getAge());
+      txtDateOfAppointment.setText(eachBooking.getAppointmentDate());
     }
+  }
 
+  private void setConfirmAppointment() {
 
+    dropdownCenterList.getText();
+    HashMap<String, String> tempCenter = new HashMap<>();
+    tempCenter.put(dropdownCenterList.getText().toString(), dropdownCenterList.getText().toString());
+    eachBooking.setVaccinationCenterDetails(tempCenter);
 
-
-
-
-
-    }
+    db.collection("bookings")
+            .document(eachBooking.getFbDocID())
+            .set(eachBooking)
+            .addOnSuccessListener(
+                    new OnSuccessListener<Void>() {
+                      @Override
+                      public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Appointment confirmed "+ eachBooking.getFbDocID());
+                        Intent nextActivity =
+                                new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(nextActivity);
+                      }
+                    })
+            .addOnFailureListener(
+                    new OnFailureListener() {
+                      @Override
+                      public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                      }
+                    });
+  }
 }
