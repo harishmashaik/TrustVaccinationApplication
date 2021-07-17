@@ -93,6 +93,9 @@ public class SignUpActivity extends AppCompatActivity {
 //                                            });
 
                                     Intent intent = new Intent(context,ProfileCompleteActivity.class);
+                                    Bundle b = new Bundle();
+                                    b.putSerializable("UUID",user.getUid());
+                                    intent.putExtras(b);
                                     startActivity(intent);
 
                                     //  updateUI(user);

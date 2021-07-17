@@ -1,12 +1,18 @@
 package com.team4.getvaxi.models;
 
+import android.text.Editable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Child {
+public class Child implements Serializable {
 
     private String childName;
     private int childAge;
     private ArrayList<Vaccine> vaccinesConsumed;
+
+    public Child() {
+    }
 
     public String getChildName() {
         return childName;
@@ -30,5 +36,14 @@ public class Child {
 
     public void setVaccinesConsumed(ArrayList<Vaccine> vaccinesConsumed) {
         this.vaccinesConsumed = vaccinesConsumed;
+    }
+
+    @Override
+    public String toString() {
+        return "Child{" +
+                "childName='" + childName + '\'' +
+                ", childAge=" + childAge +
+                ", vaccinesConsumed=" + vaccinesConsumed +
+                '}';
     }
 }

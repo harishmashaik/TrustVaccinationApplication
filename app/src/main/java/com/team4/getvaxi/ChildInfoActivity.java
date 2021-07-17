@@ -1,62 +1,264 @@
 package com.team4.getvaxi;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.team4.getvaxi.models.Child;
+import com.team4.getvaxi.models.Person;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+import static java.time.Period.between;
 
 public class ChildInfoActivity extends AppCompatActivity {
 
-    private Button but_PickDate;
-    private EditText text_child_dob;
+  public static final String TAG = "SampleTestActivity";
+  FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_info);
+  private Button but_next;
+  private EditText text_child_dob;
+  Person person = new Person();
+  //    Child child = new Child();
+  ArrayList<Child> childArrayList = new ArrayList<>();
+  LinearLayout linearLayout;
+
+  EditText childInfoName;
+  EditText childInfoAge;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_child_info);
+
+    but_next = findViewById(R.id.childInfoAC_nextbutton);
+
+    linearLayout = findViewById(R.id.editTextContainer);
+
+     getBundleData();
+    prepareChildViewsandGetData(1);
+
+    but_next.setOnClickListener(v -> buttonNextHandler());
+    //
+    //        MaterialDatePicker.Builder materialDateBuilder =
+    // MaterialDatePicker.Builder.datePicker();
+    //
+    //        materialDateBuilder.setTitleText("SELECT A DATE");
+    //
+    //        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+    //
+    //        but_PickDate.setOnClickListener(
+    //                new View.OnClickListener() {
+    //                    @Override
+    //                    public void onClick(View v) {
+    //                        materialDatePicker.show(getSupportFragmentManager(),
+    // "MATERIAL_DATE_PICKER");
+    //                    }
+    //                });
+    //        materialDatePicker.addOnPositiveButtonClickListener(
+    //                new MaterialPickerOnPositiveButtonClickListener() {
+    //                    @SuppressLint("SetTextI18n")
+    //                    @Override
+    //                    public void onPositiveButtonClick(Object selection) {
+    //
+    //                        // if the user clicks on the positive
+    //                        // button that is ok button update the
+    //                        // selected date
+    //                        text_child_dob.setText(materialDatePicker.getHeaderText());
+    //                        // in the above statement, getHeaderText
+    //                        // is the selected date preview from the
+    //                        // dialog
+    //                    }
+    //                });
+
+  }
+
+  private void getBundleData() {
+
+    Intent i = getIntent();
+    Bundle data = i.getExtras();
 
 
-        but_PickDate = findViewById(R.id.button_dob);
-        text_child_dob = findViewById(R.id.pro_comple_child_dob);
+      person = (Person) data.getSerializable("personDetails");
+      //childArrayList = (ArrayList<Child>) data.getSerializable("children");
 
-        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+  }
 
-        materialDateBuilder.setTitleText("SELECT A DATE");
+  @RequiresApi(api = Build.VERSION_CODES.O)
+  private void buttonNextHandler() {
+    if (childInfoAge.getText().toString().length() > 1
+        && childInfoName.getText().toString().length() > 1) {
+      Child c1 = new Child();
+      c1.setChildName(childInfoName.getText().toString());
+      c1.setChildAge(getAge(childInfoAge.getText().toString()));
 
-        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+      childArrayList.add(c1);
+      System.out.println(childArrayList.size());
+      System.out.println(person.getPersonKids());
 
-        but_PickDate.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
-                    }
-                });
-        materialDatePicker.addOnPositiveButtonClickListener(
-                new MaterialPickerOnPositiveButtonClickListener() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onPositiveButtonClick(Object selection) {
+      if (childArrayList.size() != person.getPersonKids()) {
+        prepareChildViewsandGetData(childArrayList.size() + 1);
 
-                        // if the user clicks on the positive
-                        // button that is ok button update the
-                        // selected date
-                        text_child_dob.setText(materialDatePicker.getHeaderText());
-                        // in the above statement, getHeaderText
-                        // is the selected date preview from the
-                        // dialog
-                    }
-                });
+      } else {
+        updateUsersProfile();
+      }
 
-
-
-
+    } else {
+      System.out.println(childInfoName.getText().toString());
+      System.out.println(childInfoAge.getText().toString());
+      showToast("Fields should not be empty");
     }
+  }
+
+  private void updateUsersProfile() {
+    System.out.println("Inside the updateUsersProfile");
+    person.setPersonChildInfo(childArrayList);
+    person.setProfileCompletionStatus(true);
+
+    System.out.println(person.toString());
+
+    db.collection("person")
+        .document(person.getPersonUUID())
+        .set(person)
+        .addOnSuccessListener(
+            new OnSuccessListener<Void>() {
+              @Override
+              public void onSuccess(Void aVoid) {
+                Log.i(TAG, "Profile Updated successfully");
+                Intent intentHomeActivity = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intentHomeActivity);
+              }
+            })
+        .addOnFailureListener(
+            new OnFailureListener() {
+              @Override
+              public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error Updating profile", e);
+              }
+            });
+  }
+
+  private void showToast(String messageToast) {
+    Toast toast = Toast.makeText(getApplicationContext(), messageToast, Toast.LENGTH_SHORT);
+    toast.show();
+  }
+
+  private void prepareChildViewsandGetData(int a) {
+
+    MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+
+    materialDateBuilder.setTitleText("SELECT A DATE");
+
+    final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+
+    // Create EditText
+    childInfoName = new EditText(this);
+    childInfoName.setHint("Enter Child " + a + " Name");
+    childInfoName.setLayoutParams(
+        new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    childInfoName.setPadding(20, 180, 20, 40);
+
+    childInfoAge = new EditText(this);
+    childInfoAge.setHint("Date of Birth");
+    childInfoAge.setEnabled(false);
+    childInfoAge.setTypeface(null, Typeface.BOLD);
+    childInfoAge.setLayoutParams(
+        new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    childInfoAge.setPadding(20, 180, 20, 40);
+
+    final Button datePickButton = new Button(this);
+    datePickButton.setText("Pickdate");
+    datePickButton.setLayoutParams(
+        new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    datePickButton.setPadding(20, 40, 20, 20);
+    datePickButton.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
+          }
+        });
+
+    materialDatePicker.addOnPositiveButtonClickListener(
+        new MaterialPickerOnPositiveButtonClickListener() {
+          @SuppressLint("SetTextI18n")
+          @Override
+          public void onPositiveButtonClick(Object selection) {
+
+            // if the user clicks on the positive
+            // button that is ok button update the
+            // selected date
+            childInfoAge.setText(materialDatePicker.getHeaderText());
+
+            // in the above statement, getHeaderText
+            // is the selected date preview from the
+            // dialog
+          }
+        });
+
+    // Add EditText to LinearLayout
+    if (linearLayout != null) {
+      linearLayout.addView(childInfoName);
+      linearLayout.addView(childInfoAge);
+      linearLayout.addView(datePickButton);
+    }
+
+    Button btnShow = findViewById(R.id.btnShow);
+    if (btnShow != null) {
+      btnShow.setOnClickListener(
+          new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              // Toast.makeText(MainActivity.this, editText.getText(), Toast.LENGTH_LONG).show();
+
+              Log.i(TAG, childInfoName.getText().toString());
+              Log.i(TAG, childInfoAge.getText().toString());
+            }
+          });
+    }
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.O)
+  private int getAge(String dob){
+    Date today = new Date();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
+    LocalDate dateDOB = LocalDate.parse(dob, formatter);
+    LocalDate localToday =LocalDate.now();
+
+    Period diff
+            = Period
+            .between(dateDOB,
+                    localToday);
+
+    return diff.getYears();
+
+  }
 }

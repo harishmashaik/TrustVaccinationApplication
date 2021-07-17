@@ -20,6 +20,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Person;
 
+import java.io.Serializable;
+
 public class ProfileCompleteActivity extends AppCompatActivity {
 
   public static final String TAG = "ProfileCompleteActivity";
@@ -55,59 +57,43 @@ public class ProfileCompleteActivity extends AppCompatActivity {
     text_common_law_partner = findViewById(R.id.pro_comple_fullname_law_partner);
     text_phone_number = findViewById(R.id.pro_comple_PhoneNumber);
 
-    getUserDetails();
+    getUserAndBundleDetails();
 
     but_updateProfile = findViewById(R.id.but_update_profile);
 
-    but_updateProfile.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-
-            personDetails.setPersonName(String.valueOf(text_fullName.getText()));
-            personDetails.setPersonKids(
-                Integer.parseInt(String.valueOf(text_comple_no_of_kids.getText())));
-            personDetails.setPersonCommonLawPartnerName(
-                String.valueOf(text_common_law_partner.getText()));
-            if (String.valueOf(text_phone_number.getText()).length() != 10) {
-              showToast("Invalid Phone number");
-            } else {
-              personDetails.setPersonPhoneNum(String.valueOf(text_phone_number.getText()));
-            }
-
-            db.collection("person")
-                .document(user.getUid())
-                .set(personDetails)
-                .addOnSuccessListener(
-                    new OnSuccessListener<Void>() {
-                      @Override
-                      public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "Document Snapshot successfully written!");
-                        Intent nextActivity =
-                            new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(nextActivity);
-                      }
-                    })
-                .addOnFailureListener(
-                    new OnFailureListener() {
-                      @Override
-                      public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                      }
-                    });
-          }
-        });
+    but_updateProfile.setOnClickListener(v->updateButtonHandler());
   }
 
-  public void getUserDetails() {
+  private void updateButtonHandler() {
+    personDetails.setPersonName(String.valueOf(text_fullName.getText()));
+    personDetails.setPersonKids(
+            Integer.parseInt(String.valueOf(text_comple_no_of_kids.getText())));
+    personDetails.setPersonCommonLawPartnerName(
+            String.valueOf(text_common_law_partner.getText()));
+    if (String.valueOf(text_phone_number.getText()).length() != 10) {
+      showToast("Invalid Phone number");
+    } else {
+      personDetails.setPersonPhoneNum(String.valueOf(text_phone_number.getText()));
+    }
+
+    Bundle b = new Bundle();
+    b.putSerializable("personDetails", (Serializable) personDetails);
+    Intent intent = new Intent(getApplicationContext(), ChildInfoActivity.class);
+    intent.putExtras(b);
+    startActivity(intent);
+
+  }
+
+  public void getUserAndBundleDetails(){
     if (user != null) {
       userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+      personDetails.setPersonUUID(userID);
       Log.i("the is id ", userID);
     }
   }
 
-  private void showToast(String message) {
-    Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+  private void showToast(String invalid_phone_number) {
+    Toast toast = Toast.makeText(getApplicationContext(), invalid_phone_number, Toast.LENGTH_SHORT);
     toast.show();
   }
 }

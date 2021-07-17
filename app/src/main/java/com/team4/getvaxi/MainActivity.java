@@ -6,6 +6,8 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalDate;
+
 public class MainActivity extends AppCompatActivity {
 
   @Override
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         new Runnable() {
           @Override
           public void run() {
-            Intent homeIntent = new Intent(getApplicationContext(), CLCHomeActivity.class);
+            Intent homeIntent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(homeIntent);
             finish();
           }
