@@ -6,7 +6,7 @@ public class VaccineByAge {
 
     String imageLogo;
     String description;
-    ArrayList<String> vaccines;
+    ArrayList<Vaccine> vaccines;
 
 
     public String getImageLogo() {
@@ -25,11 +25,11 @@ public class VaccineByAge {
         this.description = description;
     }
 
-    public ArrayList<String> getVaccines() {
+    public ArrayList<Vaccine> getVaccines() {
         return vaccines;
     }
 
-    public void setVaccines(ArrayList<String> vaccines) {
+    public void setVaccines(ArrayList<Vaccine> vaccines) {
         this.vaccines = vaccines;
     }
 }

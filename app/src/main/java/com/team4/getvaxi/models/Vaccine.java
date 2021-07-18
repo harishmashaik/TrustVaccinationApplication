@@ -48,4 +48,15 @@ public class Vaccine {
     public void setVaccinatedStatus(boolean vaccinatedStatus) {
         this.vaccinatedStatus = vaccinatedStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Vaccine{" +
+                "vaccineName='" + vaccineName + '\'' +
+                ", vaccineDescription='" + vaccineDescription + '\'' +
+                ", vaccineAgeLow=" + vaccineAgeLow +
+                ", vaccineAgeHigh=" + vaccineAgeHigh +
+                ", vaccinatedStatus=" + vaccinatedStatus +
+                '}';
+    }
 }

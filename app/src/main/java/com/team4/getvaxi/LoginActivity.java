@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.team4.getvaxi.models.CLCUser;
 
 public class LoginActivity extends AppCompatActivity {
   public static final String TAG = "LoginActivity";
@@ -135,6 +136,17 @@ public class LoginActivity extends AppCompatActivity {
                   for (QueryDocumentSnapshot document : task.getResult())
                   {
                     Log.i(TAG, document.getId() + " => " + document.getData());
+                    CLCUser clsUser = document.toObject(CLCUser.class);
+                    if(clsUser.getEmail()==text_loginName.getText().toString()){
+                      if(clsUser.getPassword().equals(text_loginPass.getText().toString()))
+                      {
+                        //mode to clc hoem scren
+                      }
+
+                    }
+                    else{
+                     // "clcuser does not exits"
+                    }
                   }
                 } else
                   {

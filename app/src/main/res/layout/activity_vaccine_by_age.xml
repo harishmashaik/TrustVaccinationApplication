@@ -27,7 +27,7 @@
         app:layout_constraintVertical_bias="0.013">
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/vaccineByAGe_AC_vaccineImage"
             android:layout_width="59dp"
             android:layout_height="76dp"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/vaccineByAGe_AC_vaccineName"
             android:layout_width="236dp"
             android:layout_height="77dp"
             android:layout_weight="1"
@@ -44,8 +44,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="374dp"
-        android:layout_height="146dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,18 +57,24 @@
         app:layout_constraintVertical_bias="0.037">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/vaccineByAGe_AC_vaccineDescription"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:text="TextView"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="73dp"
+            android:layout_marginBottom="10dp"
             android:text="TextView" />
+
     </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vaccineByAGe_AC_vaccineList"
+        android:layout_width="382dp"
+        android:layout_height="394dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
