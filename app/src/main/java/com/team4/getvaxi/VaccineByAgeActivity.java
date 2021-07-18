@@ -31,8 +31,6 @@ public class VaccineByAgeActivity extends AppCompatActivity {
   ImageView vaccineByAgeImage;
   TextView vaccineByAgeVaccineName;
   TextView vaccineByAgeVaccineDesc;
-
-
   VaccineByAge vaccineCurrent = new VaccineByAge();
 
   @Override
@@ -48,6 +46,9 @@ public class VaccineByAgeActivity extends AppCompatActivity {
     vaccineByAgeImage = findViewById(R.id.vaccineByAGe_AC_vaccineImage);
     vaccineByAgeVaccineName = findViewById(R.id.vaccineByAGe_AC_vaccineName);
     vaccineByAgeVaccineDesc = findViewById(R.id.vaccineByAGe_AC_vaccineDescription);
+
+    getVaccineDetails("asa");
+    //mapVaccineData();
 
   }
 
