@@ -11,11 +11,16 @@ import android.widget.EditText;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class BookVaccineActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+
   private Button pickDateOoAppointment;
   private EditText text_appointment_date;
+  Commons cmns = new Commons();
 
   EditText vaccineName;
 
@@ -27,6 +32,9 @@ public class BookVaccineActivity extends AppCompatActivity {
     pickDateOoAppointment = findViewById(R.id.bookvaccine_AC_pickdate);
     text_appointment_date = findViewById(R.id.bookingCon_date);
     vaccineName = findViewById(R.id.bookingCon_vaccinename);
+    mAuth = FirebaseAuth.getInstance();
+
+    getUserDetails();
 
     Intent intent = getIntent();
     if (intent.hasExtra("vaccineName")) {
@@ -55,4 +63,9 @@ public class BookVaccineActivity extends AppCompatActivity {
           }
         });
   }
+
+    private void getUserDetails() {
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser.getUid();
+    }
 }
