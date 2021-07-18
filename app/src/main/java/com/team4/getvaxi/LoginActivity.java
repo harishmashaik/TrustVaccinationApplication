@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
   private void login() {
     Log.i(TAG,"the bool is "+ clcSwitch);
 
-    if(clcSwitch){
+    if(!clcSwitch){
 
       clcLogin();
     }

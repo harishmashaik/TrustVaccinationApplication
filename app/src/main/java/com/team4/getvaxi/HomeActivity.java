@@ -81,6 +81,14 @@ public class HomeActivity extends AppCompatActivity {
           }
         });
 
+      txtVaccinationByAge.setOnClickListener(v -> {
+          try {
+              nextActivity("VaccineByAgeActivity");
+          } catch (ClassNotFoundException e) {
+              e.printStackTrace();
+          }
+      });
+
     txtLogout.setOnClickListener(v -> userSignOut());
   }
 

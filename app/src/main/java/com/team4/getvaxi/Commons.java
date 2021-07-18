@@ -15,6 +15,8 @@ import com.team4.getvaxi.models.Person;
 
 public class Commons {
 
+    public static final String TAG = "CommonsClass";
+
   private static FirebaseAuth mAuth;
   private static FirebaseUser currentUser;
   private static FirebaseFirestore db;
@@ -32,12 +34,12 @@ public class Commons {
     return  userUUID;
   }
 
-  public void getCurrentUserDetails() {
+  public Person getCurrentUserDetails() {
+    System.out.println("the user is " +mAuth.getCurrentUser().getUid());
 
       DocumentReference docRef = db.collection("person").document(mAuth.getCurrentUser().getUid());
 
-      docRef
-              .get()
+      docRef.get()
               .addOnCompleteListener(
                       new OnCompleteListener<DocumentSnapshot>() {
                           @Override
@@ -45,9 +47,12 @@ public class Commons {
                               if (task.isSuccessful()) {
                                   DocumentSnapshot document = task.getResult();
                                   if (document.exists()) {
-                                      Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                      personCurrent = document.toObject(Person.class);
-                                      mapUserData(personCurrent);
+                                      Log.i(TAG, "DocumentSnapshot data: " + document.getData());
+
+                                      currentPersonDetails = document.toObject(Person.class);
+                                      Log.i(TAG, currentPersonDetails.toString());
+
+                                      //mapUserData(personCurrent);
                                   } else {
                                       Log.d(TAG, "No such document");
                                   }
@@ -57,6 +62,9 @@ public class Commons {
                           }
                       });
 
+    System.out.println(currentPersonDetails.toString());
+
+      return currentPersonDetails;
 
   }
 }
