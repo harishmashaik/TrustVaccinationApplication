@@ -139,10 +139,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/bookingconfirmAC_button"
+        android:id="@+id/bookVaccineAC_book"
         android:layout_width="340dp"
         android:layout_height="56dp"
-        android:text="Confirm Booking"
+        android:text="Book Appointment"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
