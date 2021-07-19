@@ -46,6 +46,7 @@ public class CLCHomeActivity extends AppCompatActivity {
   private void loadBookings() {
     ArrayList<Booking> bookingList = new ArrayList<>();
     db.collection("bookings")
+        .whereEqualTo("bookingStatus", true)
         .get()
         .addOnCompleteListener(
             new OnCompleteListener<QuerySnapshot>() {
@@ -53,7 +54,7 @@ public class CLCHomeActivity extends AppCompatActivity {
               public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                   for (QueryDocumentSnapshot document : task.getResult()) {
-                    String tempID= document.getId();
+                    String tempID = document.getId();
                     Booking b = document.toObject(Booking.class);
                     b.setFbDocID(tempID);
                     Log.i(TAG, document.getId() + " => " + b.toString());
@@ -63,7 +64,6 @@ public class CLCHomeActivity extends AppCompatActivity {
                 } else {
                   Log.i(TAG, "Error getting documents: ", task.getException());
                 }
-
               }
             });
   }

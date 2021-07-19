@@ -16,6 +16,15 @@ public class Booking implements Parcelable {
     Date dateOfBooking;
     Boolean bookingStatus = false;
     HashMap<String,String> vaccinationCenterDetails = new HashMap<>();
+    String remarks;
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
 
     public Boolean getBookingStatus() {
         return bookingStatus;

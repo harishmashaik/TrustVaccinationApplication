@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.team4.getvaxi.CLC.BookingConfirmActivity;
+import com.team4.getvaxi.CLC.BookingDeclineActivity;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
@@ -53,8 +54,8 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         });
 
         buttonDecline.setOnClickListener(v -> {
-            Intent i = new Intent(layoutView.getContext(), HomeActivity.class);
-            //i.putExtra(username,user.getUser_name());
+            Intent i = new Intent(layoutView.getContext(), BookingDeclineActivity.class);
+            i.putExtra(booking, (Parcelable) user);
             layoutView.getContext().startActivity(i);
         });
 
