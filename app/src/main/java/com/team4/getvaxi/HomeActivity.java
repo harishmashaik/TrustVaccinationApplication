@@ -89,6 +89,15 @@ public class HomeActivity extends AppCompatActivity {
           }
       });
 
+      txtTrackAppointment.setOnClickListener(v -> {
+          try {
+              nextActivity("TrackBookingActivity");
+          } catch (ClassNotFoundException e) {
+              e.printStackTrace();
+          }
+      });
+
+
     txtLogout.setOnClickListener(v -> userSignOut());
   }
 

@@ -70,6 +70,7 @@ public class BookVaccineActivity extends AppCompatActivity {
     dropdownChildList = findViewById(R.id.Bookvaccine_AC_childname_menu);
     bookAppointment = findViewById(R.id.bookVaccineAC_book);
 
+
     mAuth = FirebaseAuth.getInstance();
     user = mAuth.getCurrentUser();
     db = FirebaseFirestore.getInstance();
@@ -124,6 +125,9 @@ public class BookVaccineActivity extends AppCompatActivity {
     newBooking.setAppointmentDate(text_appointment_date.getText().toString());
     newBooking.setName(dropdownChildList.getText().toString());
     newBooking.setDateOfBooking(new Date());
+    newBooking.setUserId(mAuth.getCurrentUser().getUid());
+    newBooking.setBoookingStatus("PEND");
+
 
     db.collection("bookings")
         .add(newBooking)

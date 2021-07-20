@@ -10,10 +10,11 @@
     app:contentPadding="3dp">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+        android:id="@+id/trackUserBookings_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="8dp">
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
@@ -32,7 +33,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceHeadline6"
-
                     android:textSize="24sp" />
 
                 <TextView
@@ -65,10 +65,12 @@
                     android:id="@+id/custom_user_track_booking_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginBottom="6dp"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="20sp" />
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

@@ -46,7 +46,7 @@ public class CLCHomeActivity extends AppCompatActivity {
   private void loadBookings() {
     ArrayList<Booking> bookingList = new ArrayList<>();
     db.collection("bookings")
-        .whereEqualTo("bookingStatus", false)
+        .whereEqualTo("bookingReviewed", false)
         .get()
         .addOnCompleteListener(
             new OnCompleteListener<QuerySnapshot>() {

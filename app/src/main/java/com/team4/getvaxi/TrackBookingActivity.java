@@ -33,27 +33,26 @@ public class TrackBookingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_track_booking);
+
+        mAuth = FirebaseAuth.getInstance();
 
 
-        RecyclerView listOfBookings = findViewById(R.id.user_trackBookingList);
+        RecyclerView listOfuserBookings = findViewById(R.id.user_trackBookingList);
 
-        listOfBookings.setHasFixedSize(false);
-        listOfBookings.setLayoutManager(new LinearLayoutManager(this));
+        listOfuserBookings.setHasFixedSize(false);
+        listOfuserBookings.setLayoutManager(new LinearLayoutManager(this));
 
-        listOfBookings.setAdapter(trackbookingsAdapter);
+        listOfuserBookings.setAdapter(trackbookingsAdapter);
 
         loadUserBookings();
-
-
-
-
 
     }
 
     private void loadUserBookings() {
         ArrayList<Booking> userBookingList = new ArrayList<>();
         db.collection("bookings")
-                .whereEqualTo("bookingStatus", false)
+                .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {

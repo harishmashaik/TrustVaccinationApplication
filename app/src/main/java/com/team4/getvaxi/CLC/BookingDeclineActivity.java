@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -18,9 +17,7 @@ import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
 import com.team4.getvaxi.recycle.BookingViewHolder;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class BookingDeclineActivity extends AppCompatActivity {
 
@@ -67,8 +64,9 @@ public class BookingDeclineActivity extends AppCompatActivity {
 
 
     HashMap<String, String> tempCenter = new HashMap<>();
-    eachBooking.setBookingStatus(true);
+    eachBooking.setBookingReviewed(true);
     eachBooking.setRemarks(txtRemarks.getText().toString());
+    eachBooking.setBoookingStatus("DECL");
 
     Log.i(TAG, eachBooking.toString());
 

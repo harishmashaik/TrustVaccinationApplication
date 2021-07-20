@@ -13,7 +13,6 @@ import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
@@ -82,7 +81,8 @@ public class BookingConfirmActivity extends AppCompatActivity {
     HashMap<String, String> tempCenter = new HashMap<>();
     tempCenter.put(dropdownCenterList.getText().toString(), dropdownCenterList.getText().toString());
     eachBooking.setVaccinationCenterDetails(tempCenter);
-    eachBooking.setBookingStatus(true);
+    eachBooking.setBookingReviewed(true);
+    eachBooking.setBoookingStatus("CONFM");
 
     Log.i(TAG, eachBooking.toString());
 

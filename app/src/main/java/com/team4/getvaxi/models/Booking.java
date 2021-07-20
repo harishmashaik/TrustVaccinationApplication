@@ -14,9 +14,27 @@ public class Booking implements Parcelable {
     String vaccineName;
     String appointmentDate;
     Date dateOfBooking;
-    Boolean bookingStatus = false;
+    Boolean bookingReviewed = false;
     HashMap<String,String> vaccinationCenterDetails = new HashMap<>();
     String remarks;
+    String boookingStatus;
+    String userId;
+
+    public String getBoookingStatus() {
+        return boookingStatus;
+    }
+
+    public void setBoookingStatus(String boookingStatus) {
+        this.boookingStatus = boookingStatus;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getRemarks() {
         return remarks;
@@ -26,12 +44,12 @@ public class Booking implements Parcelable {
         this.remarks = remarks;
     }
 
-    public Boolean getBookingStatus() {
-        return bookingStatus;
+    public Boolean getBookingReviewed() {
+        return bookingReviewed;
     }
 
-    public void setBookingStatus(Boolean bookingStatus) {
-        this.bookingStatus = bookingStatus;
+    public void setBookingReviewed(Boolean bookingReviewed) {
+        this.bookingReviewed = bookingReviewed;
     }
 
     public String getFbDocID() {
