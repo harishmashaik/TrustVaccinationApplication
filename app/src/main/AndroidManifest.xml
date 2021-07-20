@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SampleTestActivity"></activity>
+        <activity android:name=".TrackBookingActivity"></activity>
+        <activity android:name=".SampleTestActivity" />
         <activity android:name=".BookVaccineActivity" />
         <activity android:name=".CLC.BookingDeclineActivity" />
         <activity android:name=".CLC.BookingConfirmActivity" />
