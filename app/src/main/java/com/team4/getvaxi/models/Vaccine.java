@@ -7,7 +7,25 @@ public class Vaccine {
     private int vaccineAgeLow;
     private int vaccineAgeHigh;
     private boolean vaccinatedStatus;
+    private int vaccineStock;
+    private int vaccineDose;
 
+
+    public int getVaccineDose() {
+        return vaccineDose;
+    }
+
+    public void setVaccineDose(int vaccineDose) {
+        this.vaccineDose = vaccineDose;
+    }
+
+    public int getVaccineStock() {
+        return vaccineStock;
+    }
+
+    public void setVaccineStock(int vaccineStock) {
+        this.vaccineStock = vaccineStock;
+    }
 
     public String getVaccineName() {
         return vaccineName;

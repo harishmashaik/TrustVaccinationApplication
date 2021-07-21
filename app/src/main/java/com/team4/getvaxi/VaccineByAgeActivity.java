@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -28,6 +29,8 @@ public class VaccineByAgeActivity extends AppCompatActivity {
   FirebaseFirestore db = FirebaseFirestore.getInstance();
   final VaccineAdapter vaccinesAdapter = new VaccineAdapter();
 
+  String ageParam;
+
   ImageView vaccineByAgeImage;
   TextView vaccineByAgeVaccineName;
   TextView vaccineByAgeVaccineDesc;
@@ -46,47 +49,113 @@ public class VaccineByAgeActivity extends AppCompatActivity {
     vaccineByAgeImage = findViewById(R.id.vaccineByAGe_AC_vaccineImage);
     vaccineByAgeVaccineName = findViewById(R.id.vaccineByAGe_AC_vaccineName);
     vaccineByAgeVaccineDesc = findViewById(R.id.vaccineByAGe_AC_vaccineDescription);
+    getExtras();
 
-    getVaccineDetails("asa");
-    //mapVaccineData();
+    getVaccineDetails("aa5sa");
+    // mapVaccineData();
 
+  }
+
+  private void getExtras() {
+    Intent intent = getIntent();
+
+    if (intent.hasExtra("AGEPARAM")) {
+      ageParam = intent.getStringExtra("AGEPARAM");
+    }
   }
 
   public void getVaccineDetails(String byAge) {
 
+  if(byAge.length()>4){
     StringBuilder docId = new StringBuilder();
     docId.append("get");
     docId.append(byAge);
     DocumentReference docRef = db.collection("vaccines").document("vaccineatage6");
 
     docRef
-        .get()
-        .addOnCompleteListener(
-            new OnCompleteListener<DocumentSnapshot>() {
-              @Override
-              public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                  DocumentSnapshot document = task.getResult();
-                  if (document.exists()) {
-                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    vaccineCurrent = document.toObject(VaccineByAge.class);
-                    mapVaccineData(vaccineCurrent);
-                  } else {
-                    Log.d(TAG, "No such document");
-                  }
-                } else {
-                  Log.d(TAG, "get failed with ", task.getException());
-                }
-              }
-            });
+            .get()
+            .addOnCompleteListener(
+                    new OnCompleteListener<DocumentSnapshot>() {
+                      @Override
+                      public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                          DocumentSnapshot document = task.getResult();
+                          if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            vaccineCurrent = document.toObject(VaccineByAge.class);
+                            mapVaccineData(vaccineCurrent);
+                          } else {
+                            Log.d(TAG, "No such document");
+                          }
+                        } else {
+                          Log.d(TAG, "get failed with ", task.getException());
+                        }
+                      }
+                    });
+  }
+  }
+
+
+  private void updateVVVV(){
+
+    Vaccine v1 = new Vaccine();
+    v1.setVaccineName("Hepatitis B (HepB)");
+    v1.setVaccineDose(2);
+    v1.setVaccineDescription("Below 2 Months");
+
+    Vaccine v2 = new Vaccine();
+    v2.setVaccineName("Diphtheria, tetanus, and whooping cough (pertussis) (DTaP)");
+    v2.setVaccineDose(1);
+    v2.setVaccineDescription("Below 2 Months");
+
+
+    Vaccine v3 = new Vaccine();
+    v3.setVaccineName("Haemophilus influenzae type b disease (Hib)");
+    v3.setVaccineDose(1);
+    v3.setVaccineDescription("Below 2 Months");
+
+
+    Vaccine v4 = new Vaccine();
+    v4.setVaccineName("Polio (IPV)");
+    v4.setVaccineDose(1);
+    v4.setVaccineDescription("Below 2 Months");
+
+    Vaccine v5 = new Vaccine();
+    v5.setVaccineName("Pneumococcal disease (PCV13)");
+    v5.setVaccineDose(1);
+    v5.setVaccineDescription("Below 2 Months");
+
+    Vaccine v6 = new Vaccine();
+    v6.setVaccineName("Rotavirus (RV)");
+    v6.setVaccineDose(1);
+    v6.setVaccineDescription("Below 2 Months");
+
+    ArrayList<Vaccine> vaccinesAtThisAge = new ArrayList<>();
+    vaccinesAtThisAge.add(v1);
+    vaccinesAtThisAge.add(v2);
+    vaccinesAtThisAge.add(v3);
+    vaccinesAtThisAge.add(v4);
+    vaccinesAtThisAge.add(v5);
+    vaccinesAtThisAge.add(v6);
+
+    VaccineByAge vxAgebelow2 = new VaccineByAge();
+    vxAgebelow2.setVaccinesAtThisAge(vaccinesAtThisAge);;
+    vxAgebelow2.setImageLogo("");
+    vxAgebelow2.setDescription("At 1 to 2 months, your baby should receive vaccines to protect them from the following diseases");
+
+
+
+
+
+
+
   }
 
   private void mapVaccineData(VaccineByAge vaccineCurrent) {
     vaccineByAgeVaccineName.setText("for age below 6");
     vaccineByAgeVaccineDesc.setText(vaccineCurrent.getDescription());
-    final ArrayList<Vaccine> vaccinesList = vaccineCurrent.getVaccines();
+    final ArrayList<Vaccine> vaccinesList = vaccineCurrent.getVaccinesAtThisAge();
 
     vaccinesAdapter.setVaccines(vaccinesList);
-
   }
 }

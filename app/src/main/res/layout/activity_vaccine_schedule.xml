@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     tools:context=".VaccineScheduleActivity">
 
     <include
@@ -18,125 +19,220 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TableLayout
-        android:layout_width="403dp"
-        android:layout_height="659dp"
-        android:layout_marginTop="20dp"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VaccSche_Ac_app_bar">
+        app:layout_constraintTop_toBottomOf="@+id/VaccSche_Ac_app_bar"
+        app:layout_constraintVertical_bias="0.035"
+        tools:layout_editor_absoluteX="0dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp">
+        <ImageView
+            android:id="@+id/vaccineScheduleBelow2Month"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:scaleType="center"
+            app:srcCompat="@mipmap/vaccine_age_two_below"
+            tools:srcCompat="@tools:sample/avatars" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
-                tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/vaccineScheduleBelow4Month"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:scaleType="center"
+            app:srcCompat="@mipmap/vaccine_age_four_below"
+            tools:srcCompat="@tools:sample/avatars" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
-                tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/vaccineScheduleBelow6Month"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="#C86B6B"
+            app:srcCompat="@mipmap/vaccine_age_six_below"
+            tools:srcCompat="@tools:sample/avatars" />
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
-                tools:srcCompat="@tools:sample/avatars" />
-        </TableRow>
+    </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp">
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.047"
+        tools:layout_editor_absoluteX="-26dp">
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
-                tools:srcCompat="@tools:sample/avatars" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow11M"
+            android:layout_width="129dp"
+            android:layout_height="145dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.528">
 
             <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/vaccineScheduleBelow11Month"
+                android:layout_width="87dp"
+                android:layout_height="92dp"
                 android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
+                android:backgroundTint="#C86B6B"
+                app:srcCompat="@mipmap/vaccine_age_eleven_below"
                 tools:srcCompat="@tools:sample/avatars" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow3Y"
+            android:layout_width="129dp"
+            android:layout_height="145dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.528">
 
             <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/vaccineScheduleBelow3Years"
+                android:layout_width="87dp"
+                android:layout_height="92dp"
                 android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
+                android:backgroundTint="#C86B6B"
+                app:srcCompat="@mipmap/vaccine_age_three_years_below"
                 tools:srcCompat="@tools:sample/avatars" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow6y"
+            android:layout_width="129dp"
+            android:layout_height="145dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.528">
 
             <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/vaccineScheduleBelow6Years"
+                android:layout_width="87dp"
+                android:layout_height="92dp"
                 android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
+                android:backgroundTint="#C86B6B"
+                app:srcCompat="@mipmap/vaccine_age_six_years_below"
                 tools:srcCompat="@tools:sample/avatars" />
-        </TableRow>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.094"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow10y"
+            android:layout_width="129dp"
+            android:layout_height="145dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.528">
 
             <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/vaccineScheduleBelow10Years"
+                android:layout_width="87dp"
+                android:layout_height="92dp"
                 android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
+                android:backgroundTint="#C86B6B"
+                app:srcCompat="@mipmap/vaccine_age_ten_years_below"
                 tools:srcCompat="@tools:sample/avatars" />
 
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow18y"
+            android:layout_width="129dp"
+            android:layout_height="145dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.528">
+
             <ImageView
-                android:id="@+id/imageView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/vaccineScheduleBelow18Years"
+                android:layout_width="87dp"
+                android:layout_height="92dp"
                 android:layout_margin="5dp"
-                android:background="@mipmap/ic_launcher_logo"
+                android:backgroundTint="#C86B6B"
+                app:srcCompat="@mipmap/vaccine_age_eighteen_years_below"
                 tools:srcCompat="@tools:sample/avatars" />
-        </TableRow>
-    </TableLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
