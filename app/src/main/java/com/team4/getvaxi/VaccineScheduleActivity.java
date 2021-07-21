@@ -26,7 +26,7 @@ public class VaccineScheduleActivity extends AppCompatActivity {
 
     matCardBelow11Months.setOnClickListener(v -> vaccineByAGe("ageB11M"));
 
-    matCardBelow3Years.setOnClickListener(v -> vaccineByAGe("ageB03Y"));
+    matCardBelow3Years.setOnClickListener(v -> vaccineByAGe("ageB02M"));
     matCardBelow6Years.setOnClickListener(v -> vaccineByAGe("ageB06Y"));
     matCardBelow10Years.setOnClickListener(v -> vaccineByAGe("ageB10Y"));
   }

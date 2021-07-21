@@ -31,7 +31,6 @@
             android:layout_width="59dp"
             android:layout_height="76dp"
             android:layout_weight="1"
-            android:background="@mipmap/ic_launcher_logo"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -43,6 +42,7 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="374dp"
@@ -51,10 +51,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.037">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/vaccineByAGe_AC_vaccineDescription"
@@ -65,14 +65,14 @@
 
     </LinearLayout>
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vaccineByAGe_AC_vaccineList"
-        android:layout_width="382dp"
-        android:layout_height="394dp"
+        android:layout_width="400dp"
+        android:layout_height="483dp"
         android:layout_marginStart="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
