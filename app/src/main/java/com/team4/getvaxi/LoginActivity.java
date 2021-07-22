@@ -2,6 +2,7 @@ package com.team4.getvaxi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,6 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.team4.getvaxi.models.CLCUser;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
   public static final String TAG = "LoginActivity";
@@ -56,66 +62,62 @@ public class LoginActivity extends AppCompatActivity {
     but_forpas = findViewById(R.id.LoginAc_but_forgotPas);
     but_singnUp = findViewById(R.id.LoginAc_but_signup);
 
-    clcSwitch = isCLchecked.isEnabled();
+    // isCLchecked.isChecked();
 
     but_login.setOnClickListener(v -> login());
     but_forpas.setOnClickListener(v -> forgotPassword());
     but_singnUp.setOnClickListener(v -> signUp());
     checkUserLogin();
-
-
-
-
-
   }
 
   // login with email and password
   private void login() {
-    Log.i(TAG,"the bool is "+ clcSwitch);
+    Log.i(TAG, "the bool is " + clcSwitch);
+    Log.i(TAG, "the bool is checked " + isCLchecked.isChecked());
+    Log.i(TAG, "the bool is enabled " + isCLchecked.isEnabled());
+    Log.i(TAG, "the bool is selected" + isCLchecked.isSelected());
 
-    if(!clcSwitch){
+    if (isCLchecked.isChecked()) {
 
       clcLogin();
-    }
-    else{
+    } else {
       String email =
-              String.valueOf(
-                      text_loginName.getText()); // getting details of email & password from the edittext
+          String.valueOf(
+              text_loginName.getText()); // getting details of email & password from the edittext
       String password = String.valueOf(text_loginPass.getText());
       Log.i("The mail is", email);
       Log.i("the pass is ", password);
 
       if (email.length() > 5 && password.length() > 5) {
         mAuth
-                .signInWithEmailAndPassword(
-                        email, password) // involking signin method with firebase auth instance.
-                .addOnCompleteListener(
-                        this,
-                        new OnCompleteListener<AuthResult>() {
-                          @Override
-                          public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+            .signInWithEmailAndPassword(
+                email, password) // involking signin method with firebase auth instance.
+            .addOnCompleteListener(
+                this,
+                new OnCompleteListener<AuthResult>() {
+                  @Override
+                  public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
 
-                              FirebaseUser user =
-                                      mAuth.getCurrentUser(); // if logged in navigate to the home activity
-                              Intent intent = new Intent(context, HomeActivity.class);
-                              startActivity(intent);
+                      FirebaseUser user =
+                          mAuth.getCurrentUser(); // if logged in navigate to the home activity
+                      Intent intent = new Intent(context, HomeActivity.class);
+                      startActivity(intent);
 
-                            } else {
-                              Toast toast =
-                                      Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
-                              toast.show();
-                            }
-                          }
-                        });
+                    } else {
+                      Toast toast =
+                          Toast.makeText(
+                              getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
+                      toast.show();
+                    }
+                  }
+                });
       } else {
         Toast toast =
-                Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
         toast.show();
       }
     }
-
-
   }
 
   // this method will navigate the user to forgot password activity.
@@ -124,36 +126,43 @@ public class LoginActivity extends AppCompatActivity {
     Intent intent = new Intent(context, ForgotpasswordActivity.class);
     startActivity(intent);
   }
+
   private void clcLogin() {
 
     db.collection("clcusers")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        .get()
+        .addOnCompleteListener(
+            new OnCompleteListener<QuerySnapshot>() {
+              @RequiresApi(api = Build.VERSION_CODES.N)
               @Override
               public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful())
-                {
-                  for (QueryDocumentSnapshot document : task.getResult())
-                  {
+                if (task.isSuccessful()) {
+                  for (QueryDocumentSnapshot document : task.getResult()) {
                     Log.i(TAG, document.getId() + " => " + document.getData());
-                    CLCUser clsUser = document.toObject(CLCUser.class);
-                    if(clsUser.getEmail()==text_loginName.getText().toString()){
-                      if(clsUser.getPassword().equals(text_loginPass.getText().toString()))
-                      {
-                        //mode to clc hoem scren
-                      }
+                    List<Map<String, String>> usersList =
+                        (List<Map<String, String>>) document.getData().get("clcu");
+                    System.out.println(usersList);
+                    usersList.forEach(
+                        li -> {
+                          System.out.println(li.get("email"));
 
-                    }
-                    else{
-                     // "clcuser does not exits"
-                    }
+                          if (text_loginName.getText().toString().equals(li.get("email"))) {
+                            System.out.println("the mail is " + li.get("email"));
+                            if (text_loginPass.getText().toString().equals(li.get("password"))) {
+                              //
+                              Intent intent = new Intent(context, CLCHomeActivity.class);
+                              startActivity(intent);
+                            }
+                            // checkfor pass
+                          } else {
+                            // no clc user
+                          }
+                        });
                   }
-                } else
-                  {
+                } else {
                   Log.i(TAG, "Error getting documents: ", task.getException());
-                  }
+                }
               }
-
             });
   }
 
