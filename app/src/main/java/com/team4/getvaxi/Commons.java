@@ -1,8 +1,17 @@
 package com.team4.getvaxi;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -13,23 +22,32 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Person;
 
-public class Commons {
+public class Commons extends Activity {
+
 
     public static final String TAG = "CommonsClass";
 
-  private static FirebaseAuth mAuth;
+    AlertDialog.Builder builder;
+
+
+
+    private static FirebaseAuth mAuth;
   private static FirebaseUser currentUser;
   private static FirebaseFirestore db;
 
   String userUUID;
   Person currentPersonDetails = new Person();
 
-  public Commons() {
-    mAuth = FirebaseAuth.getInstance();
-    db = FirebaseFirestore.getInstance();
-  }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        builder = new AlertDialog.Builder(getApplicationContext());
+    }
 
-  public String getCurrentUserId() {
+
+    public String getCurrentUserId() {
     userUUID = mAuth.getCurrentUser().getUid();
     return  userUUID;
   }
@@ -67,4 +85,47 @@ public class Commons {
       return currentPersonDetails;
 
   }
+
+    public void userSignOut() {
+        builder = new AlertDialog.Builder(getApplicationContext());
+
+        // Setting message manually and performing action on button click
+        builder
+                .setMessage("Do you want to logout from the TrustVaccination ?")
+                .setCancelable(false)
+                .setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                finish();
+                                // Getting the firebase auth instance and signing out.
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    mAuth.signOut();
+                                    Toast toast =
+                                            Toast.makeText(
+                                                    getApplicationContext(), "User Signed Out", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                    startActivity(intent);
+
+                                } else {
+
+                                }
+                            }
+                        })
+                .setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //  Action for 'NO' Button
+                                dialog.cancel();
+                            }
+                        });
+        // Creating dialog box
+        AlertDialog alert = builder.create();
+        // Setting the title manually
+        alert.setTitle("Logout");
+        alert.show();
+    }
 }

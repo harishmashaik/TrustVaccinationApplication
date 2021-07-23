@@ -1,17 +1,18 @@
 package com.team4.getvaxi;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.app.IntentService;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     setContentView(R.layout.activity_home);
 
     mAuth = FirebaseAuth.getInstance();
+
+
 
     txtWhyVaccination = findViewById(R.id.mainAc_whyVaccination);
     txtVaccinationSchedule = findViewById(R.id.mainAc_VacciantionSchedule);
@@ -101,7 +104,16 @@ public class HomeActivity extends AppCompatActivity {
     txtLogout.setOnClickListener(v -> userSignOut());
   }
 
-  public void nextActivity(String str) throws ClassNotFoundException {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.top_app_bar,menu);
+        return true;
+    }
+
+
+
+    public void nextActivity(String str) throws ClassNotFoundException {
 
     Intent nextActivityRequested =
         new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + str));
@@ -149,4 +161,15 @@ public class HomeActivity extends AppCompatActivity {
     alert.setTitle("Logout");
     alert.show();
   }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.appbar_home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
