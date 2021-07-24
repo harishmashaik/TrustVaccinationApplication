@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".CLCVaccineStoreActivity">
 
+
+    <include
+        android:id="@+id/clc_vaccine_store_include"
+        layout="@layout/toolbar"
+        android:layout_width="412dp"
+        android:layout_height="64dp"
+        tools:layout_editor_absoluteX="-5dp"
+        tools:layout_editor_absoluteY="6dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/clc_vaccine_store_vaccineList"
+        android:layout_width="405dp"
+        android:layout_height="644dp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/clc_include"
+        app:layout_constraintVertical_bias="0.82" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

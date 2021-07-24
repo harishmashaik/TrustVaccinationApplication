@@ -13,40 +13,40 @@ import com.team4.getvaxi.models.Vaccine;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VaccineStoreAdapter extends RecyclerView.Adapter<VaccineViewHolder> {
+public class VaccineStoreAdapter extends RecyclerView.Adapter<VaccineStoreViewHolder> {
 
-  private List<Vaccine> vaccines;
+  private List<Vaccine> vaccinesInStore;
 
   public VaccineStoreAdapter() {
-    vaccines = new ArrayList<>();
+    vaccinesInStore = new ArrayList<>();
   }
 
-  public void setVaccines(List<Vaccine> vaccines) {
-    this.vaccines = vaccines;
+  public void setVaccinesInStore(List<Vaccine> vaccinesInStore) {
+    this.vaccinesInStore = vaccinesInStore;
     notifyDataSetChanged(); // going to bind new data to Views.
   }
 
   @NonNull
   @Override
-  public VaccineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public VaccineStoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     final View customView =
         LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
-    VaccineViewHolder userViewHolder = new VaccineViewHolder(customView);
+    VaccineStoreViewHolder userViewHolder = new VaccineStoreViewHolder(customView);
     return userViewHolder;
   }
 
   @Override
-  public void onBindViewHolder(@NonNull VaccineViewHolder holder, int position) {
-    holder.bind(vaccines.get(position), this);
+  public void onBindViewHolder(@NonNull VaccineStoreViewHolder holder, int position) {
+    holder.bind(vaccinesInStore.get(position), this);
   }
 
   @Override
   public int getItemCount() {
-    return vaccines.size();
+    return vaccinesInStore.size();
   }
 
   @Override
   public int getItemViewType(int position) {
-    return R.layout.custom_vaccinesbyage_vaccinelist_view;
+    return R.layout.custom_clc_vaccine_store_view;
   }
 }

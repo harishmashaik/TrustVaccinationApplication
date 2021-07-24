@@ -2,31 +2,43 @@ package com.team4.getvaxi.recycle;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.team4.getvaxi.BookVaccineActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Vaccine;
 
-;
+;import java.io.BufferedReader;
+
+import static android.graphics.Color.rgb;
 
 public class VaccineStoreViewHolder extends RecyclerView.ViewHolder {
 
   public static final String booking = "BOOKING";
   public static final String docID = "DOCUMENTID";
 
-  private final TextView vaccineByAgeVName;
+  private final TextView vaccineName;
+  private final TextView vaccineDose;
+  private final TextView vaccineStock;
+  private final Button updateButton;
 
   private Vaccine vaccine;
-  private VaccineAdapter adapter;
+  private VaccineStoreAdapter adapter;
+  private final MaterialCardView materialCardView;
 
   public VaccineStoreViewHolder(@NonNull View layoutView) {
     super(layoutView);
 
-    vaccineByAgeVName = layoutView.findViewById(R.id.custom_vaccinebyage_vaccinename);
+      vaccineName = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinename);
+      vaccineDose = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinedose);
+      vaccineStock = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinestock);
+      updateButton = layoutView.findViewById(R.id.custom_clc_vaccine_store_button);
+      materialCardView = layoutView.findViewById(R.id.custom_clc_vaccine_store_matcard);
 
     //        buttonConfirm.setOnClickListener(v -> {
     ////            Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
@@ -48,14 +60,21 @@ public class VaccineStoreViewHolder extends RecyclerView.ViewHolder {
         });
   }
 
-  public void bind(Vaccine vaccine, VaccineAdapter adapter) {
+  public void bind(Vaccine vaccine, VaccineStoreAdapter adapter) {
     this.vaccine = vaccine;
     this.adapter = adapter;
-    vaccineByAgeVName.setText(vaccine.getVaccineName());
-    //        vaccineName.setText(booking.getVaccineName());
-    //        childNameAndAGe.setText(booking.getName() + " " +booking.getAge());
-    //        dateofBooking.setText(booking.getAppointmentDate());
-    //
+    if(vaccine.getVaccineStock() < 5){
+      System.out.println(vaccine.toString());
+      materialCardView.setCardBackgroundColor(rgb(255,170,153));
+    }
+    else {
+      materialCardView.setCardBackgroundColor(rgb(255,255,255));
+    }
+      vaccineName.setText(vaccine.getVaccineName());
+      vaccineDose.setText(Integer.toString(vaccine.getVaccineDose()));
+     vaccineStock.setText(Integer.toString(vaccine.getVaccineStock()));
+
+
 
   }
 }
