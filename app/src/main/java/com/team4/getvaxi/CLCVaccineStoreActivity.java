@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.team4.getvaxi.models.Booking;
+import com.team4.getvaxi.models.ProgressLoader;
 import com.team4.getvaxi.models.Vaccine;
 import com.team4.getvaxi.recycle.BookingsAdapter;
 import com.team4.getvaxi.recycle.VaccineStoreAdapter;
@@ -31,12 +32,15 @@ public class CLCVaccineStoreActivity extends AppCompatActivity {
     FirebaseUser user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     final VaccineStoreAdapter vaccineStoreAdapter = new VaccineStoreAdapter();
+   // ProgressLoader proload;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_c_l_c_vaccine_store);
+      //  proload = new ProgressLoader(CLCVaccineStoreActivity.this);
+
 
         RecyclerView listOfBookings = findViewById(R.id.clc_vaccine_store_vaccineList);
 
@@ -46,9 +50,11 @@ public class CLCVaccineStoreActivity extends AppCompatActivity {
         listOfBookings.setAdapter(vaccineStoreAdapter);
 
         loadAllVaccines();
+        //proload.stopProgresBar();
     }
 
     private void loadAllVaccines() {
+       // proload.StartProgressLoader();
         ArrayList<Vaccine> vaccineList = new ArrayList<>();
         db.collection("vaccinestore")
                 .get()

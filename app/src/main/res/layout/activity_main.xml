@@ -14,7 +14,7 @@
         android:focusable="true"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="12dp"
-        app:cardElevation="5dp"
+        app:cardElevation="8dp"
         app:cardMaxElevation="8dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
