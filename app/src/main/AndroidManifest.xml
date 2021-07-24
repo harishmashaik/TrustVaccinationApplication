@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CLCVaccineStoreActivity"></activity>
+        <activity android:name=".CLCHomeActivity"></activity>
+        <activity android:name=".CLCVaccineStoreActivity" />
         <activity android:name=".TrackBookingActivity" />
         <activity android:name=".SampleTestActivity" />
         <activity android:name=".BookVaccineActivity" />
         <activity android:name=".CLC.BookingDeclineActivity" />
         <activity android:name=".CLC.BookingConfirmActivity" />
-        <activity android:name=".CLCHomeActivity" />
+        <activity android:name=".CLCNewBookingsActivity" />
         <activity android:name=".VaccineByAgeActivity" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".VaccineScheduleActivity" />

@@ -6,25 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".CLCHomeActivity">
 
-
     <include
-        android:id="@+id/clc_include"
+        android:id="@+id/clc_home_include"
         layout="@layout/toolbar"
         android:layout_width="412dp"
         android:layout_height="64dp"
         tools:layout_editor_absoluteX="-5dp"
         tools:layout_editor_absoluteY="6dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/user_bookingList"
-        android:layout_width="405dp"
-        android:layout_height="644dp"
-        android:layout_marginStart="2dp"
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clc_card_new_bookings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/clc_include"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintTop_toBottomOf="@+id/clc_home_include"
+        app:layout_constraintVertical_bias="0.033"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/clc_home_new_bookings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Bookings"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorMenuBlue"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clc_card_confirmed_bookings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clc_card_new_bookings"
+        app:layout_constraintVertical_bias="0.035"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:id="@+id/clc_home_confirmed_bookings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirmed Bookings"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorMenuBlue"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clc_card_vaccine_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clc_card_confirmed_bookings"
+        app:layout_constraintVertical_bias="0.047"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/clc_home_vaccine_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorMenuBlue"
+            android:layout_marginBottom="8dp"
+            android:text="Vaccine Stock"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/custom_clc_vaccine_store_matcard"
-        android:layout_width="match_parent"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="10dp"
@@ -109,9 +109,9 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/custom_clc_vaccine_store_button"
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="302dp"
-                    android:layout_height="34dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_width="308dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
                     android:background="@color/colorWhite"
                     android:text="Update"
                     android:textAlignment="center"
