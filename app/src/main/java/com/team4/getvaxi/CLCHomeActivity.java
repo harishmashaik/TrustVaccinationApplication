@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,6 +37,7 @@ public class CLCHomeActivity extends AppCompatActivity {
   FirebaseFirestore db = FirebaseFirestore.getInstance();
   final BookingsAdapter bookingsAdapter = new BookingsAdapter();
 
+  @RequiresApi(api = Build.VERSION_CODES.N)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -46,6 +48,8 @@ public class CLCHomeActivity extends AppCompatActivity {
     listOfBookings.setLayoutManager(new LinearLayoutManager(this));
 
     listOfBookings.setAdapter(bookingsAdapter);
+
+    //updateVaccineStore();
 
     loadBookings();
   }
@@ -336,23 +340,20 @@ public class CLCHomeActivity extends AppCompatActivity {
 
     vaccinesAtThisAge.forEach(v->{
 
-      db.collection("vaccines")
-              .document("vaccineB02M")
-              .set(vxAgebelow2)
+      db.collection("vaccinestore")
+              .add(v)
               .addOnSuccessListener(
-                      new OnSuccessListener<Void>() {
+                      new OnSuccessListener<DocumentReference>() {
                         @Override
-                        public void onSuccess(Void aVoid) {
-                          Log.i(TAG, "Profile Updated successfully");
-                          Intent intentHomeActivity = new Intent(getApplicationContext(), HomeActivity.class);
-                          startActivity(intentHomeActivity);
+                        public void onSuccess(DocumentReference documentReference) {
+                          Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                         }
                       })
               .addOnFailureListener(
                       new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                          Log.w(TAG, "Error Updating profile", e);
+                          Log.w(TAG, "Error adding document", e);
                         }
                       });
 
