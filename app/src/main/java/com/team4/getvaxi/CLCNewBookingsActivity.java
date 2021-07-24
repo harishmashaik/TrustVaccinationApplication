@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
 
   public static final String TAG = "CLCHomeActivity";
 
+  ProgressDialog proload;
   private FirebaseAuth mAuth;
   FirebaseUser user;
   FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -46,6 +48,7 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
     listOfBookings.setLayoutManager(new LinearLayoutManager(this));
 
     listOfBookings.setAdapter(bookingsAdapter);
+    proload = new ProgressDialog(CLCNewBookingsActivity.this);
 
     //updateVaccineStore();
 
