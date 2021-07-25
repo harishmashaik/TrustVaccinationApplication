@@ -64,7 +64,6 @@ public class VaccineByAgeActivity extends AppCompatActivity {
 
   private void getExtras() {
     Intent intent = getIntent();
-
     if (intent.hasExtra("AGEPARAM")) {
       ageParam = intent.getStringExtra("AGEPARAM");
     }
