@@ -122,7 +122,6 @@ public class HomeActivity extends AppCompatActivity {
 
   private void userSignOut() {
 
-    // Setting message manually and performing action on button click
     builder
         .setMessage("Do you want to logout from the TrustVaccination ?")
         .setCancelable(false)

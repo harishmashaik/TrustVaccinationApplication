@@ -72,7 +72,6 @@ public class BookVaccineActivity extends AppCompatActivity {
     bookAppointment = findViewById(R.id.bookVaccineAC_book);
     text_childAge = findViewById(R.id.bookvaccine_childage);
 
-
     mAuth = FirebaseAuth.getInstance();
     user = mAuth.getCurrentUser();
     db = FirebaseFirestore.getInstance();
@@ -119,25 +118,31 @@ public class BookVaccineActivity extends AppCompatActivity {
         });
 
     dropdownChildList.setOnItemClickListener(
-            new AdapterView.OnItemClickListener() {
-              @Override
-              public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dropdownChildList.getText().toString();
-                personChildInfo.forEach(c->{
-                  if(dropdownChildList.getText().toString().equals(c.getChildName())){
+        new AdapterView.OnItemClickListener() {
+          @Override
+          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            dropdownChildList.getText().toString();
+            personChildInfo.forEach(
+                c -> {
+                  if (dropdownChildList.getText().toString().equals(c.getChildName())) {
                     text_childAge.setText(Integer.toString(c.getChildAge()));
-
                   }
                 });
+            System.out.println("Asa");
+          }
+        });
 
-                System.out.println("Asa");
-              }
-            });
-
-    bookAppointment.setOnClickListener(v -> bookAppointment());
+    bookAppointment.setOnClickListener(
+        v -> {
+          try {
+            bookAppointment();
+          } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+          }
+        });
   }
 
-  private void bookAppointment() {
+  private void bookAppointment() throws ClassNotFoundException {
 
     newBooking.setVaccineName(vaccineName.getText().toString());
     newBooking.setAppointmentDate(text_appointment_date.getText().toString());
@@ -147,30 +152,58 @@ public class BookVaccineActivity extends AppCompatActivity {
     newBooking.setBoookingStatus("PEND");
     newBooking.setAge(text_childAge.getText().toString());
 
+    if (validateBooking(newBooking)) {
 
-    db.collection("bookings")
-        .add(newBooking)
-        .addOnSuccessListener(
-            new OnSuccessListener<DocumentReference>() {
-              @Override
-              public void onSuccess(DocumentReference documentReference) {
-                Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                Toast toast =
-                        Toast.makeText(
-                                getApplicationContext(), "Booking Completed: Wait for Confirmation", Toast.LENGTH_SHORT);
-                toast.show();
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent); }
-            })
-        .addOnFailureListener(
-            new OnFailureListener() {
-              @Override
-              public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error adding document", e);
-              }
-            });
+      db.collection("bookings")
+          .add(newBooking)
+          .addOnSuccessListener(
+              new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                  Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                  try {
+                    toastAndNextActivity(
+                        "Booking Completed: Wait for Confirmation", "CLCHomeActivity");
+                  } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                  }
+                }
+              })
+          .addOnFailureListener(
+              new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                  Log.w(TAG, "Error adding document", e);
+                }
+              });
 
+    } else {
+      toastAndNextActivity("Validation Failed : Try again", "CLCHomeActivity");
+    }
+  }
 
+  private boolean validateBooking(Booking booking) {
+
+    if (booking.getVaccineName() != null
+        && booking.getAppointmentDate() != null
+        && booking.getAge() != null
+        && booking.getName() != null
+        && booking.getName().length() >= 3
+        && booking.getUserId() != null) {
+      return true;
+    }
+    return false;
+  }
+
+  private void toastAndNextActivity(String message, String nextActivity)
+      throws ClassNotFoundException {
+
+    Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+    toast.show();
+
+    Intent nextActivityRequested =
+        new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + nextActivity));
+    startActivity(nextActivityRequested);
   }
 
   private void getUserDetails() {

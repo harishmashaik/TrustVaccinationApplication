@@ -28,32 +28,89 @@
         app:layout_constraintVertical_bias="0.035"
         tools:layout_editor_absoluteX="0dp">
 
-        <ImageView
-            android:id="@+id/vaccineScheduleBelow2Month"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:scaleType="center"
-            app:srcCompat="@mipmap/vaccine_age_two_below"
-            tools:srcCompat="@tools:sample/avatars" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow02M"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp">
 
-        <ImageView
-            android:id="@+id/vaccineScheduleBelow4Month"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:scaleType="center"
-            app:srcCompat="@mipmap/vaccine_age_four_below"
-            tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/vaccineScheduleBelow2Month"
+                android:layout_width="98dp"
+                android:layout_height="101dp"
+                android:layout_margin="5dp"
+                android:scaleType="center"
+                app:srcCompat="@mipmap/vaccine_age_two_below"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <ImageView
-            android:id="@+id/vaccineScheduleBelow6Month"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="#C86B6B"
-            app:srcCompat="@mipmap/vaccine_age_six_below"
-            tools:srcCompat="@tools:sample/avatars" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow04M"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp">
+
+            <ImageView
+                android:id="@+id/vaccineScheduleBelow4Month"
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:scaleType="center"
+                app:srcCompat="@mipmap/vaccine_age_four_below"
+                tools:srcCompat="@tools:sample/avatars" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/matCardvaccineSchedulebelow06M"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="1dp">
+
+            <ImageView
+                android:id="@+id/vaccineScheduleBelow6Month"
+                android:layout_width="104dp"
+                android:layout_height="116dp"
+                android:layout_margin="5dp"
+                android:backgroundTint="#C86B6B"
+                app:srcCompat="@mipmap/vaccine_age_six_below"
+                tools:srcCompat="@tools:sample/avatars" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
 
     </LinearLayout>
 
