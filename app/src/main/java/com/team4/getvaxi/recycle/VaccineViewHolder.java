@@ -47,6 +47,7 @@ public class VaccineViewHolder extends RecyclerView.ViewHolder {
         v -> {
           Intent i = new Intent(layoutView.getContext(), BookVaccineActivity.class);
           i.putExtra("vaccineName", vaccine.getVaccineName());
+
           layoutView.getContext().startActivity(i);
         });
   }

@@ -56,10 +56,6 @@ public class CLCHomeActivity extends AppCompatActivity {
                         }
                     }
                 }).start();
-
-
-
-                //proload.stopProgresBar();
             }
         });
 
@@ -67,6 +63,16 @@ public class CLCHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newBookingsActivity = new Intent(getApplicationContext(),CLCNewBookingsActivity.class);
+                newBookingsActivity.putExtra("TYPE","new");
+                startActivity(newBookingsActivity);
+            }
+        });
+
+        confirmedBookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newBookingsActivity = new Intent(getApplicationContext(),CLCNewBookingsActivity.class);
+                newBookingsActivity.putExtra("TYPE","confirmed");
                 startActivity(newBookingsActivity);
             }
         });

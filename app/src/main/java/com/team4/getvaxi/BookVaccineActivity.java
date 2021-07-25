@@ -1,19 +1,21 @@
 package com.team4.getvaxi;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,9 +28,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.team4.getvaxi.CLC.BookingConfirmActivity;
 import com.team4.getvaxi.models.Booking;
 import com.team4.getvaxi.models.Child;
 import com.team4.getvaxi.models.Person;
@@ -37,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class BookVaccineActivity extends AppCompatActivity {
 
@@ -50,11 +48,14 @@ public class BookVaccineActivity extends AppCompatActivity {
   private Button pickDateOoAppointment;
   private Button bookAppointment;
   private EditText text_appointment_date;
+  private EditText text_childAge;
+
   AutoCompleteTextView dropdownChildList;
   Person personDetails = new Person();
   Booking newBooking = new Booking();
 
   Commons cmns = new Commons();
+  ArrayList<Child> personChildInfo;
 
   EditText vaccineName;
 
@@ -69,6 +70,7 @@ public class BookVaccineActivity extends AppCompatActivity {
     vaccineName = findViewById(R.id.bookingCon_vaccinename);
     dropdownChildList = findViewById(R.id.Bookvaccine_AC_childname_menu);
     bookAppointment = findViewById(R.id.bookVaccineAC_book);
+    text_childAge = findViewById(R.id.bookvaccine_childage);
 
 
     mAuth = FirebaseAuth.getInstance();
@@ -116,6 +118,22 @@ public class BookVaccineActivity extends AppCompatActivity {
           }
         });
 
+    dropdownChildList.setOnItemClickListener(
+            new AdapterView.OnItemClickListener() {
+              @Override
+              public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dropdownChildList.getText().toString();
+                personChildInfo.forEach(c->{
+                  if(dropdownChildList.getText().toString().equals(c.getChildName())){
+                    text_childAge.setText(Integer.toString(c.getChildAge()));
+
+                  }
+                });
+
+                System.out.println("Asa");
+              }
+            });
+
     bookAppointment.setOnClickListener(v -> bookAppointment());
   }
 
@@ -127,6 +145,7 @@ public class BookVaccineActivity extends AppCompatActivity {
     newBooking.setDateOfBooking(new Date());
     newBooking.setUserId(mAuth.getCurrentUser().getUid());
     newBooking.setBoookingStatus("PEND");
+    newBooking.setAge(text_childAge.getText().toString());
 
 
     db.collection("bookings")
@@ -136,7 +155,12 @@ public class BookVaccineActivity extends AppCompatActivity {
               @Override
               public void onSuccess(DocumentReference documentReference) {
                 Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-              }
+                Toast toast =
+                        Toast.makeText(
+                                getApplicationContext(), "Booking Completed: Wait for Confirmation", Toast.LENGTH_SHORT);
+                toast.show();
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent); }
             })
         .addOnFailureListener(
             new OnFailureListener() {
@@ -145,6 +169,8 @@ public class BookVaccineActivity extends AppCompatActivity {
                 Log.w(TAG, "Error adding document", e);
               }
             });
+
+
   }
 
   private void getUserDetails() {
@@ -209,7 +235,7 @@ public class BookVaccineActivity extends AppCompatActivity {
   private void anotherMeth(Person p) {
     System.out.println("inside the person class");
     System.out.println(p.toString());
-    final ArrayList<Child> personChildInfo = p.getPersonChildInfo();
+    personChildInfo = p.getPersonChildInfo();
     System.out.println("I am here " + personChildInfo.size());
 
     List<String> field1List =

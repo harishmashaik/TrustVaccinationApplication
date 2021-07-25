@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.team4.getvaxi.CLCHomeActivity;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
@@ -58,7 +59,6 @@ public class BookingConfirmActivity extends AppCompatActivity {
             BookingConfirmActivity.this, R.layout.booking_confirm_hoslist_layout, items);
 
     dropdownCenterList.setAdapter(adapter);
-    // (textField.editText as? AutoCompleteTextView)?.setAdapter(adapter);
 
     dropdownCenterList.getText().toString();
 
@@ -66,6 +66,8 @@ public class BookingConfirmActivity extends AppCompatActivity {
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
       eachBooking = intent.getParcelableExtra(BookingViewHolder.booking);
+      System.out.println("booking confirm");
+      System.out.println(eachBooking.toString());
       txtVaccineName.setText(eachBooking.getVaccineName());
       txtchildName.setText(eachBooking.getName());
       txtchildAge.setText(eachBooking.getAge());
@@ -95,7 +97,7 @@ public class BookingConfirmActivity extends AppCompatActivity {
                       public void onSuccess(Void aVoid) {
                         Log.d(TAG, "Appointment confirmed "+ eachBooking.getFbDocID());
                         Intent nextActivity =
-                                new Intent(getApplicationContext(), HomeActivity.class);
+                                new Intent(getApplicationContext(), CLCHomeActivity.class);
                         startActivity(nextActivity);
                       }
                     })

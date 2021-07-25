@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.team4.getvaxi.CLCHomeActivity;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
@@ -78,7 +79,7 @@ public class BookingDeclineActivity extends AppCompatActivity {
               @Override
               public void onSuccess(Void aVoid) {
                 Log.d(TAG, "Appointment confirmed " + eachBooking.getFbDocID());
-                Intent nextActivity = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent nextActivity = new Intent(getApplicationContext(), CLCHomeActivity.class);
                 startActivity(nextActivity);
               }
             })

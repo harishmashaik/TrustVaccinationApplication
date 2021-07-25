@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
 
   public static final String TAG = "CLCHomeActivity";
 
+  private boolean type = false;
+
   ProgressDialog proload;
   private FirebaseAuth mAuth;
   FirebaseUser user;
@@ -50,6 +53,8 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
     listOfBookings.setAdapter(bookingsAdapter);
     proload = new ProgressDialog(CLCNewBookingsActivity.this);
 
+    getExtras();
+
     //updateVaccineStore();
 
     loadBookings();
@@ -58,7 +63,7 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
   private void loadBookings() {
     ArrayList<Booking> bookingList = new ArrayList<>();
     db.collection("bookings")
-        .whereEqualTo("bookingReviewed", false)
+        .whereEqualTo("bookingReviewed", type)
         .get()
         .addOnCompleteListener(
             new OnCompleteListener<QuerySnapshot>() {
@@ -78,6 +83,19 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
                 }
               }
             });
+  }
+
+  private void getExtras() {
+    Intent intent = getIntent();
+    if (intent.hasExtra("TYPE")) {
+      String isNew = intent.getStringExtra("TYPE");
+      if(isNew.equals("new")){
+        type = false;
+      }
+      else{
+        type= true;
+      }
+    }
   }
 
 

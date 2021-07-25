@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                             System.out.println("the mail is " + li.get("email"));
                             if (text_loginPass.getText().toString().equals(li.get("password"))) {
                               //
-                              Intent intent = new Intent(context, CLCNewBookingsActivity.class);
+                              Intent intent = new Intent(context, CLCHomeActivity.class);
                               startActivity(intent);
                             }
                             // checkfor pass

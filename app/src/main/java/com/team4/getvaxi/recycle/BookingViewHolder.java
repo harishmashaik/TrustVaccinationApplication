@@ -11,13 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.team4.getvaxi.CLC.BookingConfirmActivity;
 import com.team4.getvaxi.CLC.BookingDeclineActivity;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
 
-;
+;import static android.graphics.Color.rgb;
 
 public class BookingViewHolder extends RecyclerView.ViewHolder {
 
@@ -27,6 +28,9 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
     private final TextView vaccineName;
     private final TextView childNameAndAGe;
     private final TextView dateofBooking;
+
+    private final MaterialCardView materialCardView;
+
 
     private final Button buttonConfirm;
     private final Button buttonDecline;
@@ -47,10 +51,15 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         buttonConfirm = layoutView.findViewById(R.id.custom_booking_confirm);
         buttonDecline = layoutView.findViewById(R.id.custom_booking_decline);
 
-        buttonConfirm.setOnClickListener(v -> {
-            Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
-            i.putExtra(booking, (Parcelable) user);
-            layoutView.getContext().startActivity(i);
+        materialCardView = layoutView.findViewById(R.id.clc_bookings_card);
+
+    buttonConfirm.setOnClickListener(
+        v -> {
+          Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
+          System.out.println("in view holder");
+          System.out.println();
+          i.putExtra(booking, (Parcelable) user);
+          layoutView.getContext().startActivity(i);
         });
 
         buttonDecline.setOnClickListener(v -> {
@@ -77,6 +86,22 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         vaccineName.setText(booking.getVaccineName());
         childNameAndAGe.setText(booking.getName() + " " +booking.getAge());
         dateofBooking.setText(booking.getAppointmentDate());
+        if(booking.getBookingReviewed()){
+            materialCardView.setCardBackgroundColor(rgb(255,255,230));
+
+        }
+        else{
+            materialCardView.setCardBackgroundColor(rgb(255,170,153));
+        }
+
+        if(booking.getBoookingStatus().equals("DECL")){
+            buttonDecline.setEnabled(false);
+
+        }
+        if(booking.getBoookingStatus().equals("CONFM")){
+            buttonConfirm.setEnabled(false);
+
+        }
         //Picasso.get().load(booking.getAvatar_url()).into(userAvatarPic);
 
     }
