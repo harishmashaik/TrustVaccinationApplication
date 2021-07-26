@@ -1,6 +1,8 @@
 package com.team4.getvaxi.models;
 
-public class Vaccine {
+import java.io.Serializable;
+
+public class Vaccine  implements Serializable {
 
     private String vaccineName;
     private String vaccineDescription;

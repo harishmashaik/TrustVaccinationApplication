@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Booking;
 import com.team4.getvaxi.models.Child;
 import com.team4.getvaxi.models.Person;
+import com.team4.getvaxi.models.Vaccine;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,6 +56,7 @@ public class BookVaccineActivity extends AppCompatActivity {
   Booking newBooking = new Booking();
 
   Commons cmns = new Commons();
+  Vaccine currentVaccine = new Vaccine();
   ArrayList<Child> personChildInfo;
 
   EditText vaccineName;
@@ -90,9 +92,15 @@ public class BookVaccineActivity extends AppCompatActivity {
     //
     //    dropdownChildList.setAdapter(adapter);
 
-    Intent intent = getIntent();
-    if (intent.hasExtra("vaccineName")) {
-      vaccineName.setText(intent.getStringExtra("vaccineName"));
+
+    Intent i = getIntent();
+
+
+
+    if (i.hasExtra("vaccineDetails")) {
+      Bundle data = i.getExtras();
+      currentVaccine = (Vaccine) data.getSerializable("vaccineDetails");
+      vaccineName.setText(currentVaccine.getVaccineName());
     }
 
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
@@ -151,6 +159,7 @@ public class BookVaccineActivity extends AppCompatActivity {
     newBooking.setUserId(mAuth.getCurrentUser().getUid());
     newBooking.setBoookingStatus("PEND");
     newBooking.setAge(text_childAge.getText().toString());
+    newBooking.setVaccineDose(currentVaccine.getVaccineDose());
 
     if (validateBooking(newBooking)) {
 

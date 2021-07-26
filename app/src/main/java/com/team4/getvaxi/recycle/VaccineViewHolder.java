@@ -1,6 +1,7 @@
 package com.team4.getvaxi.recycle;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.team4.getvaxi.BookVaccineActivity;
 import com.team4.getvaxi.CLC.BookingConfirmActivity;
+import com.team4.getvaxi.ChildInfoActivity;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
 import com.team4.getvaxi.models.Vaccine;;
+import java.io.Serializable;
 
 public class VaccineViewHolder extends RecyclerView.ViewHolder {
 
@@ -46,7 +49,10 @@ public class VaccineViewHolder extends RecyclerView.ViewHolder {
     layoutView.setOnClickListener(
         v -> {
           Intent i = new Intent(layoutView.getContext(), BookVaccineActivity.class);
-          i.putExtra("vaccineName", vaccine.getVaccineName());
+          Bundle b = new Bundle();
+          b.putSerializable("vaccineDetails", (Serializable) vaccine);
+          i.putExtras(b);
+          // i.putExtra("vaccineName", vaccine.getVaccineName());
 
           layoutView.getContext().startActivity(i);
         });

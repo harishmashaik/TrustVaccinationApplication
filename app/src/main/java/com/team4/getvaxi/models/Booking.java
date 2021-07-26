@@ -19,6 +19,15 @@ public class Booking implements Parcelable {
     String remarks;
     String boookingStatus;
     String userId;
+    int vaccineDose;
+
+    public int getVaccineDose() {
+        return vaccineDose;
+    }
+
+    public void setVaccineDose(int vaccineDose) {
+        this.vaccineDose = vaccineDose;
+    }
 
     public String getBoookingStatus() {
         return boookingStatus;
@@ -81,6 +90,7 @@ public class Booking implements Parcelable {
         dest.writeString(this.age);
         dest.writeString(this.name);
         dest.writeString(this.vaccineName);
+        dest.writeInt(this.vaccineDose);
         dest.writeString(this.appointmentDate);
         dest.writeString(this.fbDocID);
 
@@ -101,6 +111,7 @@ public class Booking implements Parcelable {
         this.age = in.readString();
         this.name = in.readString();
         this.vaccineName = in.readString();
+        this.vaccineDose = in.readInt();
         this.appointmentDate = in.readString();
         this.fbDocID =in.readString();
     }
@@ -154,7 +165,12 @@ public class Booking implements Parcelable {
                 ", vaccineName='" + vaccineName + '\'' +
                 ", appointmentDate='" + appointmentDate + '\'' +
                 ", dateOfBooking=" + dateOfBooking +
+                ", bookingReviewed=" + bookingReviewed +
                 ", vaccinationCenterDetails=" + vaccinationCenterDetails +
+                ", remarks='" + remarks + '\'' +
+                ", boookingStatus='" + boookingStatus + '\'' +
+                ", userId='" + userId + '\'' +
+                ", vaccineDose=" + vaccineDose +
                 '}';
     }
 }
