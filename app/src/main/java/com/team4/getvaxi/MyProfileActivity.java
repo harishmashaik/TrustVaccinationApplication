@@ -2,6 +2,8 @@ package com.team4.getvaxi;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +21,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Person;
+import com.team4.getvaxi.recycle.ChildViewAdapter;
+import com.team4.getvaxi.recycle.VaccineAdapter;
 
 public class MyProfileActivity extends AppCompatActivity {
 
   public static final String TAG = "MyProfileActivity";
+  final ChildViewAdapter childAdapter = new ChildViewAdapter();
+
 
   // Firebase Declarations
   private FirebaseAuth mAuth;
@@ -36,6 +42,7 @@ public class MyProfileActivity extends AppCompatActivity {
   EditText editTextDOB;
   EditText editTextInsuranceNum;
   Button buttonUpdate;
+  RecyclerView listOfChildren;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +52,13 @@ public class MyProfileActivity extends AppCompatActivity {
     mAuth = mAuth = FirebaseAuth.getInstance();
     user = mAuth.getCurrentUser();
 
+     listOfChildren = findViewById(R.id.myprofile_childList);
+
     editTextFirstName = findViewById(R.id.account_FirstNameUA);
     editTextEmail = findViewById(R.id.account_EmailUA);
     editTextPhoneNumber = findViewById(R.id.account_phoneNo);
     editTextDOB = findViewById(R.id.account_Dob);
-    editTextInsuranceNum = findViewById(R.id.account_InsuranceNo);
+   // editTextInsuranceNum = findViewById(R.id.account_InsuranceNo);
     buttonUpdate = findViewById(R.id.but_updateUA);
 
     getUserData();
@@ -96,6 +105,11 @@ public class MyProfileActivity extends AppCompatActivity {
     editTextFirstName.setText(p.getPersonName());
     editTextEmail.setText(p.getPersonEmail());
     editTextPhoneNumber.setText(p.getPersonPhoneNum());
+
+    listOfChildren.setHasFixedSize(false);
+    listOfChildren.setLayoutManager(new LinearLayoutManager(this));
+    listOfChildren.setAdapter(childAdapter);
+    childAdapter.setChildren(p.getPersonChildInfo());
 
     db.collection("person")
         .document(user.getUid())

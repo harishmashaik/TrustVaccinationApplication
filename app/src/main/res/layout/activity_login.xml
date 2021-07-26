@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -121,10 +120,11 @@
                 android:layout_width="296dp"
                 android:layout_height="37dp"
                 android:layout_marginBottom="88dp"
-                android:background="@drawable/ic_wishlist_button_red_bg"
                 android:text="@string/login_page_forgot_password"
                 android:textColor="#FFFFFF"
                 android:visibility="visible"
+                android:backgroundTint="@color/colorMenuBlue"
+                android:background="@drawable/ic_wishlist_button_red_bg"
                 app:icon="@drawable/ic_lock"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

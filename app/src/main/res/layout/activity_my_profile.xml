@@ -6,25 +6,12 @@
     android:layout_height="match_parent"
     >
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="142dp"
-        android:layout_height="143dp"
-        android:background="@mipmap/ic_launcher_logo"
-        app:layout_constraintBottom_toTopOf="@+id/con_lay_eachitemAccountFrag"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/con_lay_eachitemAccountFrag"
-        android:layout_width="332dp"
-        android:layout_height="wrap_content"
+        android:layout_width="371dp"
+        android:layout_height="554dp"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="40dp"
         android:focusable="true"
         android:foreground="@drawable/button_stroke_layout"
         android:visibility="visible"
@@ -37,28 +24,17 @@
         app:contentPadding="10dp"
         app:contentPaddingBottom="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.818">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="297dp"
-            android:layout_height="wrap_content"
+            android:layout_width="333dp"
+            android:layout_height="494dp"
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <TextView
-                android:id="@+id/Textview_dis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:text="Update"
-                android:textAlignment="center"
-                android:textStyle="bold" />
 
 
             <EditText
@@ -103,15 +79,12 @@
                 android:text="TextView"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/account_InsuranceNo"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myprofile_childList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:text="TextView"
-                android:textStyle="bold" />
+                android:layout_marginStart="4dp" />
+
 
 
         </LinearLayout>
@@ -121,8 +94,8 @@
 
     <Button
         android:id="@+id/but_updateUA"
-        android:layout_width="367dp"
-        android:layout_height="68dp"
+        android:layout_width="295dp"
+        android:layout_height="46dp"
         android:background="@drawable/ic_wishlist_button_red_bg"
         android:text="Update Details"
         android:textColor="#FFFFFF"
@@ -130,10 +103,9 @@
         app:icon="@drawable/ic_baseline_edit_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/con_lay_eachitemAccountFrag"
-        app:layout_constraintVertical_bias="0.189" />
+        app:layout_constraintVertical_bias="0.582" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
