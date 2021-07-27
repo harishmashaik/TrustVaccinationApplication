@@ -21,6 +21,7 @@ public class CLCHomeActivity extends AppCompatActivity {
   TextView confirmedBookings;
   TextView vaccineStore;
   TextView clcLogout;
+  TextView newQuestions;
   ProgressLoader proload;
 
   AlertDialog.Builder builder;
@@ -34,6 +35,7 @@ public class CLCHomeActivity extends AppCompatActivity {
     newBookings = findViewById(R.id.clc_home_new_bookings);
     confirmedBookings = findViewById(R.id.clc_home_confirmed_bookings);
     vaccineStore = findViewById(R.id.clc_home_vaccine_stock);
+    newQuestions = findViewById(R.id.clc_home_questions);
     clcLogout = findViewById(R.id.clc_home_logout);
 
     proload = new ProgressLoader(CLCHomeActivity.this);
@@ -95,6 +97,17 @@ public class CLCHomeActivity extends AppCompatActivity {
             startActivity(newBookingsActivity);
           }
         });
+
+      newQuestions.setOnClickListener(
+              new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      Intent newBookingsActivity =
+                              new Intent(getApplicationContext(), CLCQuestionsActivity.class);
+                      newBookingsActivity.putExtra("TYPE", "confirmed");
+                      startActivity(newBookingsActivity);
+                  }
+              });
 
     clcLogout.setOnClickListener(v -> logoutCLC());
   }

@@ -16,20 +16,20 @@ import java.io.Serializable;
 
 ;
 
-public class SenderMessageViewHolder extends RecyclerView.ViewHolder {
+public class CLCQuestionsViewHolder extends RecyclerView.ViewHolder {
 
   public static final String booking = "BOOKING";
   public static final String docID = "DOCUMENTID";
 
-  private final TextView mainMessge;
+  private final TextView clcQuestion;
 
-  private Message senderMessage;
-  private QuestionsAdapter adapter;
+  private Message message;
+  private CLCQuestionsAdapter adapter;
 
-  public SenderMessageViewHolder(@NonNull View layoutView) {
+  public CLCQuestionsViewHolder(@NonNull View layoutView) {
     super(layoutView);
 
-    mainMessge = layoutView.findViewById(R.id.text_gchat_message_me);
+    clcQuestion = layoutView.findViewById(R.id.custom_clcquestions_question);
 
     //        buttonConfirm.setOnClickListener(v -> {
     ////            Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
@@ -47,7 +47,7 @@ public class SenderMessageViewHolder extends RecyclerView.ViewHolder {
         v -> {
           Intent i = new Intent(layoutView.getContext(), BookVaccineActivity.class);
           Bundle b = new Bundle();
-          b.putSerializable("vaccineDetails", (Serializable) senderMessage);
+          b.putSerializable("vaccineDetails", (Serializable) message);
           i.putExtras(b);
           // i.putExtra("vaccineName", vaccine.getVaccineName());
 
@@ -55,11 +55,10 @@ public class SenderMessageViewHolder extends RecyclerView.ViewHolder {
         });
   }
 
-  public void bind(Message senderMessage) {
-    this.senderMessage = senderMessage;
-      mainMessge.setText(senderMessage.getMessage());
-   // this.adapter = adapter;
-    //vaccineByAgeVName.setText(vaccine.getVaccineName());
+  public void bind(Message message, CLCQuestionsAdapter adapter) {
+    this.message = message;
+    this.adapter = adapter;
+    clcQuestion.setText(message.getMessage());
     //        vaccineName.setText(booking.getVaccineName());
     //        childNameAndAGe.setText(booking.getName() + " " +booking.getAge());
     //        dateofBooking.setText(booking.getAppointmentDate());

@@ -109,36 +109,24 @@ public class BookVaccineActivity extends AppCompatActivity {
     final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
 
     pickDateOoAppointment.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
-          }
-        });
+            v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));
     materialDatePicker.addOnPositiveButtonClickListener(
-        new MaterialPickerOnPositiveButtonClickListener() {
-          @SuppressLint("SetTextI18n")
-          @Override
-          public void onPositiveButtonClick(Object selection) {
-            System.out.println("here date " + materialDatePicker.getHeaderText().toString());
-            text_appointment_date.setText(materialDatePicker.getHeaderText());
-          }
-        });
+            selection -> {
+              System.out.println("here date " + materialDatePicker.getHeaderText().toString());
+              text_appointment_date.setText(materialDatePicker.getHeaderText());
+            });
 
     dropdownChildList.setOnItemClickListener(
-        new AdapterView.OnItemClickListener() {
-          @Override
-          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            dropdownChildList.getText().toString();
-            personChildInfo.forEach(
-                c -> {
-                  if (dropdownChildList.getText().toString().equals(c.getChildName())) {
-                    text_childAge.setText(Integer.toString(c.getChildAge()));
-                  }
-                });
-            System.out.println("Asa");
-          }
-        });
+            (parent, view, position, id) -> {
+              dropdownChildList.getText().toString();
+              personChildInfo.forEach(
+                  c -> {
+                    if (dropdownChildList.getText().toString().equals(c.getChildName())) {
+                      text_childAge.setText(Integer.toString(c.getChildAge()));
+                    }
+                  });
+              System.out.println("Asa");
+            });
 
     bookAppointment.setOnClickListener(
         v -> {

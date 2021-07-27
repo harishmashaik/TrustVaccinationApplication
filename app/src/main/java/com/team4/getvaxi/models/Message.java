@@ -11,6 +11,17 @@ public class Message {
     private String adminId;
     private LocalDateTime messageDateTime;
 
+    public Message() {
+    }
+
+    public Message(String message, String userType, String userId, String adminId, LocalDateTime messageDateTime) {
+        this.message = message;
+        this.userType = userType;
+        this.userId = userId;
+        this.adminId = adminId;
+        this.messageDateTime = messageDateTime;
+    }
+
     public String getMessage() {
         return message;
     }

@@ -10,26 +10,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.team4.getvaxi.BookVaccineActivity;
 import com.team4.getvaxi.R;
-import com.team4.getvaxi.models.Vaccine;
+import com.team4.getvaxi.models.Message;
 
 import java.io.Serializable;
 
-;
 
 public class ReceiverMessageViewHolder extends RecyclerView.ViewHolder {
 
   public static final String booking = "BOOKING";
   public static final String docID = "DOCUMENTID";
 
-  private final TextView vaccineByAgeVName;
+  private final TextView txtreceiverMessage;
 
-  private Vaccine vaccine;
+  private Message receiverMessage;
   private VaccineAdapter adapter;
 
   public ReceiverMessageViewHolder(@NonNull View layoutView) {
     super(layoutView);
 
-    vaccineByAgeVName = layoutView.findViewById(R.id.custom_vaccinebyage_vaccinename);
+      txtreceiverMessage= layoutView.findViewById(R.id.text_gchat_message_other);
 
     //        buttonConfirm.setOnClickListener(v -> {
     ////            Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
@@ -47,7 +46,7 @@ public class ReceiverMessageViewHolder extends RecyclerView.ViewHolder {
         v -> {
           Intent i = new Intent(layoutView.getContext(), BookVaccineActivity.class);
           Bundle b = new Bundle();
-          b.putSerializable("vaccineDetails", (Serializable) vaccine);
+          b.putSerializable("vaccineDetails", (Serializable) receiverMessage);
           i.putExtras(b);
           // i.putExtra("vaccineName", vaccine.getVaccineName());
 
@@ -55,10 +54,11 @@ public class ReceiverMessageViewHolder extends RecyclerView.ViewHolder {
         });
   }
 
-  public void bind(Vaccine vaccine, VaccineAdapter adapter) {
-    this.vaccine = vaccine;
-    this.adapter = adapter;
-    vaccineByAgeVName.setText(vaccine.getVaccineName());
+  public void bind(Message message) {
+    this.receiverMessage = message;
+      txtreceiverMessage.setText(message.getMessage());
+    //this.adapter = adapter;
+    //vaccineByAgeVName.setText(vaccine.getVaccineName());
     //        vaccineName.setText(booking.getVaccineName());
     //        childNameAndAGe.setText(booking.getName() + " " +booking.getAge());
     //        dateofBooking.setText(booking.getAppointmentDate());

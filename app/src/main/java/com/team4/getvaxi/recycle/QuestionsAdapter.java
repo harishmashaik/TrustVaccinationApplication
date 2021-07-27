@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Message;
 
@@ -19,6 +20,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter {
   private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
   private List<Message> messagesList;
+  private FirebaseAuth mAuth;
 
   public QuestionsAdapter() {
     messagesList = new ArrayList<>();
@@ -26,25 +28,29 @@ public class QuestionsAdapter extends RecyclerView.Adapter {
 
   public void setMessagesList(List<Message> messagesList) {
     this.messagesList = messagesList;
+    mAuth = FirebaseAuth.getInstance();
+
     notifyDataSetChanged(); // going to bind new data to Views.
   }
 
   @NonNull
   @Override
-  public VaccineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    final View customView =
-        LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
-    VaccineViewHolder userViewHolder = new VaccineViewHolder(customView);
-    return userViewHolder;
+  public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//    final View customView =
+//        LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
+//    VaccineViewHolder userViewHolder = new VaccineViewHolder(customView);
+//    return userViewHolder;
+
+    View view;
 
     if (viewType == VIEW_TYPE_MESSAGE_SENT) {
       view = LayoutInflater.from(parent.getContext())
-              .inflate(R.layout.item_message_sent, parent, false);
-      return new SentMessageHolder(view);
+              .inflate(R.layout.custom_question_sender_view, parent, false);
+      return new SenderMessageViewHolder(view);
     } else if (viewType == VIEW_TYPE_MESSAGE_RECEIVED) {
       view = LayoutInflater.from(parent.getContext())
-              .inflate(R.layout.item_message_received, parent, false);
-      return new ReceivedMessageHolder(view);
+              .inflate(R.layout.custom_question_receiver_view, parent, false);
+      return new ReceiverMessageViewHolder(view);
     }
 
     return null;
@@ -57,10 +63,10 @@ public class QuestionsAdapter extends RecyclerView.Adapter {
 
     switch (holder.getItemViewType()) {
       case VIEW_TYPE_MESSAGE_SENT:
-        ((SentMessageHolder) holder).bind(message);
+        ((SenderMessageViewHolder) holder).bind(message);
         break;
       case VIEW_TYPE_MESSAGE_RECEIVED:
-        ((ReceivedMessageHolder) holder).bind(message);
+        ((ReceiverMessageViewHolder) holder).bind(message);
     }
 
   }
@@ -80,7 +86,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter {
   //  return R.layout.custom_vaccinesbyage_vaccinelist_view;
     Message message = (Message) messagesList.get(position);
 
-    if (message.getSender().getUserId().equals(SendBird.getCurrentUser().getUserId())) {
+    if (message.getUserId().equals(mAuth.getCurrentUser().getUid())) {
       // If the current user is the sender of the message
       return VIEW_TYPE_MESSAGE_SENT;
     } else {
