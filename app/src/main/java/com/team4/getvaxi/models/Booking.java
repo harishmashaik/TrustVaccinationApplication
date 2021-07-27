@@ -93,6 +93,7 @@ public class Booking implements Parcelable {
         dest.writeInt(this.vaccineDose);
         dest.writeString(this.appointmentDate);
         dest.writeString(this.fbDocID);
+        dest.writeString(this.userId);
 
     }
 
@@ -114,6 +115,7 @@ public class Booking implements Parcelable {
         this.vaccineDose = in.readInt();
         this.appointmentDate = in.readString();
         this.fbDocID =in.readString();
+        this.userId = in.readString();
     }
 
     public String getAge() {

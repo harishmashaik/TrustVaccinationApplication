@@ -76,6 +76,8 @@ public class BookingConfirmActivity extends AppCompatActivity {
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
       eachBooking = intent.getParcelableExtra(BookingViewHolder.booking);
+      System.out.println("insid ethe booking confirm");
+      System.out.println(eachBooking.toString());
       System.out.println("booking confirm");
       System.out.println(eachBooking.toString());
       txtVaccineName.setText(eachBooking.getVaccineName());

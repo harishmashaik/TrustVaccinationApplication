@@ -172,7 +172,7 @@ public class BookVaccineActivity extends AppCompatActivity {
                   Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                   try {
                     toastAndNextActivity(
-                        "Booking Completed: Wait for Confirmation", "CLCHomeActivity");
+                        "Booking Completed: Wait for Confirmation", "HomeActivity");
                   } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                   }

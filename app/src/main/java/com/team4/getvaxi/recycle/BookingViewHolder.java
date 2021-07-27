@@ -56,8 +56,6 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
     buttonConfirm.setOnClickListener(
         v -> {
           Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
-          System.out.println("in view holder");
-          System.out.println();
           i.putExtra(booking, (Parcelable) user);
           layoutView.getContext().startActivity(i);
         });

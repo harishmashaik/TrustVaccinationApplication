@@ -50,6 +50,8 @@ public class TrackBookingActivity extends AppCompatActivity {
     }
 
     private void loadUserBookings() {
+    //System.out.println("inside load bookings");
+
         ArrayList<Booking> userBookingList = new ArrayList<>();
         db.collection("bookings")
                 .whereEqualTo("userId", mAuth.getCurrentUser().getUid())

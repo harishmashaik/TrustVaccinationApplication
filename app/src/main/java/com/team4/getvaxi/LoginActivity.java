@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   private void clcLogin() {
+    System.out.println("clc login");
 
     db.collection("clcusers")
         .get()

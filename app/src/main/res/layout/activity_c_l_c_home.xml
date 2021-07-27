@@ -100,5 +100,34 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clc_card_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clc_card_vaccine_stock"
+        app:layout_constraintVertical_bias="0.046"
+        tools:layout_editor_absoluteX="-5dp">
+
+        <TextView
+            android:id="@+id/clc_home_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:text="Log Out"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
