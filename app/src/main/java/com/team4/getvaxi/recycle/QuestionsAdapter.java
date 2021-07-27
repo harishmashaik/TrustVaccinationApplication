@@ -86,12 +86,18 @@ public class QuestionsAdapter extends RecyclerView.Adapter {
   //  return R.layout.custom_vaccinesbyage_vaccinelist_view;
     Message message = (Message) messagesList.get(position);
 
-    if (message.getUserId().equals(mAuth.getCurrentUser().getUid())) {
-      // If the current user is the sender of the message
-      return VIEW_TYPE_MESSAGE_SENT;
-    } else {
-      // If some other user sent the message
-      return VIEW_TYPE_MESSAGE_RECEIVED;
+    if(mAuth.getCurrentUser()!=null)
+    {
+      if (message.getUserId().equals(mAuth.getCurrentUser().getUid()) && message.getUserType().equals("USER")) {
+        // If the current user is the sender of the message
+        return VIEW_TYPE_MESSAGE_SENT;
+      } else {
+        // If some other user sent the message
+        return VIEW_TYPE_MESSAGE_RECEIVED;
+      }
     }
+
+    return VIEW_TYPE_MESSAGE_RECEIVED;
+
   }
 }

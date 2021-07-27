@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
                       FirebaseUser user =
                           mAuth.getCurrentUser(); // if logged in navigate to the home activity
-                      Intent intent = new Intent(context, AskQuestionsActivity.class);
+                      Intent intent = new Intent(context, HomeActivity.class);
                       startActivity(intent);
 
                     } else {

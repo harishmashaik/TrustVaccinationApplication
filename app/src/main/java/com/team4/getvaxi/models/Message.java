@@ -1,15 +1,18 @@
 package com.team4.getvaxi.models;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
 
 
-public class Message {
+public class Message implements Serializable {
     private String message;
     private String userType;
     private String userId;
     private String adminId;
     private LocalDateTime messageDateTime;
+    private LocalDateTime messageRepliedDateTime;
+    private String senderName;
 
     public Message() {
     }
@@ -20,6 +23,22 @@ public class Message {
         this.userId = userId;
         this.adminId = adminId;
         this.messageDateTime = messageDateTime;
+    }
+
+    public LocalDateTime getMessageRepliedDateTime() {
+        return messageRepliedDateTime;
+    }
+
+    public void setMessageRepliedDateTime(LocalDateTime messageRepliedDateTime) {
+        this.messageRepliedDateTime = messageRepliedDateTime;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
     }
 
     public String getMessage() {
@@ -70,6 +89,8 @@ public class Message {
                 ", userId='" + userId + '\'' +
                 ", adminId='" + adminId + '\'' +
                 ", messageDateTime=" + messageDateTime +
+                ", messageRepliedDateTime=" + messageRepliedDateTime +
+                ", senderName='" + senderName + '\'' +
                 '}';
     }
 }

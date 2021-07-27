@@ -21,6 +21,7 @@ public class ReceiverMessageViewHolder extends RecyclerView.ViewHolder {
   public static final String docID = "DOCUMENTID";
 
   private final TextView txtreceiverMessage;
+  private final TextView txtSenderName;
 
   private Message receiverMessage;
   private VaccineAdapter adapter;
@@ -29,6 +30,7 @@ public class ReceiverMessageViewHolder extends RecyclerView.ViewHolder {
     super(layoutView);
 
       txtreceiverMessage= layoutView.findViewById(R.id.text_gchat_message_other);
+      txtSenderName = layoutView.findViewById(R.id.text_gchat_user_other);
 
     //        buttonConfirm.setOnClickListener(v -> {
     ////            Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
@@ -42,21 +44,14 @@ public class ReceiverMessageViewHolder extends RecyclerView.ViewHolder {
     //            layoutView.getContext().startActivity(i);
     //        });
 
-    layoutView.setOnClickListener(
-        v -> {
-          Intent i = new Intent(layoutView.getContext(), BookVaccineActivity.class);
-          Bundle b = new Bundle();
-          b.putSerializable("vaccineDetails", (Serializable) receiverMessage);
-          i.putExtras(b);
-          // i.putExtra("vaccineName", vaccine.getVaccineName());
 
-          layoutView.getContext().startActivity(i);
-        });
   }
 
   public void bind(Message message) {
     this.receiverMessage = message;
       txtreceiverMessage.setText(message.getMessage());
+      txtSenderName.setText(message.getSenderName());
+
     //this.adapter = adapter;
     //vaccineByAgeVName.setText(vaccine.getVaccineName());
     //        vaccineName.setText(booking.getVaccineName());

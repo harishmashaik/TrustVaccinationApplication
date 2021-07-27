@@ -46,6 +46,7 @@ public class CLCQuestionsActivity extends AppCompatActivity {
 
         ArrayList<Message> userMessageList = new ArrayList<>();
         db.collection("questions")
+                .whereEqualTo("userType", "USER")
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
@@ -59,6 +60,7 @@ public class CLCQuestionsActivity extends AppCompatActivity {
                                         m.setMessage(document.get("message").toString());
                                         m.setUserId(document.get("userId").toString());
                                         m.setUserType(document.get("userType").toString());
+                                        m.setSenderName(document.get("senderName").toString());
 
                                         //   b.setFbDocID(tempID);
                                         Log.i(TAG, document.getId() + " => " + m.toString());

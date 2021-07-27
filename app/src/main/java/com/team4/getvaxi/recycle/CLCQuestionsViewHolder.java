@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.team4.getvaxi.AskQuestionsActivity;
 import com.team4.getvaxi.BookVaccineActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Message;
@@ -45,9 +46,9 @@ public class CLCQuestionsViewHolder extends RecyclerView.ViewHolder {
 
     layoutView.setOnClickListener(
         v -> {
-          Intent i = new Intent(layoutView.getContext(), BookVaccineActivity.class);
+          Intent i = new Intent(layoutView.getContext(), AskQuestionsActivity.class);
           Bundle b = new Bundle();
-          b.putSerializable("vaccineDetails", (Serializable) message);
+          b.putSerializable("FROMCLC", (Serializable) message);
           i.putExtras(b);
           // i.putExtra("vaccineName", vaccine.getVaccineName());
 
