@@ -96,7 +96,7 @@ public class AskQuestionsActivity extends AppCompatActivity {
     messageSender.setUserId(uid);
     messageSender.setMessage(txtMessage.getText().toString());
     messageSender.setUserType(type);
-    messageSender.setMessageDateTime(LocalDateTime.now());
+    messageSender.setMessageDateTime(LocalDateTime.now().toString());
 
 
     messageSender.setSenderName(sendername);
@@ -136,19 +136,24 @@ public class AskQuestionsActivity extends AppCompatActivity {
         .get()
         .addOnCompleteListener(
             new OnCompleteListener<QuerySnapshot>() {
+              @RequiresApi(api = Build.VERSION_CODES.O)
               @Override
               public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                   for (QueryDocumentSnapshot document : task.getResult()) {
                     String tempID = document.getId();
-                    // Message b = document.toObject(Message.class);
-                    Message m = new Message();
-                    m.setMessage(document.get("message").toString());
-                    m.setUserId(document.get("userId").toString());
-                    m.setUserType(document.get("userType").toString());
+                     Message m = document.toObject(Message.class);
+                  //  Message m = new Message();
+//                    m.setMessage(document.get("message").toString());
+//                    m.setUserId(document.get("userId").toString());
+//                    m.setUserType(document.get("userType").toString());
+//                    String temp = document.get("messageDateTime").toString();
+                   // m.setMessageDateTime(temp);
 
                     //   b.setFbDocID(tempID);
                     Log.i(TAG, document.getId() + " => " + m.toString());
+                   // Log.i(TAG, "temp is " + " => " + temp);
+
                     userMessageList.add(m);
                   }
                   questionsAdapter.setMessagesList(userMessageList);

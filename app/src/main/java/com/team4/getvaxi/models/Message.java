@@ -10,28 +10,14 @@ public class Message implements Serializable {
     private String userType;
     private String userId;
     private String adminId;
-    private LocalDateTime messageDateTime;
-    private LocalDateTime messageRepliedDateTime;
+    private String messageDateTime;
+    private String messageRepliedDateTime;
     private String senderName;
 
     public Message() {
     }
 
-    public Message(String message, String userType, String userId, String adminId, LocalDateTime messageDateTime) {
-        this.message = message;
-        this.userType = userType;
-        this.userId = userId;
-        this.adminId = adminId;
-        this.messageDateTime = messageDateTime;
-    }
 
-    public LocalDateTime getMessageRepliedDateTime() {
-        return messageRepliedDateTime;
-    }
-
-    public void setMessageRepliedDateTime(LocalDateTime messageRepliedDateTime) {
-        this.messageRepliedDateTime = messageRepliedDateTime;
-    }
 
     public String getSenderName() {
         return senderName;
@@ -73,12 +59,21 @@ public class Message implements Serializable {
         this.adminId = adminId;
     }
 
-    public LocalDateTime getMessageDateTime() {
+
+    public String getMessageDateTime() {
         return messageDateTime;
     }
 
-    public void setMessageDateTime(LocalDateTime messageDateTime) {
+    public void setMessageDateTime(String messageDateTime) {
         this.messageDateTime = messageDateTime;
+    }
+
+    public String getMessageRepliedDateTime() {
+        return messageRepliedDateTime;
+    }
+
+    public void setMessageRepliedDateTime(String messageRepliedDateTime) {
+        this.messageRepliedDateTime = messageRepliedDateTime;
     }
 
     @Override
@@ -88,8 +83,8 @@ public class Message implements Serializable {
                 ", userType='" + userType + '\'' +
                 ", userId='" + userId + '\'' +
                 ", adminId='" + adminId + '\'' +
-                ", messageDateTime=" + messageDateTime +
-                ", messageRepliedDateTime=" + messageRepliedDateTime +
+                ", messageDateTime='" + messageDateTime + '\'' +
+                ", messageRepliedDateTime='" + messageRepliedDateTime + '\'' +
                 ", senderName='" + senderName + '\'' +
                 '}';
     }

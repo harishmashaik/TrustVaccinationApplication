@@ -55,12 +55,12 @@ public class CLCQuestionsActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         String tempID = document.getId();
-                                        //Message b = document.toObject(Message.class);
-                                        Message m= new Message();
-                                        m.setMessage(document.get("message").toString());
-                                        m.setUserId(document.get("userId").toString());
-                                        m.setUserType(document.get("userType").toString());
-                                        m.setSenderName(document.get("senderName").toString());
+                                        Message m = document.toObject(Message.class);
+//                                        Message m= new Message();
+//                                        m.setMessage(document.get("message").toString());
+//                                        m.setUserId(document.get("userId").toString());
+//                                        m.setUserType(document.get("userType").toString());
+//                                        m.setSenderName(document.get("senderName").toString());
 
                                         //   b.setFbDocID(tempID);
                                         Log.i(TAG, document.getId() + " => " + m.toString());
