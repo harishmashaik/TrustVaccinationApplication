@@ -96,7 +96,11 @@ public class AskQuestionsActivity extends AppCompatActivity {
     messageSender.setUserId(uid);
     messageSender.setMessage(txtMessage.getText().toString());
     messageSender.setUserType(type);
-    messageSender.setMessageDateTime(LocalDateTime.now().toString());
+    if(isAdmin){
+      messageSender.setMessageRepliedDateTime(LocalDateTime.now().toString());
+    }else{
+      messageSender.setMessageDateTime(LocalDateTime.now().toString());
+    }
 
 
     messageSender.setSenderName(sendername);
@@ -143,14 +147,7 @@ public class AskQuestionsActivity extends AppCompatActivity {
                   for (QueryDocumentSnapshot document : task.getResult()) {
                     String tempID = document.getId();
                      Message m = document.toObject(Message.class);
-                  //  Message m = new Message();
-//                    m.setMessage(document.get("message").toString());
-//                    m.setUserId(document.get("userId").toString());
-//                    m.setUserType(document.get("userType").toString());
-//                    String temp = document.get("messageDateTime").toString();
-                   // m.setMessageDateTime(temp);
 
-                    //   b.setFbDocID(tempID);
                     Log.i(TAG, document.getId() + " => " + m.toString());
                    // Log.i(TAG, "temp is " + " => " + temp);
 

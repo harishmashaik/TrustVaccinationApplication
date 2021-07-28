@@ -38,7 +38,7 @@ public class ReceiverMessageViewHolder extends RecyclerView.ViewHolder {
     txtreceiverMessage.setText(message.getMessage());
     txtSenderName.setText(message.getSenderName());
 
-    LocalDateTime tempDT = LocalDateTime.parse(senderMessage.getMessageDateTime());
+    LocalDateTime tempDT = LocalDateTime.parse(message.getMessageRepliedDateTime());
     dateMonth.setText(tempDT.getMonth().toString() + " " + tempDT.getDayOfMonth());
     timeStamp.setText(tempDT.getHour() + ":" + tempDT.getMinute());
   }

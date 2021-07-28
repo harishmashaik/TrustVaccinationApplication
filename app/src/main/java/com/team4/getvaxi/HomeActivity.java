@@ -46,7 +46,6 @@ public class HomeActivity extends AppCompatActivity {
 
     txtWhyVaccination = findViewById(R.id.mainAc_whyVaccination);
     txtVaccinationSchedule = findViewById(R.id.mainAc_VacciantionSchedule);
-    txtVaccinationByAge = findViewById(R.id.mainAc_VacciantionByAge);
     txtDiseaseVaccinePrevent = findViewById(R.id.mainAc_DiavaccinePrevent);
     txtYourChildVaccineVisit = findViewById(R.id.mainAc_YourChildvaccineVisit);
     txtTrackAppointment = findViewById(R.id.mainAc_trackAppointment);
@@ -84,13 +83,6 @@ public class HomeActivity extends AppCompatActivity {
           }
         });
 
-      txtVaccinationByAge.setOnClickListener(v -> {
-          try {
-              nextActivity("VaccineByAgeActivity");
-          } catch (ClassNotFoundException e) {
-              e.printStackTrace();
-          }
-      });
 
       txtTrackAppointment.setOnClickListener(v -> {
           try {

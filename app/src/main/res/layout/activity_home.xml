@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.126" />
 
     <TextView
         android:id="@+id/mainAc_VacciantionSchedule"
@@ -51,24 +51,6 @@
         app:layout_constraintTop_toBottomOf="@+id/mainAc_whyVaccination"
         app:layout_constraintVertical_bias="0.046" />
 
-    <TextView
-        android:id="@+id/mainAc_VacciantionByAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="Vaccination by Age"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="@+id/include"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_VacciantionSchedule"
-        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/mainAc_DiavaccinePrevent"
@@ -86,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_VacciantionByAge"
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_VacciantionSchedule"
         app:layout_constraintVertical_bias="0.054" />
 
     <TextView
