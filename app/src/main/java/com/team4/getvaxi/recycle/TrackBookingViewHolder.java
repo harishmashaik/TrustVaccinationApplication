@@ -52,6 +52,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
           System.out.println(user.toString());
 
           user.setBoookingStatus("CANCELBYUS");
+          user.setBookingReviewed(true);
 
           db.collection("bookings").document(user.getFbDocID()).set(user);
           Toast toast = Toast.makeText(v.getContext(), "Appointment Cancelled", Toast.LENGTH_LONG);
@@ -70,7 +71,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     if (booking.getBoookingStatus().equals("CONFM")) {
       statusOfBooking.setText("Confirmed");
 
-    } else if (booking.getBookingReviewed() == false) {
+    } else if (booking.getBookingReviewed() == false && booking.getBoookingStatus() == "PEND") {
       statusOfBooking.setText("Pending with CLC");
       materialCardView.setCardBackgroundColor(rgb(238, 255, 230));
 
