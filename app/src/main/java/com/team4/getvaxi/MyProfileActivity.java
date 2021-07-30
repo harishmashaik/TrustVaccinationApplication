@@ -24,6 +24,8 @@ import com.team4.getvaxi.models.Person;
 import com.team4.getvaxi.recycle.ChildViewAdapter;
 import com.team4.getvaxi.recycle.VaccineAdapter;
 
+import java.io.Serializable;
+
 public class MyProfileActivity extends AppCompatActivity {
 
   public static final String TAG = "MyProfileActivity";
@@ -41,7 +43,10 @@ public class MyProfileActivity extends AppCompatActivity {
   EditText editTextPhoneNumber;
   EditText editTextDOB;
   EditText editTextInsuranceNum;
+
   Button buttonUpdate;
+  Button buttonAddChild;
+
   RecyclerView listOfChildren;
 
   @Override
@@ -60,10 +65,22 @@ public class MyProfileActivity extends AppCompatActivity {
     editTextDOB = findViewById(R.id.account_Dob);
    // editTextInsuranceNum = findViewById(R.id.account_InsuranceNo);
     buttonUpdate = findViewById(R.id.but_updateUA);
+    buttonAddChild = findViewById(R.id.but_addChild);
 
     getUserData();
 
      buttonUpdate.setOnClickListener(v -> updateDetails());
+    buttonAddChild.setOnClickListener(v -> updateChildDetails());
+  }
+
+  private void updateChildDetails() {
+
+    Bundle b = new Bundle();
+    b.putSerializable("CURPER", (Serializable) personCurrent);
+    Intent intent = new Intent(getApplicationContext(), AddNewChildActivity.class);
+    intent.putExtras(b);
+    startActivity(intent);
+
   }
 
   private void updateDetails() {

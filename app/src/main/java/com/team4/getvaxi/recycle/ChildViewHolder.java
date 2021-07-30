@@ -34,7 +34,7 @@ public class ChildViewHolder extends RecyclerView.ViewHolder {
   public void bind(Child child, ChildViewAdapter adapter) {
     this.child = child;
     this.adapter = adapter;
-   childAgeandName.setText(child.getChildName() + " | " + child.getChildAge());
+   childAgeandName.setText(child.getChildName() + " | " + child.getDateOfBirth());
 
   }
 }

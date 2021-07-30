@@ -107,7 +107,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="314dp"
         android:layout_height="62dp"
-        android:hint="Child Age"
+        android:hint="Date of Birth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
