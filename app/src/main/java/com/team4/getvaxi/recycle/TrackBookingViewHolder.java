@@ -71,7 +71,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     if (booking.getBoookingStatus().equals("CONFM")) {
       statusOfBooking.setText("Confirmed");
 
-    } else if (booking.getBookingReviewed() == false && booking.getBoookingStatus() == "PEND") {
+    } else if (booking.getBookingReviewed() == false && booking.getBoookingStatus().equals("PEND")) {
       statusOfBooking.setText("Pending with CLC");
       materialCardView.setCardBackgroundColor(rgb(238, 255, 230));
 
@@ -83,7 +83,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
         materialCardView.setCardBackgroundColor(rgb(238, 215, 230));
 
     }
-    else {
+    else if (booking.getBoookingStatus().equals("DECL")){
       statusOfBooking.setText("Declined");
       materialCardView.setCardBackgroundColor(rgb(255, 170, 153));
     }

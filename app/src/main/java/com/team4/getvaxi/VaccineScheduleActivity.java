@@ -1,6 +1,7 @@
 package com.team4.getvaxi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import com.google.android.material.card.MaterialCardView;
 
 public class VaccineScheduleActivity extends AppCompatActivity {
+  private Toolbar toolbar;
 
   MaterialCardView matCardBelow11Months;
   MaterialCardView matCardBelow3Years;
@@ -22,6 +24,14 @@ public class VaccineScheduleActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_vaccine_schedule);
+
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    toolbar.setTitle("Vaccination Schedule");
+
 
     matCardBelow02Months = findViewById(R.id.matCardvaccineSchedulebelow02M);
     matCardBelow04Months = findViewById(R.id.matCardvaccineSchedulebelow04M);

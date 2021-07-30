@@ -22,6 +22,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Person;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Commons extends Activity {
 
 
@@ -50,6 +53,13 @@ public class Commons extends Activity {
     public String getCurrentUserId() {
     userUUID = mAuth.getCurrentUser().getUid();
     return  userUUID;
+  }
+
+  public static boolean isValidPhoneNumber(String number){
+      Pattern ptrn = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+      Matcher match = ptrn.matcher(number);
+      return (match.find() && match.group().equals(number));
+
   }
 
   public Person getCurrentUserDetails() {

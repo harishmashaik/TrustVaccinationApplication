@@ -98,10 +98,10 @@ public class AskQuestionsActivity extends AppCompatActivity {
     messageSender.setUserType(type);
     if(isAdmin){
       messageSender.setMessageRepliedDateTime(LocalDateTime.now().toString());
+      messageSender.setMessageDateTime(currentMessage.getMessageDateTime());
     }else{
       messageSender.setMessageDateTime(LocalDateTime.now().toString());
     }
-
 
     messageSender.setSenderName(sendername);
 
@@ -127,16 +127,56 @@ public class AskQuestionsActivity extends AppCompatActivity {
   private void postMessageSend() {
     txtMessage.setText("");
 
-    if (!isAdmin) {
+    //if (!isAdmin) {
       loaduserMessages();
-    }
+  // }
+ //   else{
+      //loadAdminMessages();
+   // }
+  }
+
+  private void loadAdminMessages(){
+    ArrayList<Message> userMessageList = new ArrayList<>();
+    db.collection("questions")
+            .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
+            .get()
+            .addOnCompleteListener(
+                    new OnCompleteListener<QuerySnapshot>() {
+                      @RequiresApi(api = Build.VERSION_CODES.O)
+                      @Override
+                      public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                          for (QueryDocumentSnapshot document : task.getResult()) {
+                            String tempID = document.getId();
+                            Message m = document.toObject(Message.class);
+
+                            Log.i(TAG, document.getId() + " => " + m.toString());
+                            // Log.i(TAG, "temp is " + " => " + temp);
+
+                            userMessageList.add(m);
+                          }
+                          questionsAdapter.setMessagesList(userMessageList);
+                        } else {
+                          Log.i(TAG, "Error getting documents: ", task.getException());
+                        }
+                      }
+                    });
   }
 
   private void loaduserMessages() {
+    String tempUUid;
+
+    if(mAuth.getCurrentUser()!=null)
+    {
+      tempUUid = mAuth.getCurrentUser().getUid();
+    }
+    else{
+      tempUUid = currentMessage.getUserId();
+    }
 
     ArrayList<Message> userMessageList = new ArrayList<>();
     db.collection("questions")
-        .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
+        .whereEqualTo("userId", tempUUid)
         .get()
         .addOnCompleteListener(
             new OnCompleteListener<QuerySnapshot>() {

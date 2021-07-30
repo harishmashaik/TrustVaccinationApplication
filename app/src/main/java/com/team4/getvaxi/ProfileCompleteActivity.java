@@ -70,17 +70,16 @@ public class ProfileCompleteActivity extends AppCompatActivity {
             Integer.parseInt(String.valueOf(text_comple_no_of_kids.getText())));
     personDetails.setPersonCommonLawPartnerName(
             String.valueOf(text_common_law_partner.getText()));
-    if (String.valueOf(text_phone_number.getText()).length() != 10) {
+    if (Commons.isValidPhoneNumber(text_phone_number.getText().toString())) {
       showToast("Invalid Phone number");
     } else {
       personDetails.setPersonPhoneNum(String.valueOf(text_phone_number.getText()));
+      Bundle b = new Bundle();
+      b.putSerializable("personDetails", (Serializable) personDetails);
+      Intent intent = new Intent(getApplicationContext(), ChildInfoActivity.class);
+      intent.putExtras(b);
+      startActivity(intent);
     }
-
-    Bundle b = new Bundle();
-    b.putSerializable("personDetails", (Serializable) personDetails);
-    Intent intent = new Intent(getApplicationContext(), ChildInfoActivity.class);
-    intent.putExtras(b);
-    startActivity(intent);
 
   }
 

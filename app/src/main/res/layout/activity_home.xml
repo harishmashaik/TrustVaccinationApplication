@@ -4,190 +4,277 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="2dp"
-    tools:context=".HomeActivity">
+    tools:context=".CLCHomeActivity">
 
     <include
-        android:id="@+id/include"
+        android:id="@+id/clc_home_include"
         layout="@layout/toolbar"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-70dp" />
+        android:layout_width="412dp"
+        android:layout_height="64dp"
+        tools:layout_editor_absoluteX="-5dp"
+        tools:layout_editor_absoluteY="6dp" />
 
-    <TextView
-        android:id="@+id/mainAc_whyVaccination"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_whyVaccination"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="8dp"
         android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="Why Vaccnation"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintTop_toBottomOf="@+id/clc_home_include"
+        app:layout_constraintVertical_bias="0.033"
+        tools:layout_editor_absoluteX="8dp">
 
-    <TextView
-        android:id="@+id/mainAc_VacciantionSchedule"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/mainAc_whyVaccination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Why Vaccnation"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorMenuBlue"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_VaccinationSchedule"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="8dp"
         android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        android:fontFamily="sans-serif-thin"
-        android:text="Vaccination Schedule"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_whyVaccination"
-        app:layout_constraintVertical_bias="0.046" />
-
-
-    <TextView
-        android:id="@+id/mainAc_DiavaccinePrevent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:background="?attr/selectableItemBackground"
-        android:text="Diaseases that Vaccine Prevent"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_VacciantionSchedule"
-        app:layout_constraintVertical_bias="0.054" />
-
-    <TextView
-        android:id="@+id/mainAc_YourChildvaccineVisit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="Your Child Vaccine Visit"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_DiavaccinePrevent"
-        app:layout_constraintVertical_bias="0.047" />
-
-    <TextView
-        android:id="@+id/mainAc_trackAppointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="Track Appointemnt"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_YourChildvaccineVisit"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_whyVaccination"
+        app:layout_constraintVertical_bias="0.035"
+        tools:layout_editor_absoluteX="16dp">
 
-    <TextView
-        android:id="@+id/mainAc_BeforeYourTravel"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/mainAc_VacciantionSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vaccination Schedule"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorMenuBlue"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_vaccineStock"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="8dp"
         android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="Before You Travel"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_trackAppointment"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_VaccinationSchedule"
+        app:layout_constraintVertical_bias="0.047"
+        tools:layout_editor_absoluteX="8dp">
 
-    <TextView
-        android:id="@+id/mainAc_AskQuestions"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/mainAc_DiavaccinePrevent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:clickable="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorMenuBlue"
+            android:layout_marginBottom="8dp"
+            android:text="Diaseases that Vaccine Prevent"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_yourChildVaccineVisit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="8dp"
         android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="Ask Questions ?"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_BeforeYourTravel"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_vaccineStock"
+        app:layout_constraintVertical_bias="0.046"
+        tools:layout_editor_absoluteX="-5dp">
 
-    <TextView
-        android:id="@+id/mainAc_MyProfile"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/mainAc_YourChildvaccineVisit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:text="Your Child Vaccine Visit"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_trackAppointment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="8dp"
         android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="My Profile"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_AskQuestions"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_yourChildVaccineVisit"
+        app:layout_constraintVertical_bias="0.064"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/mainAc_trackAppointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:text="Track Appointemnt"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
+            android:textSize="24sp" />
 
 
-    <TextView
-        android:id="@+id/mainAc_Logout"
-        android:layout_width="wrap_content"
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_beforeuTravel"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="8dp"
         android:clickable="true"
-        android:fontFamily="sans-serif-thin"
-        android:text="Logout"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorMenuBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAc_MyProfile"
-        app:layout_constraintVertical_bias="0.18" />
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_trackAppointment"
+        app:layout_constraintVertical_bias="0.121"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/mainAc_BeforeYourTravel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:text="Before You Travel"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_askQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_beforeuTravel"
+        app:layout_constraintVertical_bias="0.121"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/mainAc_AskQuestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:text="Ask Questions ?"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_myProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_askQuestions"
+        app:layout_constraintVertical_bias="0.121"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/mainAc_MyProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:text="My Profile"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainAc_card_userlogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainAc_card_myProfile"
+        app:layout_constraintVertical_bias="0.121"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/mainAc_Logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:text="Log Out"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
+            android:textSize="24sp" />
+
+
+    </com.google.android.material.card.MaterialCardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

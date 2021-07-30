@@ -2,6 +2,7 @@ package com.team4.getvaxi;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,8 @@ public class MyProfileActivity extends AppCompatActivity {
   public static final String TAG = "MyProfileActivity";
   final ChildViewAdapter childAdapter = new ChildViewAdapter();
 
+  private Toolbar toolbar;
+
 
   // Firebase Declarations
   private FirebaseAuth mAuth;
@@ -41,7 +44,7 @@ public class MyProfileActivity extends AppCompatActivity {
   EditText editTextFirstName;
   EditText editTextEmail;
   EditText editTextPhoneNumber;
-  EditText editTextDOB;
+  EditText editTextspousename;
   EditText editTextInsuranceNum;
 
   Button buttonUpdate;
@@ -54,6 +57,14 @@ public class MyProfileActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_my_profile);
 
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    toolbar.setTitle("Update My Profile");
+    toolbar.inflateMenu(R.menu.top_app_bar);
+
     mAuth = mAuth = FirebaseAuth.getInstance();
     user = mAuth.getCurrentUser();
 
@@ -62,7 +73,7 @@ public class MyProfileActivity extends AppCompatActivity {
     editTextFirstName = findViewById(R.id.account_FirstNameUA);
     editTextEmail = findViewById(R.id.account_EmailUA);
     editTextPhoneNumber = findViewById(R.id.account_phoneNo);
-    editTextDOB = findViewById(R.id.account_Dob);
+    editTextspousename = findViewById(R.id.account_spousename);
    // editTextInsuranceNum = findViewById(R.id.account_InsuranceNo);
     buttonUpdate = findViewById(R.id.but_updateUA);
     buttonAddChild = findViewById(R.id.but_addChild);
@@ -122,6 +133,7 @@ public class MyProfileActivity extends AppCompatActivity {
     editTextFirstName.setText(p.getPersonName());
     editTextEmail.setText(p.getPersonEmail());
     editTextPhoneNumber.setText(p.getPersonPhoneNum());
+    editTextspousename.setText(p.getPersonCommonLawPartnerName());
 
     listOfChildren.setHasFixedSize(false);
     listOfChildren.setLayoutManager(new LinearLayoutManager(this));

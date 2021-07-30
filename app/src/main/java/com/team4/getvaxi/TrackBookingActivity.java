@@ -1,10 +1,13 @@
 package com.team4.getvaxi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +24,7 @@ import com.team4.getvaxi.recycle.TrackBookingAdapter;
 import java.util.ArrayList;
 
 public class TrackBookingActivity extends AppCompatActivity {
+    private Toolbar toolbar;
 
     public static final String TAG = "TrackBookingActivity";
 
@@ -35,6 +39,13 @@ public class TrackBookingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_booking);
 
+        toolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setTitle("Track Vaccinations");
+
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -45,11 +56,15 @@ public class TrackBookingActivity extends AppCompatActivity {
 
         listOfuserBookings.setAdapter(trackbookingsAdapter);
 
-        loadUserBookings();
+        try {
+            loadUserBookings();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private void loadUserBookings() {
+    private void loadUserBookings() throws ClassNotFoundException {
     //System.out.println("inside load bookings");
 
         ArrayList<Booking> userBookingList = new ArrayList<>();
@@ -69,10 +84,30 @@ public class TrackBookingActivity extends AppCompatActivity {
                                         userBookingList.add(b);
                                     }
                                     trackbookingsAdapter.setBookings(userBookingList);
+                                    if(userBookingList.size()==0){
+                                        try {
+                                            toastAndNextActivity("Sorry You dont have any bookings","HomeActivity");
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
                                 } else {
                                     Log.i(TAG, "Error getting documents: ", task.getException());
                                 }
                             }
                         });
+
+
+    }
+
+    private void toastAndNextActivity(String message, String nextActivity)
+            throws ClassNotFoundException {
+
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
+
+        Intent nextActivityRequested =
+                new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + nextActivity));
+        startActivity(nextActivityRequested);
     }
 }

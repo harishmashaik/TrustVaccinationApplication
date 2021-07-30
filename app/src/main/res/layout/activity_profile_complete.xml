@@ -115,6 +115,7 @@
                     android:id="@+id/pro_comple_PhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:inputType="number"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
