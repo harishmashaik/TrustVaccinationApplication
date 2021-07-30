@@ -27,12 +27,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Child;
 import com.team4.getvaxi.models.Person;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import static java.time.Period.between;
 
@@ -51,6 +55,7 @@ public class ChildInfoActivity extends AppCompatActivity {
   EditText childInfoName;
   EditText childInfoAge;
 
+  @RequiresApi(api = Build.VERSION_CODES.O)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -111,11 +116,11 @@ public class ChildInfoActivity extends AppCompatActivity {
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   private void buttonNextHandler() {
-    if (childInfoAge.getText().toString().length() > 1
-        && childInfoName.getText().toString().length() > 1) {
+    if (childInfoName.getText().toString().length() > 1) {
       Child c1 = new Child();
       c1.setChildName(childInfoName.getText().toString());
-      c1.setChildAge(getAge(childInfoAge.getText().toString()));
+      //c1.setChildAge(getAge(childInfoAge.getText().toString()));
+      c1.setDateOfBirth(childInfoAge.getText().toString());
 
       childArrayList.add(c1);
       System.out.println(childArrayList.size());
@@ -162,12 +167,6 @@ public class ChildInfoActivity extends AppCompatActivity {
               }
             });
   }
-
-  private void showToast(String messageToast) {
-    Toast toast = Toast.makeText(getApplicationContext(), messageToast, Toast.LENGTH_SHORT);
-    toast.show();
-  }
-
   private void prepareChildViewsandGetData(int a) {
 
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
@@ -207,14 +206,32 @@ public class ChildInfoActivity extends AppCompatActivity {
           }
         });
 
+//    materialDatePicker.addOnPositiveButtonClickListener(
+//        new MaterialPickerOnPositiveButtonClickListener() {
+//          @Override
+//          public void onPositiveButtonClick(Object selection) {
+//
+//            DateFormat targetFormat = new SimpleDateFormat("dd MMM yyyy");
+//            DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            try {
+//              Date date = originalFormat.parse(materialDatePicker.getHeaderText());
+//
+//              System.out.println(" teh date is from exp " + date);
+//            } catch (ParseException e) {
+//              System.out.println("the exception");
+//              e.printStackTrace();
+//            }
+//
+//            childInfoAge.setText(materialDatePicker.getHeaderText());
+//          }
+//        });
+
     materialDatePicker.addOnPositiveButtonClickListener(
         new MaterialPickerOnPositiveButtonClickListener() {
           @SuppressLint("SetTextI18n")
           @Override
           public void onPositiveButtonClick(Object selection) {
 
-            // if the user clicks on the positive
-            // button that is ok button update the
             // selected date
             childInfoAge.setText(materialDatePicker.getHeaderText());
 
@@ -248,17 +265,31 @@ public class ChildInfoActivity extends AppCompatActivity {
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   private int getAge(String dob){
-    Date today = new Date();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
-    LocalDate dateDOB = LocalDate.parse(dob, formatter);
-    LocalDate localToday =LocalDate.now();
+    String dobDay =dob.substring(4,6);
+    String dobMonth=dob.substring(0,3);
+    String dobYear =dob.substring(8,12);
 
-    Period diff
-            = Period
-            .between(dateDOB,
-                    localToday);
+    //    String dateofBir = dobDay+"-"+dobMonth+"-"+dobYear;
+    //
+    //    DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MMM-yyyy",Locale.US);
+    //    LocalDate dateDOB = LocalDate.parse(dateofBir,df);
+    //    //LocalDate dateDOB =
+    // LocalDate.of(Integer.parseInt(dobYear),Integer.parseInt(dobMonth),Integer.parseInt(dobDay));
+    //    LocalDate localToday =LocalDate.now();
+    //
+    //    Period diff = Period.between(dateDOB, localToday);
+    //    System.out.println("the age is "+ diff.getYears());
+    //
+    //    return diff.getYears();
 
-    return diff.getYears();
+    System.out.println("The year is the diff " + (LocalDate.now().getYear()-Integer.parseInt(dobYear)) );
 
+    return (LocalDate.now().getYear()-Integer.parseInt(dobYear));
+
+  }
+
+  private void showToast(String messageToast) {
+    Toast toast = Toast.makeText(getApplicationContext(), messageToast, Toast.LENGTH_SHORT);
+    toast.show();
   }
 }

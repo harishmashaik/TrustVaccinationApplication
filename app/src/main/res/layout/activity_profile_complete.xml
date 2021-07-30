@@ -103,6 +103,7 @@
                 android:layout_width="308dp"
                 android:layout_height="60dp"
                 android:hint="Phone Number"
+                android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

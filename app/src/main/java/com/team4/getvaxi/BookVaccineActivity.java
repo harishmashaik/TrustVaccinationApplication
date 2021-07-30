@@ -112,7 +112,6 @@ public class BookVaccineActivity extends AppCompatActivity {
             v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));
     materialDatePicker.addOnPositiveButtonClickListener(
             selection -> {
-              System.out.println("here date " + materialDatePicker.getHeaderText().toString());
               text_appointment_date.setText(materialDatePicker.getHeaderText());
             });
 
@@ -122,7 +121,8 @@ public class BookVaccineActivity extends AppCompatActivity {
               personChildInfo.forEach(
                   c -> {
                     if (dropdownChildList.getText().toString().equals(c.getChildName())) {
-                      text_childAge.setText(Integer.toString(c.getChildAge()));
+                      //text_childAge.setText(Integer.toString(c.getChildAge()));
+                      text_childAge.setText(c.getDateOfBirth());
                     }
                   });
               System.out.println("Asa");
@@ -209,23 +209,6 @@ public class BookVaccineActivity extends AppCompatActivity {
     String userId = user.getUid();
     Log.i(TAG, userId);
     DocumentReference docRef = db.collection("person").document(userId);
-
-    //      db.collection("person")
-    //              .get()
-    //              .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-    //                  @Override
-    //                  public void onComplete(@NonNull Task<QuerySnapshot> task) {
-    //                      if (task.isSuccessful()) {
-    //                          for (QueryDocumentSnapshot document : task.getResult()) {
-    //                              Log.i(TAG, "TASK IS On");;
-    //                              Log.i(TAG, document.getId() + " => " + document.getData());
-    //                          }
-    //                      } else {
-    //                          Log.i(TAG, "TASK IS FAILURE");
-    //                          Log.i(TAG, "Error getting documents: ", task.getException());
-    //                      }
-    //                  }
-    //              });
 
     docRef
         .get()

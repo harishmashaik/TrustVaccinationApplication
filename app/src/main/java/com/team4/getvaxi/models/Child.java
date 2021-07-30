@@ -9,9 +9,18 @@ public class Child implements Serializable {
 
     private String childName;
     private int childAge;
+    private String dateOfBirth;
     private ArrayList<Vaccine> vaccinesConsumed;
 
     public Child() {
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getChildName() {
@@ -34,16 +43,19 @@ public class Child implements Serializable {
         return vaccinesConsumed;
     }
 
-    public void setVaccinesConsumed(ArrayList<Vaccine> vaccinesConsumed) {
-        this.vaccinesConsumed = vaccinesConsumed;
-    }
-
     @Override
     public String toString() {
         return "Child{" +
                 "childName='" + childName + '\'' +
                 ", childAge=" + childAge +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", vaccinesConsumed=" + vaccinesConsumed +
                 '}';
     }
+
+    public void setVaccinesConsumed(ArrayList<Vaccine> vaccinesConsumed) {
+        this.vaccinesConsumed = vaccinesConsumed;
+    }
+
+
 }

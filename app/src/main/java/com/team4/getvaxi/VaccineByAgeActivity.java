@@ -155,52 +155,99 @@ public class VaccineByAgeActivity extends AppCompatActivity {
 //    vxAgebelow2.setDescription("At 1 to 2 months, your baby should receive vaccines to protect them from the following diseases");
 //
 
-    Vaccine v7 = new Vaccine();
-    v7.setVaccineName("Diphtheria, tetanus, and whooping cough (pertussis) (DTaP)");
-    v7.setVaccineDose(2);
-    v7.setVaccineStock(10);
-    v7.setVaccineDescription("Below 4 Months");
+//    Vaccine v7 = new Vaccine();
+//    v7.setVaccineName("Diphtheria, tetanus, and whooping cough (pertussis) (DTaP)");
+//    v7.setVaccineDose(2);
+//    v7.setVaccineStock(10);
+//    v7.setVaccineDescription("Below 4 Months");
+//
+//    Vaccine v8 = new Vaccine();
+//    v8.setVaccineName("Haemophilus influenzae type b disease (Hib)");
+//    v8.setVaccineDose(2);
+//    v8.setVaccineStock(10);
+//    v8.setVaccineDescription("Below 4 Months");
+//
+//    Vaccine v9 = new Vaccine();
+//    v9.setVaccineName("Polio (IPV)");
+//    v9.setVaccineDose(2);
+//    v9.setVaccineStock(10);
+//    v9.setVaccineDescription("Below 4 Months");
+//
+//
+//    Vaccine v10 = new Vaccine();
+//    v10.setVaccineName("Pneumococcal disease (PCV13)");
+//    v10.setVaccineDose(2);
+//    v10.setVaccineStock(10);
+//    v10.setVaccineDescription("Below 4 Months");
+//
+//    Vaccine v11 = new Vaccine();
+//    v11.setVaccineName("Rotavirus (RV)");
+//    v11.setVaccineDose(2);
+//    v11.setVaccineStock(10);
+//    v11.setVaccineDescription("Below 4 Months");
+//
+//    ArrayList<Vaccine> vaccinesAtThisAge = new ArrayList<>();
+//    vaccinesAtThisAge.add(v7);
+//    vaccinesAtThisAge.add(v8);
+//    vaccinesAtThisAge.add(v9);
+//    vaccinesAtThisAge.add(v10);
+//    vaccinesAtThisAge.add(v11);
 
-    Vaccine v8 = new Vaccine();
-    v8.setVaccineName("Haemophilus influenzae type b disease (Hib)");
-    v8.setVaccineDose(2);
-    v8.setVaccineStock(10);
-    v8.setVaccineDescription("Below 4 Months");
+//
+//    Vaccine v12 = new Vaccine();
+//    v12.setVaccineName("Diphtheria, tetanus, and whooping cough (pertussis) (DTaP)");
+//    v12.setVaccineDose(3);
+//    v12.setVaccineStock(10);
+//    v12.setVaccineDescription("Below 6 Months");
+//
+//    Vaccine v13 = new Vaccine();
+//    v13.setVaccineName("Haemophilus influenzae type b disease (Hib)");
+//    v13.setVaccineDose(3);
+//    v13.setVaccineStock(10);
+//    v13.setVaccineDescription("Below 6 Months");
+//
+//    Vaccine v14 = new Vaccine();
+//    v14.setVaccineName("Polio (IPV)");
+//    v14.setVaccineDose(3);
+//    v14.setVaccineStock(10);
+//    v14.setVaccineDescription("Below 6 Months");
+//
+//
+//    Vaccine v15 = new Vaccine();
+//    v15.setVaccineName("Pneumococcal disease (PCV13)");
+//    v15.setVaccineDose(3);
+//    v15.setVaccineStock(10);
+//    v15.setVaccineDescription("Below 6 Months");
+//
+//    Vaccine v16 = new Vaccine();
+//    v16.setVaccineName("Rotavirus (RV)");
+//    v16.setVaccineDose(3);
+//    v16.setVaccineStock(10);
+//    v16.setVaccineDescription("Below 6 Months");
 
-    Vaccine v9 = new Vaccine();
-    v9.setVaccineName("Polio (IPV)");
-    v9.setVaccineDose(2);
-    v9.setVaccineStock(10);
-    v9.setVaccineDescription("Below 4 Months");
+    Vaccine v17 = new Vaccine();
+    v17.setVaccineName("Influenza (Flu)");
+    v17.setVaccineDose(3);
+    v17.setVaccineStock(10);
+    v17.setVaccineDescription("Below 11 Months");
 
-
-    Vaccine v10 = new Vaccine();
-    v10.setVaccineName("Pneumococcal disease (PCV13)");
-    v10.setVaccineDose(2);
-    v10.setVaccineStock(10);
-    v10.setVaccineDescription("Below 4 Months");
-
-    Vaccine v11 = new Vaccine();
-    v11.setVaccineName("Rotavirus (RV)");
-    v11.setVaccineDose(2);
-    v11.setVaccineStock(10);
-    v11.setVaccineDescription("Below 4 Months");
 
     ArrayList<Vaccine> vaccinesAtThisAge = new ArrayList<>();
-    vaccinesAtThisAge.add(v7);
-    vaccinesAtThisAge.add(v8);
-    vaccinesAtThisAge.add(v9);
-    vaccinesAtThisAge.add(v10);
-    vaccinesAtThisAge.add(v11);
+    vaccinesAtThisAge.add(v17);
+//    vaccinesAtThisAge.add(v13);
+//    vaccinesAtThisAge.add(v14);
+//    vaccinesAtThisAge.add(v15);
+//    vaccinesAtThisAge.add(v16);
 
-    VaccineByAge vxAgebelow4 = new VaccineByAge();
-    vxAgebelow4.setVaccinesAtThisAge(vaccinesAtThisAge);
-    vxAgebelow4.setImageLogo("vaccine_age_four_below");
-    vxAgebelow4.setDescription("Below 4 months, your baby should receive vaccines to protect them from the following diseases");
+
+    VaccineByAge vxAgebelow6 = new VaccineByAge();
+    vxAgebelow6.setVaccinesAtThisAge(vaccinesAtThisAge);
+    vxAgebelow6.setImageLogo("vaccine_age_eleven_below");
+    vxAgebelow6.setDescription("Below 11 months, your baby should receive vaccines to protect them from the following diseases");
 
     db.collection("vaccines")
-            .document("vaccineB04M")
-            .set(vxAgebelow4)
+            .document("vaccineB11M")
+            .set(vxAgebelow6)
             .addOnSuccessListener(
                     new OnSuccessListener<Void>() {
                       @Override

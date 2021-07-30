@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/clc_home_include"
+        layout="@layout/toolbar"
+        android:layout_width="412dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        tools:layout_editor_absoluteX="-1dp" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="398dp"
+        android:layout_height="600dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clc_home_include">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bef_u_travel_heading"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Before your Travel"
+                android:textColor="@color/colorMenuBlue"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bef_u_firsttxt"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Protect your child and family when traveling in the United States or abroad by:
+
+Getting the shots required for all countries you and your family plan to visit during your trip
+Making sure you and your family are up-to-date on all routine U.S. vaccines
+Staying informed about travel notices and alerts and how they can affect your family’s travel plans"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/bef_u_heading_month_before"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="Vaccinate at least a month before you travel"
+                android:textColor="@color/colorMenuBlue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bef_u_month_before"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your body needs time to build up immunity.
+You may need several weeks to get all the doses of the vaccine.
+Your primary doctor may not stock travel vaccines. Visit a travel medical clinic.
+You’ll need time to prepare for your pre-travel appointment.
+If the country you visit requires a yellow fever vaccine, only a limited number of clinics have the vaccine and will probably be some distance from where you live. You must get it at least 10 days before travel."
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/bef_u_travel_heading_last_minute"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="Last-minute travelers"
+                android:textColor="@color/colorMenuBlue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bef_u_month_last_minute"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="When traveling to another country be aware your doctor may not carry a travel vaccine and you may have to visit a medical clinic.
+
+Many travel vaccines require multiple shots or take time to become fully effective. But some multiple-dose vaccines (like hepatitis A) can still give you partial protection after just one dose. Some can also be given on an “accelerated schedule,” meaning doses are given in a shorter period of time."
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

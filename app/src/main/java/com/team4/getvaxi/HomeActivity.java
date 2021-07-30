@@ -101,7 +101,17 @@ public class HomeActivity extends AppCompatActivity {
       });
 
 
-    txtLogout.setOnClickListener(v -> userSignOut());
+      txtBeforeYouTravel.setOnClickListener(v -> {
+          try {
+              nextActivity("BeforeYourTravelActivity");
+          } catch (ClassNotFoundException e) {
+              e.printStackTrace();
+          }
+      });
+
+
+
+      txtLogout.setOnClickListener(v -> userSignOut());
   }
 
     @Override
@@ -138,7 +148,7 @@ public class HomeActivity extends AppCompatActivity {
                       Toast.makeText(
                           getApplicationContext(), "User Signed Out", Toast.LENGTH_SHORT);
                   toast.show();
-                  Intent intent = new Intent(getApplicationContext(), CLCHomeActivity.class);
+                  Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                   startActivity(intent);
 
                 } else {
