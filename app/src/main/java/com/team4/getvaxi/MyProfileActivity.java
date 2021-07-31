@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -80,7 +81,13 @@ public class MyProfileActivity extends AppCompatActivity {
 
     getUserData();
 
-     buttonUpdate.setOnClickListener(v -> updateDetails());
+     buttonUpdate.setOnClickListener(v -> {
+       try {
+         updateDetails();
+       } catch (ClassNotFoundException e) {
+         e.printStackTrace();
+       }
+     });
     buttonAddChild.setOnClickListener(v -> updateChildDetails());
   }
 
@@ -94,10 +101,34 @@ public class MyProfileActivity extends AppCompatActivity {
 
   }
 
-  private void updateDetails() {
-    Person updatePerson = new Person();
-    updatePerson.setPersonName(String.valueOf(editTextFirstName.getText()));
-    updatePerson.setPersonPhoneNum(String.valueOf(editTextPhoneNumber.getText()));
+  private void updateDetails() throws ClassNotFoundException {
+//    Person updatePerson = new Person();
+//    updatePerson.setPersonName(String.valueOf(editTextFirstName.getText()));
+//    updatePerson.setPersonPhoneNum(String.valueOf(editTextPhoneNumber.getText()));
+//    updatePerson.setPersonChildInfo(personCurrent.getPersonChildInfo());
+//    updatePerson.setProfileCompletionStatus(true);
+//    updatePerson.setPersonCommonLawPartnerName(editTextspousename.getText().toString());
+
+    personCurrent.setPersonCommonLawPartnerName(editTextspousename.getText().toString());
+    personCurrent.setPersonPhoneNum(String.valueOf(editTextPhoneNumber.getText()));
+    personCurrent.setPersonName(String.valueOf(editTextFirstName.getText()));
+    db.collection("person").document(personCurrent.getPersonUUID()).set(personCurrent);
+
+    toastAndNextActivity(personCurrent.getPersonName() + " details have been updated", "HomeActivity");
+
+
+
+  }
+
+  private void toastAndNextActivity(String message, String nextActivity)
+          throws ClassNotFoundException {
+
+    Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+    toast.show();
+
+    Intent nextActivityRequested =
+            new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + nextActivity));
+    startActivity(nextActivityRequested);
   }
 
   private void getUserData() {

@@ -109,6 +109,16 @@ public class HomeActivity extends AppCompatActivity {
           }
       });
 
+      txtDiseaseVaccinePrevent.setOnClickListener(v -> {
+          try {
+              nextActivity("DiseasesPreventActivity");
+          } catch (ClassNotFoundException e) {
+              e.printStackTrace();
+          }
+      });
+
+
+
 
 
       txtLogout.setOnClickListener(v -> userSignOut());

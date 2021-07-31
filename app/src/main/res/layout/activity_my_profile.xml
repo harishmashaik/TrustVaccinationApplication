@@ -63,6 +63,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
+                android:enabled="false"
                 android:text="TextView"
                 android:textStyle="bold" />
 
@@ -98,35 +99,39 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/but_addChild"
-        android:layout_width="295dp"
-        android:layout_height="46dp"
-        android:background="@drawable/ic_wishlist_button_red_bg"
-        android:text="Add Child"
-        android:textColor="#FFFFFF"
-        android:visibility="visible"
-        app:icon="@drawable/ic_baseline_edit_24"
-        app:layout_constraintBottom_toTopOf="@+id/but_updateUA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/con_lay_eachitemAccountFrag"
-        app:layout_constraintVertical_bias="0.753" />
-
-    <Button
-        android:id="@+id/but_updateUA"
-        android:layout_width="295dp"
-        android:layout_height="46dp"
-        android:background="@drawable/ic_wishlist_button_red_bg"
-        android:text="Update Details"
-        android:textColor="#FFFFFF"
-        android:visibility="visible"
-        app:icon="@drawable/ic_baseline_edit_24"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/con_lay_eachitemAccountFrag"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintTop_toBottomOf="@+id/con_lay_eachitemAccountFrag">
+
+
+
+        <Button
+            android:id="@+id/but_addChild"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:text="Add Child"
+            android:clickable="true"
+            android:textColor="#FFFFFF"
+            android:visibility="visible"
+            android:layout_margin="5dp"
+            app:icon="@drawable/ic_baseline_edit_24" />
+
+        <Button
+            android:id="@+id/but_updateUA"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:text="Update"
+            android:layout_margin="5dp"
+            android:textColor="#FFFFFF"
+            android:visibility="visible"
+            app:icon="@drawable/ic_baseline_edit_24"/>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
