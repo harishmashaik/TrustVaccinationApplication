@@ -1,10 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RescheduleOrCancelActivity">
+    tools:context=".CLC.BookingConfirmActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="407dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/bookingChange_AC_vaccinename"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="324dp"
+        android:layout_height="89dp"
+        android:hint="Vaccine Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.128">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bookingChang_vaccinename"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="322dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingChange_AC_vaccinename"
+        app:layout_constraintVertical_bias="0.106">
+
+        <AutoCompleteTextView
+            android:id="@+id/Changevaccine_AC_childname_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="327dp"
+        android:layout_height="67dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.112">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bookingChange_AC_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="New Appointment Date">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bookingChange_date"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:enabled="false"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/bookvaccinechange_AC_pickdate"
+            android:layout_width="59dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:background="@color/colorAccent"
+            android:textColor="#FFFFFF"
+            app:icon="@drawable/ic_baseline_date_range_24" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/bookingChange_AC_childage"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="314dp"
+        android:layout_height="62dp"
+        android:hint="Date of Birth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:layout_constraintVertical_bias="0.13">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bookvaccinechange_childage"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:enabled="false"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/bookVaccinechange_reschedule"
+        android:layout_width="302dp"
+        android:layout_height="51dp"
+        android:text="Rechedule"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.697" />
+
+    <Button
+        android:id="@+id/bookVaccinechange_cancel"
+        android:layout_width="302dp"
+        android:layout_height="51dp"
+        android:backgroundTint="@color/colorDanger"
+        android:text="Cancel"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.903" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

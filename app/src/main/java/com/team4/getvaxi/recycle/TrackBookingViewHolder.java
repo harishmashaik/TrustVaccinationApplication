@@ -1,10 +1,9 @@
 package com.team4.getvaxi.recycle;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,12 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
-import com.team4.getvaxi.models.Booking;;
-import java.sql.SQLOutput;
+import com.team4.getvaxi.RescheduleOrCancelActivity;
+import com.team4.getvaxi.models.Booking;
+
+import java.io.Serializable;
 
 import static android.graphics.Color.rgb;
+
+;
 
 public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
 
@@ -48,17 +50,23 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
 
     cancelButton.setOnClickListener(
         v -> {
-          System.out.println("insid ethe cancel");
-          System.out.println(user.toString());
+            Intent i = new Intent(layoutView.getContext(), RescheduleOrCancelActivity.class);
+            Bundle b = new Bundle();
+            b.putSerializable("FROMTRACKHOLDER", (Serializable) user);
+            i.putExtras(b);
+            layoutView.getContext().startActivity(i);
 
-          user.setBoookingStatus("CANCELBYUS");
-          user.setBookingReviewed(true);
-
-          db.collection("bookings").document(user.getFbDocID()).set(user);
-          Toast toast = Toast.makeText(v.getContext(), "Appointment Cancelled", Toast.LENGTH_LONG);
-          toast.show();
-          Intent i = new Intent(layoutView.getContext(), HomeActivity.class);
-          layoutView.getContext().startActivity(i);
+//          System.out.println("insid ethe cancel");
+//          System.out.println(user.toString());
+//
+//          user.setBoookingStatus("CANCELBYUS");
+//          user.setBookingReviewed(true);
+//
+//          db.collection("bookings").document(user.getFbDocID()).set(user);
+//          Toast toast = Toast.makeText(v.getContext(), "Appointment Cancelled", Toast.LENGTH_LONG);
+//          toast.show();
+//          Intent i = new Intent(layoutView.getContext(), HomeActivity.class);
+//          layoutView.getContext().startActivity(i);
         });
   }
 

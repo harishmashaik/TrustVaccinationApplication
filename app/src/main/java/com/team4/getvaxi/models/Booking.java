@@ -3,10 +3,11 @@ package com.team4.getvaxi.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Booking implements Parcelable {
+public class Booking implements Serializable {
 
     String fbDocID;
     String age;
@@ -80,22 +81,7 @@ public class Booking implements Parcelable {
     public Booking() {
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.age);
-        dest.writeString(this.name);
-        dest.writeString(this.vaccineName);
-        dest.writeInt(this.vaccineDose);
-        dest.writeString(this.appointmentDate);
-        dest.writeString(this.fbDocID);
-        dest.writeString(this.userId);
-
-    }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public Booking createFromParcel(Parcel in) {
