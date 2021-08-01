@@ -73,14 +73,16 @@ public class BookVaccineActivity extends AppCompatActivity {
 
     toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
     toolbar.inflateMenu(R.menu.top_app_bar);
-    toolbar.setOnMenuItemClickListener(item -> {
-      switch (item.getItemId()){
-        case R.id.appbar_home:
-          startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-          finish();
-          return true;
-      }
-      return false; });
+    toolbar.setOnMenuItemClickListener(
+        item -> {
+          switch (item.getItemId()) {
+            case R.id.appbar_home:
+              startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+              finish();
+              return true;
+          }
+          return false;
+        });
 
     pickDateOoAppointment = findViewById(R.id.bookvaccine_AC_pickdate);
     text_appointment_date = findViewById(R.id.bookingCon_date);
@@ -107,10 +109,7 @@ public class BookVaccineActivity extends AppCompatActivity {
     //
     //    dropdownChildList.setAdapter(adapter);
 
-
     Intent i = getIntent();
-
-
 
     if (i.hasExtra("vaccineDetails")) {
       Bundle data = i.getExtras();
@@ -124,24 +123,24 @@ public class BookVaccineActivity extends AppCompatActivity {
     final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
 
     pickDateOoAppointment.setOnClickListener(
-            v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));
+        v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));
     materialDatePicker.addOnPositiveButtonClickListener(
-            selection -> {
-              text_appointment_date.setText(materialDatePicker.getHeaderText());
-            });
+        selection -> {
+          text_appointment_date.setText(materialDatePicker.getHeaderText());
+        });
 
     dropdownChildList.setOnItemClickListener(
-            (parent, view, position, id) -> {
-              dropdownChildList.getText().toString();
-              personChildInfo.forEach(
-                  c -> {
-                    if (dropdownChildList.getText().toString().equals(c.getChildName())) {
-                      //text_childAge.setText(Integer.toString(c.getChildAge()));
-                      text_childAge.setText(c.getDateOfBirth());
-                    }
-                  });
-              System.out.println("Asa");
-            });
+        (parent, view, position, id) -> {
+          dropdownChildList.getText().toString();
+          personChildInfo.forEach(
+              c -> {
+                if (dropdownChildList.getText().toString().equals(c.getChildName())) {
+                  // text_childAge.setText(Integer.toString(c.getChildAge()));
+                  text_childAge.setText(c.getDateOfBirth());
+                }
+              });
+          System.out.println("Asa");
+        });
 
     bookAppointment.setOnClickListener(
         v -> {
@@ -156,10 +155,9 @@ public class BookVaccineActivity extends AppCompatActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.top_app_bar,menu);
+    inflater.inflate(R.menu.top_app_bar, menu);
     return true;
   }
-
 
   private void bookAppointment() throws ClassNotFoundException {
 
@@ -198,14 +196,14 @@ public class BookVaccineActivity extends AppCompatActivity {
               });
 
     } else {
-      toastAndNextActivity("Validation Failed : Try again", "CLCHomeActivity");
+      toastAndNextActivity("Validation Failed : Try again", "HomeActivity");
     }
   }
 
   private boolean validateBooking(Booking booking) {
 
     if (booking.getVaccineName() != null
-        && booking.getAppointmentDate() != null
+        && booking.getAppointmentDate() != null && booking.getAppointmentDate().length()>8
         && booking.getAge() != null
         && booking.getName() != null
         && booking.getName().length() >= 3

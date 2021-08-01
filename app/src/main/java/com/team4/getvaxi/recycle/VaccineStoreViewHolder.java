@@ -9,13 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
-import com.team4.getvaxi.BookVaccineActivity;
+import com.team4.getvaxi.CLCVaccineStoreUpdateActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Vaccine;
 
-;import java.io.BufferedReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.graphics.Color.rgb;
+
+;
 
 public class VaccineStoreViewHolder extends RecyclerView.ViewHolder {
 
@@ -27,7 +30,9 @@ public class VaccineStoreViewHolder extends RecyclerView.ViewHolder {
   private final TextView vaccineStock;
   private final Button updateButton;
 
-  private Vaccine vaccine;
+  private HashMap<String,Vaccine> vaccineMap;
+  Vaccine currVaccine =  new Vaccine();
+  String currentKey = "";
   private VaccineStoreAdapter adapter;
   private final MaterialCardView materialCardView;
 
@@ -52,27 +57,34 @@ public class VaccineStoreViewHolder extends RecyclerView.ViewHolder {
     //            layoutView.getContext().startActivity(i);
     //        });
 
-    layoutView.setOnClickListener(
+    updateButton.setOnClickListener(
         v -> {
-          Intent i = new Intent(layoutView.getContext(), BookVaccineActivity.class);
-          i.putExtra("vaccineName", vaccine.getVaccineName());
+          Intent i = new Intent(layoutView.getContext(), CLCVaccineStoreUpdateActivity.class);
+          i.putExtra("VACCINEDETAILS", vaccineMap);
+         // i.putExtra("VACCINEDETAILSKEY", currentKey);
           layoutView.getContext().startActivity(i);
         });
   }
 
-  public void bind(Vaccine vaccine, VaccineStoreAdapter adapter) {
-    this.vaccine = vaccine;
+  public void bind(HashMap<String,Vaccine> vaccine, VaccineStoreAdapter adapter) {
+    this.vaccineMap = vaccine;
     this.adapter = adapter;
-    if(vaccine.getVaccineStock() < 5){
+
+    for(Map.Entry<String,Vaccine> entry:vaccine.entrySet()){
+      this.currentKey = entry.getKey();
+      this.currVaccine = entry.getValue();
+    }
+
+    if(currVaccine.getVaccineStock() < 5){
       System.out.println(vaccine.toString());
       materialCardView.setCardBackgroundColor(rgb(255,170,153));
     }
     else {
       materialCardView.setCardBackgroundColor(rgb(255,255,255));
     }
-      vaccineName.setText(vaccine.getVaccineName());
-      vaccineDose.setText(Integer.toString(vaccine.getVaccineDose()));
-     vaccineStock.setText(Integer.toString(vaccine.getVaccineStock()));
+      vaccineName.setText(currVaccine.getVaccineName());
+      vaccineDose.setText(Integer.toString(currVaccine.getVaccineDose()));
+     vaccineStock.setText(Integer.toString(currVaccine.getVaccineStock()));
 
 
 

@@ -1,10 +1,12 @@
 package com.team4.getvaxi;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -23,6 +25,7 @@ import com.team4.getvaxi.recycle.VaccineStoreAdapter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class CLCVaccineStoreActivity extends AppCompatActivity {
 
@@ -54,24 +57,31 @@ public class CLCVaccineStoreActivity extends AppCompatActivity {
     }
 
     private void loadAllVaccines() {
-       // proload.StartProgressLoader();
+
         ArrayList<Vaccine> vaccineList = new ArrayList<>();
+        ArrayList<HashMap<String,Vaccine>> vaccineMapList = new ArrayList<>();
         db.collection("vaccinestore")
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
+                            @RequiresApi(api = Build.VERSION_CODES.N)
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         String tempID = document.getId();
                                         Vaccine v = document.toObject(Vaccine.class);
+                                        HashMap<String,Vaccine> curMap = new HashMap<>();
+                                        curMap.put(tempID,v);
+
+
                                         //b.setFbDocID(tempID);
                                         //Log.i(TAG, document.getId() + " => " + v.toString());
-                                        vaccineList.add(v);
+                                        //vaccineList.add(v);
+                                        vaccineMapList.add(curMap);
                                     }
-                                    vaccineList.sort(Comparator.comparing(Vaccine::getVaccineStock));
-                                    vaccineStoreAdapter.setVaccinesInStore(vaccineList);
+                                   // vaccineList.sort(Comparator.comparing(Vaccine::getVaccineStock));
+                                    vaccineStoreAdapter.setVaccinesInStore(vaccineMapList);
                                 } else {
                                     Log.i(TAG, "Error getting documents: ", task.getException());
                                 }

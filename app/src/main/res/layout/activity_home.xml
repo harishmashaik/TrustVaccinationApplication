@@ -25,19 +25,19 @@
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clc_home_include"
-        app:layout_constraintVertical_bias="0.033"
+        app:layout_constraintVertical_bias="0.022"
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
             android:id="@+id/mainAc_whyVaccination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Why Vaccnation"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/colorMenuBlue"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:text="Why Vaccnation"
             android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
 
 
@@ -53,19 +53,19 @@
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAc_card_whyVaccination"
-        app:layout_constraintVertical_bias="0.035"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintVertical_bias="0.012"
+        tools:layout_editor_absoluteX="8dp">
 
         <TextView
             android:id="@+id/mainAc_VacciantionSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vaccination Schedule"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/colorMenuBlue"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:text="Vaccination Schedule"
             android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
 
 
@@ -81,7 +81,7 @@
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAc_card_VaccinationSchedule"
-        app:layout_constraintVertical_bias="0.047"
+        app:layout_constraintVertical_bias="0.02"
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
@@ -89,12 +89,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:clickable="true"
             android:layout_marginTop="8dp"
-            android:textColor="@color/colorMenuBlue"
             android:layout_marginBottom="8dp"
+            android:clickable="true"
             android:text="Diaseases that Vaccine Prevent"
             android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
 
 
@@ -139,7 +139,7 @@
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAc_card_yourChildVaccineVisit"
-        app:layout_constraintVertical_bias="0.064"
+        app:layout_constraintVertical_bias="0.026"
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
@@ -168,7 +168,7 @@
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAc_card_trackAppointment"
-        app:layout_constraintVertical_bias="0.121"
+        app:layout_constraintVertical_bias="0.047"
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
@@ -187,6 +187,7 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mainAc_card_askQuestions"
         android:layout_width="match_parent"
@@ -197,8 +198,8 @@
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAc_card_beforeuTravel"
-        app:layout_constraintVertical_bias="0.121"
-        tools:layout_editor_absoluteX="8dp">
+        app:layout_constraintVertical_bias="0.044"
+        tools:layout_editor_absoluteX="12dp">
 
         <TextView
             android:id="@+id/mainAc_AskQuestions"
@@ -215,7 +216,6 @@
 
 
     </com.google.android.material.card.MaterialCardView>
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mainAc_card_myProfile"
@@ -257,7 +257,7 @@
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAc_card_myProfile"
-        app:layout_constraintVertical_bias="0.121"
+        app:layout_constraintVertical_bias="0.157"
         tools:layout_editor_absoluteX="8dp">
 
         <TextView

@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/clc_home_confirmed_bookings"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirmed Bookings"
             android:layout_marginTop="8dp"
@@ -88,7 +88,7 @@
 
         <TextView
             android:id="@+id/clc_home_vaccine_stock"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:clickable="true"
@@ -146,7 +146,7 @@
 
         <TextView
             android:id="@+id/clc_home_logout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"

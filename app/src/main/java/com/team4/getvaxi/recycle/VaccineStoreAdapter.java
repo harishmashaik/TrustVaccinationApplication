@@ -11,17 +11,23 @@ import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Vaccine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class VaccineStoreAdapter extends RecyclerView.Adapter<VaccineStoreViewHolder> {
 
-  private List<Vaccine> vaccinesInStore;
+  private List<HashMap<String,Vaccine>> vaccinesInStore;
 
   public VaccineStoreAdapter() {
     vaccinesInStore = new ArrayList<>();
   }
 
-  public void setVaccinesInStore(List<Vaccine> vaccinesInStore) {
+//  public void setVaccinesInStore(List<Vaccine> vaccinesInStore) {
+//    this.vaccinesInStore = vaccinesInStore;
+//    notifyDataSetChanged(); // going to bind new data to Views.
+//  }
+
+  public void setVaccinesInStore(List<HashMap<String,Vaccine>> vaccinesInStore) {
     this.vaccinesInStore = vaccinesInStore;
     notifyDataSetChanged(); // going to bind new data to Views.
   }
