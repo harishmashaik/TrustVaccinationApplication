@@ -48,9 +48,10 @@ public class BookingDeclineActivity extends AppCompatActivity {
     txtRemarks = findViewById(R.id.bookingDel_remarks);
 
     Intent intent = getIntent();
+    Bundle data = intent.getExtras();
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
-      eachBooking = intent.getParcelableExtra(BookingViewHolder.booking);
+      eachBooking = (Booking) data.getSerializable(BookingViewHolder.booking);
       System.out.println("he book" + eachBooking.toString());
       txtVaccineName.setText(eachBooking.getVaccineName());
       txtchildName.setText(eachBooking.getName());
@@ -78,7 +79,7 @@ public class BookingDeclineActivity extends AppCompatActivity {
             new OnSuccessListener<Void>() {
               @Override
               public void onSuccess(Void aVoid) {
-                Log.d(TAG, "Appointment confirmed " + eachBooking.getFbDocID());
+                Log.d(TAG, "Appointment Cancelled" + eachBooking.getFbDocID());
                 Intent nextActivity = new Intent(getApplicationContext(), CLCHomeActivity.class);
                 startActivity(nextActivity);
               }

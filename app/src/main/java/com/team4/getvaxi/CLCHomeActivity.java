@@ -12,16 +12,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseUser;
 import com.team4.getvaxi.models.ProgressLoader;
 
 public class CLCHomeActivity extends AppCompatActivity {
 
-  TextView newBookings;
-  TextView confirmedBookings;
-  TextView vaccineStore;
-  TextView clcLogout;
-  TextView newQuestions;
+  MaterialCardView newBookings;
+  MaterialCardView confirmedBookings;
+  MaterialCardView vaccineStore;
+  MaterialCardView clcLogout;
+  MaterialCardView newQuestions;
   ProgressLoader proload;
 
   AlertDialog.Builder builder;
@@ -32,11 +33,11 @@ public class CLCHomeActivity extends AppCompatActivity {
     setContentView(R.layout.activity_c_l_c_home);
 
 
-    newBookings = findViewById(R.id.clc_home_new_bookings);
-    confirmedBookings = findViewById(R.id.clc_home_confirmed_bookings);
-    vaccineStore = findViewById(R.id.clc_home_vaccine_stock);
-    newQuestions = findViewById(R.id.clc_home_questions);
-    clcLogout = findViewById(R.id.clc_home_logout);
+    newBookings = findViewById(R.id.clc_card_new_bookings);
+    confirmedBookings = findViewById(R.id.clc_card_confirmed_bookings);
+    vaccineStore = findViewById(R.id.clc_card_vaccine_stock);
+    newQuestions = findViewById(R.id.clc_card_questions);
+    clcLogout = findViewById(R.id.clc_card_logout);
 
     proload = new ProgressLoader(CLCHomeActivity.this);
     builder = new AlertDialog.Builder(this);

@@ -3,6 +3,8 @@ package com.team4.getvaxi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,90 +26,103 @@ import com.team4.getvaxi.recycle.TrackBookingAdapter;
 import java.util.ArrayList;
 
 public class TrackBookingActivity extends AppCompatActivity {
-    private Toolbar toolbar;
+  private Toolbar toolbar;
 
-    public static final String TAG = "TrackBookingActivity";
+  public static final String TAG = "TrackBookingActivity";
 
-    private FirebaseAuth mAuth;
-    FirebaseUser user;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    final TrackBookingAdapter trackbookingsAdapter = new TrackBookingAdapter();
+  private FirebaseAuth mAuth;
+  FirebaseUser user;
+  FirebaseFirestore db = FirebaseFirestore.getInstance();
+  final TrackBookingAdapter trackbookingsAdapter = new TrackBookingAdapter();
 
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_track_booking);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_track_booking);
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
 
-        toolbar = findViewById(R.id.topAppBar);
-        setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
+    toolbar.inflateMenu(R.menu.top_app_bar);
+    toolbar.setOnMenuItemClickListener(
+        item -> {
+          switch (item.getItemId()) {
+            case R.id.appbar_home:
+              startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+              finish();
+              return true;
+          }
+          return false;
+        });
 
-        toolbar.setTitle("Track Vaccinations");
+    mAuth = FirebaseAuth.getInstance();
 
-        mAuth = FirebaseAuth.getInstance();
+    RecyclerView listOfuserBookings = findViewById(R.id.user_trackBookingList);
 
+    listOfuserBookings.setHasFixedSize(false);
+    listOfuserBookings.setLayoutManager(new LinearLayoutManager(this));
 
-        RecyclerView listOfuserBookings = findViewById(R.id.user_trackBookingList);
+    listOfuserBookings.setAdapter(trackbookingsAdapter);
 
-        listOfuserBookings.setHasFixedSize(false);
-        listOfuserBookings.setLayoutManager(new LinearLayoutManager(this));
-
-        listOfuserBookings.setAdapter(trackbookingsAdapter);
-
-        try {
-            loadUserBookings();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
+    try {
+      loadUserBookings();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
     }
+  }
 
-    private void loadUserBookings() throws ClassNotFoundException {
-    //System.out.println("inside load bookings");
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar, menu);
+    return true;
+  }
 
-        ArrayList<Booking> userBookingList = new ArrayList<>();
-        db.collection("bookings")
-                .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
-                .get()
-                .addOnCompleteListener(
-                        new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        String tempID = document.getId();
-                                        Booking b = document.toObject(Booking.class);
-                                        b.setFbDocID(tempID);
-                                        Log.i(TAG, document.getId() + " => " + b.toString());
-                                        userBookingList.add(b);
-                                    }
-                                    trackbookingsAdapter.setBookings(userBookingList);
-                                    if(userBookingList.size()==0){
-                                        try {
-                                            toastAndNextActivity("Sorry You dont have any bookings","HomeActivity");
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                } else {
-                                    Log.i(TAG, "Error getting documents: ", task.getException());
-                                }
-                            }
-                        });
+  private void loadUserBookings() throws ClassNotFoundException {
+    // System.out.println("inside load bookings");
 
+    ArrayList<Booking> userBookingList = new ArrayList<>();
+    db.collection("bookings")
+        .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
+        .get()
+        .addOnCompleteListener(
+            new OnCompleteListener<QuerySnapshot>() {
+              @Override
+              public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                  for (QueryDocumentSnapshot document : task.getResult()) {
+                    String tempID = document.getId();
+                    Booking b = document.toObject(Booking.class);
+                    b.setFbDocID(tempID);
+                    Log.i(TAG, document.getId() + " => " + b.toString());
+                    userBookingList.add(b);
+                  }
+                  trackbookingsAdapter.setBookings(userBookingList);
+                  if (userBookingList.size() == 0) {
+                    try {
+                      toastAndNextActivity("Sorry You dont have any bookings", "HomeActivity");
+                    } catch (ClassNotFoundException e) {
+                      e.printStackTrace();
+                    }
+                  }
+                } else {
+                  Log.i(TAG, "Error getting documents: ", task.getException());
+                }
+              }
+            });
+  }
 
-    }
+  private void toastAndNextActivity(String message, String nextActivity)
+      throws ClassNotFoundException {
 
-    private void toastAndNextActivity(String message, String nextActivity)
-            throws ClassNotFoundException {
+    Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+    toast.show();
 
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-        toast.show();
-
-        Intent nextActivityRequested =
-                new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + nextActivity));
-        startActivity(nextActivityRequested);
-    }
+    Intent nextActivityRequested =
+        new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + nextActivity));
+    startActivity(nextActivityRequested);
+  }
 }

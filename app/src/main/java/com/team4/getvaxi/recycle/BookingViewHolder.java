@@ -18,7 +18,9 @@ import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
 
-;import static android.graphics.Color.rgb;
+;import java.io.Serializable;
+
+import static android.graphics.Color.rgb;
 
 public class BookingViewHolder extends RecyclerView.ViewHolder {
 
@@ -56,25 +58,15 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
     buttonConfirm.setOnClickListener(
         v -> {
           Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
-          i.putExtra(booking, (Parcelable) user);
+          i.putExtra(booking, user);
           layoutView.getContext().startActivity(i);
         });
 
         buttonDecline.setOnClickListener(v -> {
             Intent i = new Intent(layoutView.getContext(), BookingDeclineActivity.class);
-            i.putExtra(booking, (Parcelable) user);
+            i.putExtra(booking,user);
             layoutView.getContext().startActivity(i);
         });
-
-
-
-
-//        layoutView.setOnClickListener(v -> {
-//            Intent i = new Intent(layoutView.getContext(), UserActivity.class);
-//            i.putExtra(username,user.getUser_name());
-//            layoutView.getContext().startActivity(i);
-//        });
-
 
     }
 
@@ -100,7 +92,6 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
             buttonConfirm.setEnabled(false);
 
         }
-        //Picasso.get().load(booking.getAvatar_url()).into(userAvatarPic);
 
     }
 

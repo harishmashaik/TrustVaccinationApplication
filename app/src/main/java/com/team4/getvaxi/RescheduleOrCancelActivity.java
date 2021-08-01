@@ -1,9 +1,12 @@
 package com.team4.getvaxi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +21,8 @@ import com.team4.getvaxi.models.Person;
 import java.util.ArrayList;
 
 public class RescheduleOrCancelActivity extends AppCompatActivity {
+  public static final String TAG = "RescheduleOrCancelActivity";
+  private Toolbar toolbar;
 
   private Button changeDate;
   private Button reschduleAppointment;
@@ -35,6 +40,22 @@ public class RescheduleOrCancelActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_reschedule_or_cancel);
+
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
+    toolbar.inflateMenu(R.menu.top_app_bar);
+    toolbar.setOnMenuItemClickListener(item -> {
+      switch (item.getItemId()){
+        case R.id.appbar_home:
+          startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+          finish();
+          return true;
+      }
+      return false; });
 
     reschduleAppointment = findViewById(R.id.bookVaccinechange_reschedule);
     childDob = findViewById(R.id.bookvaccinechange_childage);
@@ -59,6 +80,13 @@ public class RescheduleOrCancelActivity extends AppCompatActivity {
     getBundleExtras();
     cancelButton.setOnClickListener(v -> cancelAppointment());
     reschduleAppointment.setOnClickListener(v -> RescheduleAppointment());
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar,menu);
+    return true;
   }
 
   private void cancelAppointment() {

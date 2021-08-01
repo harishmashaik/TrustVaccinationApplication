@@ -1,18 +1,21 @@
 package com.team4.getvaxi;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 public class VaccineByAgeActivity extends AppCompatActivity {
 
   public static final String TAG = "VaccineByAgeActivity";
+  private Toolbar toolbar;
 
   FirebaseFirestore db = FirebaseFirestore.getInstance();
   final VaccineAdapter vaccinesAdapter = new VaccineAdapter();
@@ -46,6 +50,21 @@ public class VaccineByAgeActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_vaccine_by_age);
 
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
+    toolbar.inflateMenu(R.menu.top_app_bar);
+    toolbar.setOnMenuItemClickListener(item -> {
+      switch (item.getItemId()){
+        case R.id.appbar_home:
+          startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+          finish();
+          return true;
+      }
+      return false; });
+
     RecyclerView listOfVaccines = findViewById(R.id.vaccineByAGe_AC_vaccineList);
     listOfVaccines.setHasFixedSize(false);
     listOfVaccines.setLayoutManager(new LinearLayoutManager(this));
@@ -61,6 +80,14 @@ public class VaccineByAgeActivity extends AppCompatActivity {
     // mapVaccineData();
 
   }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar,menu);
+    return true;
+  }
+
 
   private void getExtras() {
     Intent intent = getIntent();

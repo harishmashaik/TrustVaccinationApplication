@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -24,14 +26,21 @@ public class VaccineScheduleActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_vaccine_schedule);
-
     toolbar = findViewById(R.id.topAppBar);
     setSupportActionBar(toolbar);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    toolbar.setTitle("Vaccination Schedule");
-
+    toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
+    toolbar.inflateMenu(R.menu.top_app_bar);
+    toolbar.setOnMenuItemClickListener(item -> {
+      switch (item.getItemId()){
+        case R.id.appbar_home:
+          startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+          finish();
+          return true;
+      }
+      return false; });
 
     matCardBelow02Months = findViewById(R.id.matCardvaccineSchedulebelow02M);
     matCardBelow04Months = findViewById(R.id.matCardvaccineSchedulebelow04M);
@@ -53,6 +62,13 @@ public class VaccineScheduleActivity extends AppCompatActivity {
 
     matCardBelow6Years.setOnClickListener(v -> vaccineByAGe("ageB06Y"));
     matCardBelow10Years.setOnClickListener(v -> vaccineByAGe("ageB10Y"));
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar,menu);
+    return true;
   }
 
   private void vaccineByAGe(String ageRange) {

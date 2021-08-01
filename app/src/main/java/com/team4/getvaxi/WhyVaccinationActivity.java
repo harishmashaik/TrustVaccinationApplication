@@ -31,7 +31,7 @@ public class WhyVaccinationActivity extends AppCompatActivity {
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    toolbar.setTitle("Whyvaccination");
+    toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
     toolbar.inflateMenu(R.menu.top_app_bar);
 
     toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {

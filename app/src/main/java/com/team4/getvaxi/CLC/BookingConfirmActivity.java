@@ -73,9 +73,10 @@ public class BookingConfirmActivity extends AppCompatActivity {
     dropdownCenterList.getText().toString();
 
     Intent intent = getIntent();
+    Bundle data = intent.getExtras();
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
-      eachBooking = intent.getParcelableExtra(BookingViewHolder.booking);
+      eachBooking = (Booking) data.getSerializable(BookingViewHolder.booking);
       System.out.println("insid ethe booking confirm");
       System.out.println(eachBooking.toString());
       System.out.println("booking confirm");

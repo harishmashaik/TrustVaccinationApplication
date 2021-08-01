@@ -62,6 +62,11 @@ public class Commons extends Activity {
 
   }
 
+  public static String getActivityName(String simpleName){
+        int index = simpleName.indexOf("Activity");
+        return simpleName.substring(0,index);
+  }
+
   public Person getCurrentUserDetails() {
     System.out.println("the user is " +mAuth.getCurrentUser().getUid());
 

@@ -1,19 +1,19 @@
 package com.team4.getvaxi;
 
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.CalendarConstraints;
-import com.google.android.material.datepicker.CompositeDateValidator;
-import com.google.android.material.datepicker.DateValidatorPointBackward;
-import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Child;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class AddNewChildActivity extends AppCompatActivity {
 
   Person currentPerson = new Person();
+  private Toolbar toolbar;
 
   FirebaseFirestore db;
 
@@ -36,6 +37,25 @@ public class AddNewChildActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_new_child);
+
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    toolbar.setTitle("Add New Child");
+    toolbar.inflateMenu(R.menu.top_app_bar);
+    toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+      @Override
+      public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()){
+          case R.id.appbar_home:
+            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+            finish();
+            return true;
+        }
+        return false; }
+    });
 
     addNewChild = findViewById(R.id.newchild_add_button);
     childName = findViewById(R.id.newchld_childName);
@@ -77,6 +97,15 @@ public class AddNewChildActivity extends AppCompatActivity {
           }
         });
   }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar,menu);
+    return true;
+  }
+
+
 
   private void addChildDeatils() throws ClassNotFoundException {
 

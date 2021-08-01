@@ -17,9 +17,6 @@ import java.util.List;
 public class BookingsAdapter extends RecyclerView.Adapter<BookingViewHolder> {
 
     private List<Booking> bookings;
-
-
-
     public BookingsAdapter()
     {
         bookings = new ArrayList<>();

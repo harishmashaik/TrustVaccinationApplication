@@ -3,6 +3,7 @@ package com.team4.getvaxi;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,12 +30,16 @@ import com.team4.getvaxi.models.Vaccine;
 import com.team4.getvaxi.recycle.BookingsAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CLCNewBookingsActivity extends AppCompatActivity {
 
   public static final String TAG = "CLCHomeActivity";
+  private Toolbar toolbar;
 
   private boolean type = false;
+  private String TYPE_REQUESTED = "PEND";
 
   ProgressDialog proload;
   private FirebaseAuth mAuth;
@@ -45,6 +52,22 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_c_l_c_new_bookings);
+
+    toolbar = findViewById(R.id.topAppBar);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
+    toolbar.inflateMenu(R.menu.top_app_bar);
+    toolbar.setOnMenuItemClickListener(item -> {
+      switch (item.getItemId()){
+        case R.id.appbar_home:
+          startActivity(new Intent(getApplicationContext(),CLCHomeActivity.class));
+          finish();
+          return true;
+      }
+      return false; });
+
+
     RecyclerView listOfBookings = findViewById(R.id.user_bookingList);
 
     listOfBookings.setHasFixedSize(false);
@@ -60,6 +83,13 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
     loadBookings();
   }
 
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar,menu);
+    return true;
+  }
+
   private void loadBookings() {
     ArrayList<Booking> bookingList = new ArrayList<>();
     db.collection("bookings")
@@ -67,6 +97,7 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
         .get()
         .addOnCompleteListener(
             new OnCompleteListener<QuerySnapshot>() {
+              @RequiresApi(api = Build.VERSION_CODES.N)
               @Override
               public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -77,7 +108,9 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
                     Log.i(TAG, document.getId() + " => " + b.toString());
                     bookingList.add(b);
                   }
-                  bookingsAdapter.setBookings(bookingList);
+                  final List<Booking> collect = bookingList.stream()
+                          .filter(booking -> booking.getBoookingStatus().equals(TYPE_REQUESTED)).collect(Collectors.toList());
+                  bookingsAdapter.setBookings(collect);
                 } else {
                   Log.i(TAG, "Error getting documents: ", task.getException());
                 }
@@ -91,9 +124,11 @@ public class CLCNewBookingsActivity extends AppCompatActivity {
       String isNew = intent.getStringExtra("TYPE");
       if(isNew.equals("new")){
         type = false;
+        TYPE_REQUESTED = "PEND";
       }
       else{
         type= true;
+        TYPE_REQUESTED = "CONFM";
       }
     }
   }

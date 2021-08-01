@@ -42,8 +42,6 @@ public class HomeActivity extends AppCompatActivity {
 
     mAuth = FirebaseAuth.getInstance();
 
-
-
     txtWhyVaccination = findViewById(R.id.mainAc_whyVaccination);
     txtVaccinationSchedule = findViewById(R.id.mainAc_VacciantionSchedule);
     txtDiseaseVaccinePrevent = findViewById(R.id.mainAc_DiavaccinePrevent);
@@ -83,57 +81,53 @@ public class HomeActivity extends AppCompatActivity {
           }
         });
 
-
-      txtTrackAppointment.setOnClickListener(v -> {
+    txtTrackAppointment.setOnClickListener(
+        v -> {
           try {
-              nextActivity("TrackBookingActivity");
+            nextActivity("TrackBookingActivity");
           } catch (ClassNotFoundException e) {
-              e.printStackTrace();
+            e.printStackTrace();
           }
-      });
+        });
 
-      txtAskQuestions.setOnClickListener(v -> {
+    txtAskQuestions.setOnClickListener(
+        v -> {
           try {
-              nextActivity("AskQuestionsActivity");
+            nextActivity("AskQuestionsActivity");
           } catch (ClassNotFoundException e) {
-              e.printStackTrace();
+            e.printStackTrace();
           }
-      });
+        });
 
-
-      txtBeforeYouTravel.setOnClickListener(v -> {
+    txtBeforeYouTravel.setOnClickListener(
+        v -> {
           try {
-              nextActivity("BeforeYourTravelActivity");
+            nextActivity("BeforeYourTravelActivity");
           } catch (ClassNotFoundException e) {
-              e.printStackTrace();
+            e.printStackTrace();
           }
-      });
+        });
 
-      txtDiseaseVaccinePrevent.setOnClickListener(v -> {
+    txtDiseaseVaccinePrevent.setOnClickListener(
+        v -> {
           try {
-              nextActivity("DiseasesPreventActivity");
+            nextActivity("DiseasesPreventActivity");
           } catch (ClassNotFoundException e) {
-              e.printStackTrace();
+            e.printStackTrace();
           }
-      });
+        });
 
-
-
-
-
-      txtLogout.setOnClickListener(v -> userSignOut());
+    txtLogout.setOnClickListener(v -> userSignOut());
   }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_app_bar,menu);
-        return true;
-    }
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar, menu);
+    return true;
+  }
 
-
-
-    public void nextActivity(String str) throws ClassNotFoundException {
+  public void nextActivity(String str) throws ClassNotFoundException {
 
     Intent nextActivityRequested =
         new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + str));
@@ -181,14 +175,14 @@ public class HomeActivity extends AppCompatActivity {
     alert.show();
   }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.appbar_home:
-                finish();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.appbar_home:
+        finish();
+        return true;
     }
+
+    return super.onOptionsItemSelected(item);
+  }
 }

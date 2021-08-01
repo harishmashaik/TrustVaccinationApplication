@@ -30,9 +30,10 @@
 
         <TextView
             android:id="@+id/clc_home_new_bookings"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Bookings"
+            android:clickable="true"
             android:layout_marginTop="8dp"
             android:textColor="@color/colorMenuBlue"
             android:layout_marginLeft="8dp"
@@ -62,6 +63,7 @@
             android:layout_height="wrap_content"
             android:text="Confirmed Bookings"
             android:layout_marginTop="8dp"
+            android:clickable="true"
             android:textColor="@color/colorMenuBlue"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"

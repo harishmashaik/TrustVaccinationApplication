@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -63,8 +65,16 @@ public class MyProfileActivity extends AppCompatActivity {
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    toolbar.setTitle("Update My Profile");
+    toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
     toolbar.inflateMenu(R.menu.top_app_bar);
+    toolbar.setOnMenuItemClickListener(item -> {
+      switch (item.getItemId()){
+        case R.id.appbar_home:
+          startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+          finish();
+          return true;
+      }
+      return false; });
 
     mAuth = mAuth = FirebaseAuth.getInstance();
     user = mAuth.getCurrentUser();
@@ -90,6 +100,14 @@ public class MyProfileActivity extends AppCompatActivity {
      });
     buttonAddChild.setOnClickListener(v -> updateChildDetails());
   }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_app_bar,menu);
+    return true;
+  }
+
 
   private void updateChildDetails() {
 

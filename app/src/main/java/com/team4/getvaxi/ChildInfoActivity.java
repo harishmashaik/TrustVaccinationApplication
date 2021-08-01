@@ -48,7 +48,7 @@ public class ChildInfoActivity extends AppCompatActivity {
   private Button but_next;
   private EditText text_child_dob;
   Person person = new Person();
-  //    Child child = new Child();
+
   ArrayList<Child> childArrayList = new ArrayList<>();
   LinearLayout linearLayout;
 
@@ -65,7 +65,7 @@ public class ChildInfoActivity extends AppCompatActivity {
 
     linearLayout = findViewById(R.id.editTextContainer);
 
-     getBundleData();
+    getBundleData();
     prepareChildViewsandGetData(1);
 
     but_next.setOnClickListener(v -> buttonNextHandler());
@@ -108,10 +108,7 @@ public class ChildInfoActivity extends AppCompatActivity {
     Intent i = getIntent();
     Bundle data = i.getExtras();
 
-
-      person = (Person) data.getSerializable("personDetails");
-      //childArrayList = (ArrayList<Child>) data.getSerializable("children");
-
+    person = (Person) data.getSerializable("personDetails");
   }
 
   @RequiresApi(api = Build.VERSION_CODES.O)
@@ -119,7 +116,7 @@ public class ChildInfoActivity extends AppCompatActivity {
     if (childInfoName.getText().toString().length() > 1) {
       Child c1 = new Child();
       c1.setChildName(childInfoName.getText().toString());
-      //c1.setChildAge(getAge(childInfoAge.getText().toString()));
+      // c1.setChildAge(getAge(childInfoAge.getText().toString()));
       c1.setDateOfBirth(childInfoAge.getText().toString());
 
       childArrayList.add(c1);
@@ -167,6 +164,7 @@ public class ChildInfoActivity extends AppCompatActivity {
               }
             });
   }
+
   private void prepareChildViewsandGetData(int a) {
 
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
@@ -181,7 +179,7 @@ public class ChildInfoActivity extends AppCompatActivity {
     childInfoName.setLayoutParams(
         new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-    childInfoName.setPadding(20, 180, 20, 40);
+    childInfoName.setPadding(20, 80, 20, 40);
 
     childInfoAge = new EditText(this);
     childInfoAge.setHint("Date of Birth");
@@ -190,14 +188,14 @@ public class ChildInfoActivity extends AppCompatActivity {
     childInfoAge.setLayoutParams(
         new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-    childInfoAge.setPadding(20, 180, 20, 40);
+    childInfoAge.setPadding(20,   80, 20, 40);
 
     final Button datePickButton = new Button(this);
     datePickButton.setText("Pickdate");
     datePickButton.setLayoutParams(
         new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-    datePickButton.setPadding(20, 40, 20, 20);
+    datePickButton.setPadding(20, 80, 20, 20);
     datePickButton.setOnClickListener(
         new View.OnClickListener() {
           @Override
@@ -206,25 +204,25 @@ public class ChildInfoActivity extends AppCompatActivity {
           }
         });
 
-//    materialDatePicker.addOnPositiveButtonClickListener(
-//        new MaterialPickerOnPositiveButtonClickListener() {
-//          @Override
-//          public void onPositiveButtonClick(Object selection) {
-//
-//            DateFormat targetFormat = new SimpleDateFormat("dd MMM yyyy");
-//            DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            try {
-//              Date date = originalFormat.parse(materialDatePicker.getHeaderText());
-//
-//              System.out.println(" teh date is from exp " + date);
-//            } catch (ParseException e) {
-//              System.out.println("the exception");
-//              e.printStackTrace();
-//            }
-//
-//            childInfoAge.setText(materialDatePicker.getHeaderText());
-//          }
-//        });
+    //    materialDatePicker.addOnPositiveButtonClickListener(
+    //        new MaterialPickerOnPositiveButtonClickListener() {
+    //          @Override
+    //          public void onPositiveButtonClick(Object selection) {
+    //
+    //            DateFormat targetFormat = new SimpleDateFormat("dd MMM yyyy");
+    //            DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
+    //            try {
+    //              Date date = originalFormat.parse(materialDatePicker.getHeaderText());
+    //
+    //              System.out.println(" teh date is from exp " + date);
+    //            } catch (ParseException e) {
+    //              System.out.println("the exception");
+    //              e.printStackTrace();
+    //            }
+    //
+    //            childInfoAge.setText(materialDatePicker.getHeaderText());
+    //          }
+    //        });
 
     materialDatePicker.addOnPositiveButtonClickListener(
         new MaterialPickerOnPositiveButtonClickListener() {
@@ -264,10 +262,10 @@ public class ChildInfoActivity extends AppCompatActivity {
   }
 
   @RequiresApi(api = Build.VERSION_CODES.O)
-  private int getAge(String dob){
-    String dobDay =dob.substring(4,6);
-    String dobMonth=dob.substring(0,3);
-    String dobYear =dob.substring(8,12);
+  private int getAge(String dob) {
+    String dobDay = dob.substring(4, 6);
+    String dobMonth = dob.substring(0, 3);
+    String dobYear = dob.substring(8, 12);
 
     //    String dateofBir = dobDay+"-"+dobMonth+"-"+dobYear;
     //
@@ -282,10 +280,10 @@ public class ChildInfoActivity extends AppCompatActivity {
     //
     //    return diff.getYears();
 
-    System.out.println("The year is the diff " + (LocalDate.now().getYear()-Integer.parseInt(dobYear)) );
+    System.out.println(
+        "The year is the diff " + (LocalDate.now().getYear() - Integer.parseInt(dobYear)));
 
-    return (LocalDate.now().getYear()-Integer.parseInt(dobYear));
-
+    return (LocalDate.now().getYear() - Integer.parseInt(dobYear));
   }
 
   private void showToast(String messageToast) {
