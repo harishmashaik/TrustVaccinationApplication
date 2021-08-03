@@ -18,6 +18,7 @@ public class VaccineScheduleActivity extends AppCompatActivity {
   MaterialCardView matCardBelow6Years;
   MaterialCardView matCardBelow10Years;
 
+  MaterialCardView matCardBelow18Years;
   MaterialCardView matCardBelow02Months;
   MaterialCardView matCardBelow04Months;
   MaterialCardView matCardBelow06Months;
@@ -52,12 +53,15 @@ public class VaccineScheduleActivity extends AppCompatActivity {
     matCardBelow3Years = findViewById(R.id.matCardvaccineSchedulebelow3Y);
     matCardBelow6Years = findViewById(R.id.matCardvaccineSchedulebelow6y);
     matCardBelow10Years = findViewById(R.id.matCardvaccineSchedulebelow10y);
+    matCardBelow18Years= findViewById(R.id.matCardvaccineSchedulebelow18y);
 
     matCardBelow02Months.setOnClickListener(v -> vaccineByAGe("ageB02M"));
     matCardBelow04Months.setOnClickListener(v -> vaccineByAGe("ageB04M"));
     matCardBelow06Months.setOnClickListener(v -> vaccineByAGe("ageB06M"));
 
     matCardBelow11Months.setOnClickListener(v -> vaccineByAGe("ageB11M"));
+    matCardBelow3Years.setOnClickListener(v -> vaccineByAGe("ageB02Y"));
+    matCardBelow18Years.setOnClickListener(v -> vaccineByAGe("ageB18Y"));
 
 
     matCardBelow6Years.setOnClickListener(v -> vaccineByAGe("ageB06Y"));
