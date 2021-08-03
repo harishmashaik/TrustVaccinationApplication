@@ -150,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                               //
                               Intent intent = new Intent(context, CLCHomeActivity.class);
                               startActivity(intent);
+                              finish();
                             }
                             // checkfor pass
                           } else {

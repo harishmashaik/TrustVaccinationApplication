@@ -31,6 +31,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
   private final TextView childNameAndAGe;
   private final TextView dateofBooking;
   private final TextView statusOfBooking;
+  private final TextView remarksOfBooking;
   private final MaterialButton cancelButton;
 
   private final MaterialCardView materialCardView;
@@ -47,6 +48,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     statusOfBooking = layoutView.findViewById(R.id.custom_user_track_booking_status);
     materialCardView = layoutView.findViewById(R.id.trackUserBookings_card);
     cancelButton = layoutView.findViewById(R.id.custom_user_track_booking_cancel);
+    remarksOfBooking = layoutView.findViewById(R.id.custom_user_track_booking_remarks);
 
     cancelButton.setOnClickListener(
         v -> {
@@ -78,6 +80,8 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     dateofBooking.setText(booking.getAppointmentDate());
     if (booking.getBoookingStatus().equals("CONFM")) {
       statusOfBooking.setText("Confirmed");
+      if(booking.getVaccinationCenterDetails()!= null) remarksOfBooking.setText(booking.getVaccinationCenterDetails().toString());
+      else remarksOfBooking.setVisibility(View.GONE);
 
     } else if (booking.getBookingReviewed() == false && booking.getBoookingStatus().equals("PEND")) {
       statusOfBooking.setText("Pending with CLC");
@@ -93,6 +97,8 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     }
     else if (booking.getBoookingStatus().equals("DECL")){
       statusOfBooking.setText("Declined");
+      if(booking.getRemarks() != null) remarksOfBooking.setText(booking.getRemarks());
+      else remarksOfBooking.setVisibility(View.GONE);
       materialCardView.setCardBackgroundColor(rgb(255, 170, 153));
     }
 
