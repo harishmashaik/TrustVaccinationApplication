@@ -35,7 +35,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Why Vaccnation"
+            android:text="Why Vaccination"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -92,7 +92,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Diaseases that Vaccine Prevent"
+            android:text="Diseases that Vaccine Prevent"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -150,7 +150,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Track Appointemnt"
+            android:text="Track Appointment"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
