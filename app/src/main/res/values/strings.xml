@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">GetVaxi</string>
+
+    //login
     <string name="login_page_email_hint">Email</string>
     <string name="login_page_password_hint">Password</string>
     <string name="login_page_login_button">Login</string>
@@ -11,4 +13,31 @@
 
     <string name="view_bookings_confirm">Confirm</string>
     <string name="view_bookings_decline">Decline</string>
+
+    //HomeActivity
+    <string name="user_home_activity_why_vaccination">Why Vaccination</string>
+    <string name="user_home_activity_vaccination_schedule">Vaccination Schedule</string>
+    <string name="user_home_activity_disease_prevent">Diseases that Vaccine Prevent</string>
+    <string name="user_home_activity_child_vaccine_visit">Your Child Vaccine Visit</string>
+    <string name="user_home_activity_child_track_appointment">Track Appointment</string>
+    <string name="user_home_activity_child_before_travel">Before You Travel</string>
+    <string name="user_home_activity_child_any_questions">Any Questions ?</string>
+    <string name="user_home_activity_child_my_profile">My Profile</string>
+    <string name="user_home_activity_child_logout">Log Out</string>
+
+    //vaccineschedule
+
+    //bookvaccine
+    <string name="book_vaccine_appointment_date_hint">Date of Appointment</string>
+    <string name="book_vaccine_date_of_birth_hint">Date of Birth</string>
+    <string name="book_vaccine_book_appointment_button">Book Appointment</string>
+    <string name="book_vaccine_book_vaccine_name_hint">Vaccine Name</string>
+
+    //addnewchild
+    <string name="add_new_child_activity_name_hint">Child Full Name</string>
+    <string name="add_new_child_activity_dob_hint">Child Date of Birth</string>
+    <string name="add_new_child_activity_add_child_button">Add Child</string>
+
+
+
 </resources>

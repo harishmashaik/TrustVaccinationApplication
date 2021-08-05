@@ -24,7 +24,6 @@
         android:id="@+id/con_lay_eachitem"
         android:layout_width="379dp"
         android:layout_height="392dp"
-        android:background="#C5EADB"
         android:focusable="true"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="12dp"

@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class Booking implements Serializable {
 
+    int vaccineDose;
     String fbDocID;
     String age;
     String name;
@@ -20,7 +21,24 @@ public class Booking implements Serializable {
     String remarks;
     String boookingStatus;
     String userId;
-    int vaccineDose;
+    String userProvince;
+    String userAddress;
+
+    public String getUserProvince() {
+        return userProvince;
+    }
+
+    public void setUserProvince(String userProvince) {
+        this.userProvince = userProvince;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
 
     public int getVaccineDose() {
         return vaccineDose;

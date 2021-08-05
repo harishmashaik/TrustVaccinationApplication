@@ -22,6 +22,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Person;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +34,7 @@ public class Commons extends Activity {
 
     AlertDialog.Builder builder;
 
-
+    public static List<String> listOfProvinces = Arrays.asList("Ontario","Qubec","British Columbia");
 
     private static FirebaseAuth mAuth;
   private static FirebaseUser currentUser;

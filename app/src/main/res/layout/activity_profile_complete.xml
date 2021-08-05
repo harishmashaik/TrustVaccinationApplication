@@ -9,7 +9,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/con_lay_eachitem"
         android:layout_width="372dp"
-        android:layout_height="361dp"
+        android:layout_height="wrap_content"
         android:background="#C5EADB"
         android:focusable="true"
         app:cardBackgroundColor="@android:color/white"
@@ -29,7 +29,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="341dp"
-            android:layout_height="322dp"
+            android:layout_height="514dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
@@ -116,6 +116,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:inputType="number"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="304dp"
+                android:layout_height="51dp"
+                app:layout_constraintBottom_toTopOf="@+id/but_update_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textField_phoneNumber"
+                app:layout_constraintVertical_bias="0.194">
+
+                <AutoCompleteTextView
+                    android:id="@+id/profile_complete_province_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:inputType="none" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField_address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="308dp"
+                android:layout_height="60dp"
+                android:hint="Address"
+                app:layout_constraintBottom_toTopOf="@+id/but_update_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pro_comple_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 

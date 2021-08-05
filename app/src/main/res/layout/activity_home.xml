@@ -35,7 +35,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Why Vaccination"
+            android:text="@string/user_home_activity_why_vaccination"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -63,7 +63,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Vaccination Schedule"
+            android:text="@string/user_home_activity_vaccination_schedule"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -92,7 +92,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Diseases that Vaccine Prevent"
+            android:text="@string/user_home_activity_disease_prevent"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -121,7 +121,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Your Child Vaccine Visit"
+            android:text="@string/user_home_activity_child_vaccine_visit"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -150,7 +150,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Track Appointment"
+            android:text="@string/user_home_activity_child_track_appointment"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -179,7 +179,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Before You Travel"
+            android:text="@string/user_home_activity_child_before_travel"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -209,7 +209,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Ask Questions ?"
+            android:text="@string/user_home_activity_child_any_questions"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -238,7 +238,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="My Profile"
+            android:text="@string/user_home_activity_child_my_profile"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />
@@ -268,7 +268,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Log Out"
+            android:text="@string/user_home_activity_child_logout"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/colorMenuBlue"
             android:textSize="24sp" />

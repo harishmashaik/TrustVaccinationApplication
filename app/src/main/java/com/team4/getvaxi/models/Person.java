@@ -15,6 +15,24 @@ public class Person implements Serializable {
   private boolean profileCompletionStatus;
   private String personEmail;
   private String personPhoneNum;
+  private String residingProvince;
+  private String residingAddress;
+
+  public String getResidingProvince() {
+    return residingProvince;
+  }
+
+  public void setResidingProvince(String residingProvince) {
+    this.residingProvince = residingProvince;
+  }
+
+  public String getResidingAddress() {
+    return residingAddress;
+  }
+
+  public void setResidingAddress(String residingAddress) {
+    this.residingAddress = residingAddress;
+  }
 
   public String getPersonPhoneNum() {
     return personPhoneNum;
@@ -100,6 +118,8 @@ public class Person implements Serializable {
             ", profileCompletionStatus=" + profileCompletionStatus +
             ", personEmail='" + personEmail + '\'' +
             ", personPhoneNum='" + personPhoneNum + '\'' +
+            ", residingProvince='" + residingProvince + '\'' +
+            ", residingAddress='" + residingAddress + '\'' +
             '}';
   }
 }

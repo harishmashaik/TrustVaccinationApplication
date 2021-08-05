@@ -24,7 +24,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="324dp"
         android:layout_height="89dp"
-        android:hint="Vaccine Name"
+        android:hint="@string/book_vaccine_book_vaccine_name_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -79,7 +79,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:hint="DOA">
+            android:hint="@string/book_vaccine_appointment_date_hint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/bookingCon_date"
@@ -107,7 +107,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="314dp"
         android:layout_height="62dp"
-        android:hint="Date of Birth"
+        android:hint="@string/book_vaccine_date_of_birth_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -127,7 +127,7 @@
         android:id="@+id/bookVaccineAC_book"
         android:layout_width="340dp"
         android:layout_height="56dp"
-        android:text="Book Appointment"
+        android:text="@string/book_vaccine_book_appointment_button"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

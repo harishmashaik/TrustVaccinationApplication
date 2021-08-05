@@ -161,6 +161,8 @@ public class BookVaccineActivity extends AppCompatActivity {
 
   private void bookAppointment() throws ClassNotFoundException {
 
+    newBooking.setUserAddress(personDetails.getResidingAddress());
+    newBooking.setUserProvince(personDetails.getResidingProvince());
     newBooking.setVaccineName(vaccineName.getText().toString());
     newBooking.setAppointmentDate(text_appointment_date.getText().toString());
     newBooking.setName(dropdownChildList.getText().toString());
@@ -270,6 +272,8 @@ public class BookVaccineActivity extends AppCompatActivity {
     System.out.println("inside the person class");
     System.out.println(p.toString());
     personChildInfo = p.getPersonChildInfo();
+    personDetails = p;
+
     System.out.println("I am here " + personChildInfo.size());
 
     List<String> field1List =

@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,7 +28,7 @@ public class ProfileCompleteActivity extends AppCompatActivity {
 
   public static final String TAG = "ProfileCompleteActivity";
 
-  // Firebase Declarations
+
   private FirebaseAuth mAuth;
   FirebaseUser user;
   FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -35,6 +37,8 @@ public class ProfileCompleteActivity extends AppCompatActivity {
   EditText text_comple_no_of_kids;
   EditText text_common_law_partner;
   EditText text_phone_number;
+  EditText text_address;
+  AutoCompleteTextView provincesList;
 
   Button but_updateProfile;
 
@@ -56,20 +60,45 @@ public class ProfileCompleteActivity extends AppCompatActivity {
     text_comple_no_of_kids = findViewById(R.id.pro_comple_no_of_kids);
     text_common_law_partner = findViewById(R.id.pro_comple_fullname_law_partner);
     text_phone_number = findViewById(R.id.pro_comple_PhoneNumber);
+    provincesList = findViewById(R.id.profile_complete_province_list);
+    text_address = findViewById(R.id.pro_comple_address);
+
+    ArrayAdapter<String> adapter =
+            new ArrayAdapter(
+                    ProfileCompleteActivity.this, R.layout.booking_confirm_hoslist_layout, Commons.listOfProvinces);
+
+    provincesList.setAdapter(adapter);
+
+//    provincesList.setOnItemClickListener(
+//            (parent, view, position, id) -> {
+//              provincesList.getText().toString();
+//              personChildInfo.forEach(
+//                      c -> {
+//                        if (dropdownChildList.getText().toString().equals(c.getChildName())) {
+//                          // text_childAge.setText(Integer.toString(c.getChildAge()));
+//                          text_childAge.setText(c.getDateOfBirth());
+//                        }
+//                      });
+//              System.out.println("Asa");
+//            });
+
 
     getUserAndBundleDetails();
 
     but_updateProfile = findViewById(R.id.but_update_profile);
-
     but_updateProfile.setOnClickListener(v->updateButtonHandler());
   }
 
   private void updateButtonHandler() {
+    personDetails.setResidingAddress(text_address.getText().toString());
+    personDetails.setResidingProvince(provincesList.getText().toString());
     personDetails.setPersonName(String.valueOf(text_fullName.getText()));
     personDetails.setPersonKids(
             Integer.parseInt(String.valueOf(text_comple_no_of_kids.getText())));
     personDetails.setPersonCommonLawPartnerName(
             String.valueOf(text_common_law_partner.getText()));
+    System.out.println("the perosnla details are");
+    System.out.println(personDetails.toString());
     if (Commons.isValidPhoneNumber(text_phone_number.getText().toString())) {
       showToast("Invalid Phone number");
     } else {
