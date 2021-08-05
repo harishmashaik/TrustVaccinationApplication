@@ -68,9 +68,6 @@ public class AddNewChildActivity extends AppCompatActivity {
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
     materialDateBuilder.setTitleText("Select date Of Birth of Child");
 
-    // new CalendarConstraints.Builder().setEnd(MaterialDatePicker.todayInUtcMilliseconds());
-
-    // MaterialDatePicker.todayInUtcMilliseconds();
 
     final MaterialDatePicker materialDatePicker =
         materialDateBuilder
@@ -79,7 +76,6 @@ public class AddNewChildActivity extends AppCompatActivity {
                     .setEnd(MaterialDatePicker.todayInUtcMilliseconds())
                     .build())
             .build();
-    // final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
 
     pickDobNewChild.setOnClickListener(
         v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));
@@ -141,7 +137,5 @@ public class AddNewChildActivity extends AppCompatActivity {
       Bundle data = i.getExtras();
       currentPerson = (Person) data.getSerializable("CURPER");
     }
-    System.out.println("in the add child activity");
-    System.out.println(currentPerson.toString());
   }
 }

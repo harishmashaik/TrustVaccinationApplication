@@ -16,22 +16,20 @@ import com.team4.getvaxi.models.Vaccine;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.graphics.Color.rgb;
-
-;
+import static android.graphics.Color.rgb;;
 
 public class VaccineStoreViewHolder extends RecyclerView.ViewHolder {
 
   public static final String booking = "BOOKING";
-  public static final String docID = "DOCUMENTID";
+  private  static final String VACCINE_DETAILS = "VACCINEDETAILS";
 
   private final TextView vaccineName;
   private final TextView vaccineDose;
   private final TextView vaccineStock;
   private final Button updateButton;
 
-  private HashMap<String,Vaccine> vaccineMap;
-  Vaccine currVaccine =  new Vaccine();
+  private HashMap<String, Vaccine> vaccineMap;
+  Vaccine currVaccine = new Vaccine();
   String currentKey = "";
   private VaccineStoreAdapter adapter;
   private final MaterialCardView materialCardView;
@@ -39,54 +37,37 @@ public class VaccineStoreViewHolder extends RecyclerView.ViewHolder {
   public VaccineStoreViewHolder(@NonNull View layoutView) {
     super(layoutView);
 
-      vaccineName = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinename);
-      vaccineDose = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinedose);
-      vaccineStock = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinestock);
-      updateButton = layoutView.findViewById(R.id.custom_clc_vaccine_store_button);
-      materialCardView = layoutView.findViewById(R.id.custom_clc_vaccine_store_matcard);
-
-    //        buttonConfirm.setOnClickListener(v -> {
-    ////            Intent i = new Intent(layoutView.getContext(), BookingConfirmActivity.class);
-    ////            i.putExtra(booking, (Parcelable) vaccine);
-    ////            layoutView.getContext().startActivity(i);
-    //        });
-
-    //        buttonDecline.setOnClickListener(v -> {
-    //            Intent i = new Intent(layoutView.getContext(), HomeActivity.class);
-    //            //i.putExtra(username,user.getUser_name());
-    //            layoutView.getContext().startActivity(i);
-    //        });
+    vaccineName = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinename);
+    vaccineDose = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinedose);
+    vaccineStock = layoutView.findViewById(R.id.custom_clc_vaccine_store_vaccinestock);
+    updateButton = layoutView.findViewById(R.id.custom_clc_vaccine_store_button);
+    materialCardView = layoutView.findViewById(R.id.custom_clc_vaccine_store_matcard);
 
     updateButton.setOnClickListener(
         v -> {
           Intent i = new Intent(layoutView.getContext(), CLCVaccineStoreUpdateActivity.class);
-          i.putExtra("VACCINEDETAILS", vaccineMap);
-         // i.putExtra("VACCINEDETAILSKEY", currentKey);
+          i.putExtra(VACCINE_DETAILS, vaccineMap);
           layoutView.getContext().startActivity(i);
         });
   }
 
-  public void bind(HashMap<String,Vaccine> vaccine, VaccineStoreAdapter adapter) {
+  public void bind(HashMap<String, Vaccine> vaccine, VaccineStoreAdapter adapter) {
     this.vaccineMap = vaccine;
     this.adapter = adapter;
 
-    for(Map.Entry<String,Vaccine> entry:vaccine.entrySet()){
+    for (Map.Entry<String, Vaccine> entry : vaccine.entrySet()) {
       this.currentKey = entry.getKey();
       this.currVaccine = entry.getValue();
     }
 
-    if(currVaccine.getVaccineStock() < 5){
+    if (currVaccine.getVaccineStock() < 5) {
       System.out.println(vaccine.toString());
-      materialCardView.setCardBackgroundColor(rgb(255,170,153));
+      materialCardView.setCardBackgroundColor(rgb(255, 170, 153));
+    } else {
+      materialCardView.setCardBackgroundColor(rgb(255, 255, 255));
     }
-    else {
-      materialCardView.setCardBackgroundColor(rgb(255,255,255));
-    }
-      vaccineName.setText(currVaccine.getVaccineName());
-      vaccineDose.setText(Integer.toString(currVaccine.getVaccineDose()));
-     vaccineStock.setText(Integer.toString(currVaccine.getVaccineStock()));
-
-
-
+    vaccineName.setText(currVaccine.getVaccineName());
+    vaccineDose.setText(Integer.toString(currVaccine.getVaccineDose()));
+    vaccineStock.setText(Integer.toString(currVaccine.getVaccineStock()));
   }
 }

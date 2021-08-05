@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class RescheduleOrCancelActivity extends AppCompatActivity {
   public static final String TAG = "RescheduleOrCancelActivity";
+  private static final String CURRENT_BOOKING_EXTRA ="FROMTRACKHOLDER";
   private Toolbar toolbar;
 
   private Button changeDate;
@@ -105,7 +106,7 @@ public class RescheduleOrCancelActivity extends AppCompatActivity {
 
       if(newdate.getText().toString()!=null && newdate.getText().toString().length()>8){
           currentBooking.setBookingReviewed(false);
-          currentBooking.setBoookingStatus("PEND");
+          currentBooking.setBoookingStatus(Commons.BOOOKING_STATUS_PENDING);
           currentBooking.setAppointmentDate(newdate.getText().toString());
           db.collection("bookings").document(currentBooking.getFbDocID()).set(currentBooking);
 
@@ -122,9 +123,9 @@ public class RescheduleOrCancelActivity extends AppCompatActivity {
 
   private void getBundleExtras() {
     Intent i = getIntent();
-    if (i.hasExtra("FROMTRACKHOLDER")) {
+    if (i.hasExtra(CURRENT_BOOKING_EXTRA)) {
       Bundle data = i.getExtras();
-      currentBooking = (Booking) data.getSerializable("FROMTRACKHOLDER");
+      currentBooking = (Booking) data.getSerializable(CURRENT_BOOKING_EXTRA);
       childDob.setText(currentBooking.getAge());
       dropdownChildList.setText(currentBooking.getName());
       vaccineName.setText(currentBooking.getVaccineName());

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.team4.getvaxi.CLC.BookingConfirmActivity;
 import com.team4.getvaxi.CLC.BookingDeclineActivity;
+import com.team4.getvaxi.Commons;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
@@ -84,11 +85,11 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
             materialCardView.setCardBackgroundColor(rgb(255,170,153));
         }
 
-        if(booking.getBoookingStatus().equals("DECL")){
+        if(booking.getBoookingStatus().equals(Commons.BOOOKING_STATUS_DECLINE)){
             buttonDecline.setEnabled(false);
 
         }
-        if(booking.getBoookingStatus().equals("CONFM")){
+        if(booking.getBoookingStatus().equals(Commons.BOOOKING_STATUS_CONFIRM)){
             buttonConfirm.setEnabled(false);
 
         }

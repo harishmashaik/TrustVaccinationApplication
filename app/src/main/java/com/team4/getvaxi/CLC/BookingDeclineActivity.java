@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.CLCHomeActivity;
+import com.team4.getvaxi.Commons;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Booking;
@@ -23,7 +24,6 @@ import java.util.HashMap;
 public class BookingDeclineActivity extends AppCompatActivity {
 
   public static final String TAG = "BookingConfirmActivity";
-  Booking eachBooking = new Booking();
 
   FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -32,8 +32,9 @@ public class BookingDeclineActivity extends AppCompatActivity {
   EditText txtchildAge;
   EditText txtDateOfAppointment;
   EditText txtRemarks;
-
   Button appointmentDeclined;
+
+  Booking eachBooking = new Booking();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class BookingDeclineActivity extends AppCompatActivity {
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
       eachBooking = (Booking) data.getSerializable(BookingViewHolder.booking);
-      System.out.println("he book" + eachBooking.toString());
       txtVaccineName.setText(eachBooking.getVaccineName());
       txtchildName.setText(eachBooking.getName());
       txtchildAge.setText(eachBooking.getAge());
@@ -64,11 +64,9 @@ public class BookingDeclineActivity extends AppCompatActivity {
 
   private void setConfirmAppointment() {
 
-
-    HashMap<String, String> tempCenter = new HashMap<>();
     eachBooking.setBookingReviewed(true);
     eachBooking.setRemarks(txtRemarks.getText().toString());
-    eachBooking.setBoookingStatus("DECL");
+    eachBooking.setBoookingStatus(Commons.BOOOKING_STATUS_DECLINE);
 
     Log.i(TAG, eachBooking.toString());
 
@@ -76,20 +74,12 @@ public class BookingDeclineActivity extends AppCompatActivity {
         .document(eachBooking.getFbDocID())
         .set(eachBooking)
         .addOnSuccessListener(
-            new OnSuccessListener<Void>() {
-              @Override
-              public void onSuccess(Void aVoid) {
-                Log.d(TAG, "Appointment Cancelled" + eachBooking.getFbDocID());
-                Intent nextActivity = new Intent(getApplicationContext(), CLCHomeActivity.class);
-                startActivity(nextActivity);
-              }
-            })
+                aVoid -> {
+                  Log.d(TAG, "Appointment Cancelled" + eachBooking.getFbDocID());
+                  Intent nextActivity = new Intent(getApplicationContext(), CLCHomeActivity.class);
+                  startActivity(nextActivity);
+                })
         .addOnFailureListener(
-            new OnFailureListener() {
-              @Override
-              public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error writing document", e);
-              }
-            });
+                e -> Log.w(TAG, "Error writing document", e));
   }
 }

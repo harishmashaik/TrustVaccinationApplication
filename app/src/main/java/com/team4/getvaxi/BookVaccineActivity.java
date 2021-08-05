@@ -168,7 +168,7 @@ public class BookVaccineActivity extends AppCompatActivity {
     newBooking.setName(dropdownChildList.getText().toString());
     newBooking.setDateOfBooking(new Date());
     newBooking.setUserId(mAuth.getCurrentUser().getUid());
-    newBooking.setBoookingStatus("PEND");
+    newBooking.setBoookingStatus(Commons.BOOOKING_STATUS_PENDING);
     newBooking.setAge(text_childAge.getText().toString());
     newBooking.setVaccineDose(currentVaccine.getVaccineDose());
 
@@ -246,12 +246,6 @@ public class BookVaccineActivity extends AppCompatActivity {
                     Log.i(TAG, "DocumentSnapshot data: " + document.get("personUUID").toString());
                     Log.i(TAG, "DocumentSnapshot data: " + document.get("personName").toString());
                     personDetails[0] = document.toObject(Person.class);
-
-                    //                                      personDetails.setPersonUUID(
-                    // document.get("personUUID").toString());
-                    //                                      personDetails.setPersonName(
-                    // document.get("personName").toString());
-                    // mapUserData(personCurrent);
                     anotherMeth(personDetails[0]);
                   } else {
                     Log.d(TAG, "No such document");

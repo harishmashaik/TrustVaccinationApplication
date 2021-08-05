@@ -31,6 +31,11 @@ public class Commons extends Activity {
 
 
     public static final String TAG = "CommonsClass";
+    public static final String BOOOKING_STATUS_PENDING="PEND";
+    public static final String BOOOKING_STATUS_CONFIRM="CONFM";
+    public static final String BOOOKING_STATUS_DECLINE="DECL";
+
+
 
     AlertDialog.Builder builder;
 

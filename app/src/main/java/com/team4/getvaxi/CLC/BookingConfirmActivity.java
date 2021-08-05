@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.team4.getvaxi.CLCHomeActivity;
+import com.team4.getvaxi.Commons;
 import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.SampleTestActivity;
@@ -38,18 +39,17 @@ import java.util.stream.Stream;
 public class BookingConfirmActivity extends AppCompatActivity {
 
   public static final String TAG = "BookingConfirmActivity";
-  Booking eachBooking = new Booking();
 
   FirebaseFirestore db = FirebaseFirestore.getInstance();
 
   AutoCompleteTextView dropdownCenterList;
-
   EditText txtVaccineName;
   EditText txtchildName;
   EditText txtchildAge;
   EditText txtDateOfAppointment;
-
   Button appointmentLocked;
+
+  Booking eachBooking = new Booking();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +77,6 @@ public class BookingConfirmActivity extends AppCompatActivity {
 
     if (intent.hasExtra(BookingViewHolder.booking)) {
       eachBooking = (Booking) data.getSerializable(BookingViewHolder.booking);
-      System.out.println("insid ethe booking confirm");
-      System.out.println(eachBooking.toString());
-      System.out.println("booking confirm");
-      System.out.println(eachBooking.toString());
       txtVaccineName.setText(eachBooking.getVaccineName());
       txtchildName.setText(eachBooking.getName());
       txtchildAge.setText(eachBooking.getAge());
@@ -98,7 +94,7 @@ public class BookingConfirmActivity extends AppCompatActivity {
         dropdownCenterList.getText().toString(), dropdownCenterList.getText().toString());
     eachBooking.setVaccinationCenterDetails(tempCenter);
     eachBooking.setBookingReviewed(true);
-    eachBooking.setBoookingStatus("CONFM");
+    eachBooking.setBoookingStatus(Commons.BOOOKING_STATUS_CONFIRM);
 
     Log.i(TAG, eachBooking.toString());
 
@@ -129,29 +125,22 @@ public class BookingConfirmActivity extends AppCompatActivity {
     db.collection("vaccinestore")
         .get()
         .addOnCompleteListener(
-            new OnCompleteListener<QuerySnapshot>() {
-              @RequiresApi(api = Build.VERSION_CODES.N)
-              @Override
-              public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                  System.out.println("vaccine store " + 1);
-                  for (QueryDocumentSnapshot document : task.getResult()) {
-                    String tempID = document.getId();
-                    Vaccine v = document.toObject(Vaccine.class);
-                    System.out.println("vaccine store " + v.getVaccineName() + " and " + txtVaccineName.getText().toString());
-                    if (v.getVaccineName().trim().equals(txtVaccineName.getText().toString().trim())
-                        && v.getVaccineDose() == eachBooking.getVaccineDose()) {
-                      System.out.println("the match su " + tempID);
-                      v.setVaccineStock(v.getVaccineStock() - 1);
-                      db.collection("vaccinestore").document(tempID).set(v);
+                task -> {
+                  if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                      String tempID = document.getId();
+                      Vaccine v = document.toObject(Vaccine.class);
+                      if (v.getVaccineName().trim().equals(txtVaccineName.getText().toString().trim())
+                          && v.getVaccineDose() == eachBooking.getVaccineDose()) {
+                        v.setVaccineStock(v.getVaccineStock() - 1);
+                        db.collection("vaccinestore").document(tempID).set(v);
+                      }
                     }
+                  } else {
+                    Log.i(TAG, "Error getting documents: ", task.getException());
                   }
-                } else {
-                  Log.i(TAG, "Error getting documents: ", task.getException());
-                }
-              }
-            });
+                });
   }
 
-  private void upadte() {}
+
 }
