@@ -111,9 +111,10 @@
 
     <Button
         android:id="@+id/bookingconfirmAC_button"
-        android:layout_width="340dp"
+        android:layout_width="338dp"
         android:layout_height="56dp"
         android:text="Confirm Booking"
+        app:icon="@drawable/ic_outline_thumb_up_24"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

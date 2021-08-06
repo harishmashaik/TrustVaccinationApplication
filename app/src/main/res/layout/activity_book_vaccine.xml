@@ -129,6 +129,7 @@
         android:layout_height="56dp"
         android:text="@string/book_vaccine_book_appointment_button"
         android:textColor="#FFFFFF"
+        app:icon="@drawable/outline_vaccines_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"

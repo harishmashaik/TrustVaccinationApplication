@@ -118,11 +118,12 @@
 
     <Button
         android:id="@+id/bookingDecline_AC_confirm"
-        android:layout_width="311dp"
-        android:layout_height="66dp"
-        android:background="@drawable/ic_wishlist_button_red_bg"
+        android:layout_width="338dp"
+        android:layout_height="56dp"
         android:text="Decline Appointment"
         android:textColor="#FFFFFF"
+        android:backgroundTint="@color/colorDanger"
+        app:icon="@drawable/ic_baseline_thumb_down_24"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
