@@ -46,18 +46,14 @@ public class AddNewChildActivity extends AppCompatActivity {
 
     toolbar.setTitle("Add New Child");
     toolbar.inflateMenu(R.menu.top_app_bar);
-    toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-
-      @Override
-      public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()){
-          case R.id.appbar_home:
-            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-            finish();
-            return true;
-        }
-        return false; }
-    });
+    toolbar.setOnMenuItemClickListener(item -> {
+      switch (item.getItemId()){
+        case R.id.appbar_home:
+          startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+          finish();
+          return true;
+      }
+      return false; });
 
     addNewChild = findViewById(R.id.newchild_add_button);
     childName = findViewById(R.id.newchld_childName);

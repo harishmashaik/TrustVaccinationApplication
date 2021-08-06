@@ -78,36 +78,27 @@ public class CLCHomeActivity extends AppCompatActivity {
         });
 
     newBookings.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            Intent newBookingsActivity =
-                new Intent(getApplicationContext(), CLCNewBookingsActivity.class);
-            newBookingsActivity.putExtra("TYPE", "new");
-            startActivity(newBookingsActivity);
-          }
-        });
+            v -> {
+              Intent newBookingsActivity =
+                  new Intent(getApplicationContext(), CLCNewBookingsActivity.class);
+              newBookingsActivity.putExtra("TYPE", "new");
+              startActivity(newBookingsActivity);
+            });
 
     confirmedBookings.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            Intent newBookingsActivity =
-                new Intent(getApplicationContext(), CLCNewBookingsActivity.class);
-            newBookingsActivity.putExtra("TYPE", "confirmed");
-            startActivity(newBookingsActivity);
-          }
-        });
+            v -> {
+              Intent newBookingsActivity =
+                  new Intent(getApplicationContext(), CLCNewBookingsActivity.class);
+              newBookingsActivity.putExtra("TYPE", "confirmed");
+              startActivity(newBookingsActivity);
+            });
 
       newQuestions.setOnClickListener(
-              new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      Intent newBookingsActivity =
-                              new Intent(getApplicationContext(), CLCQuestionsActivity.class);
-                      newBookingsActivity.putExtra("TYPE", "confirmed");
-                      startActivity(newBookingsActivity);
-                  }
+              v -> {
+                  Intent newBookingsActivity =
+                          new Intent(getApplicationContext(), CLCQuestionsActivity.class);
+                  newBookingsActivity.putExtra("TYPE", "confirmed");
+                  startActivity(newBookingsActivity);
               });
 
     clcLogout.setOnClickListener(v -> logoutCLC());
@@ -119,23 +110,17 @@ public class CLCHomeActivity extends AppCompatActivity {
         .setCancelable(false)
         .setPositiveButton(
             "Yes",
-            new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int id) {
-                finish();
-                Toast toast =
-                    Toast.makeText(getApplicationContext(), "Signing Out..", Toast.LENGTH_SHORT);
-                toast.show();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-              }
-            })
+                (dialog, id) -> {
+                  finish();
+                  Toast toast =
+                      Toast.makeText(getApplicationContext(), "Signing Out..", Toast.LENGTH_SHORT);
+                  toast.show();
+                  Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                  startActivity(intent);
+                })
         .setNegativeButton(
             "No",
-            new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-              }
-            });
+                (dialog, id) -> dialog.cancel());
 
     AlertDialog alert = builder.create();
     alert.setTitle("Logout");

@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Booking;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 public class RescheduleOrCancelActivity extends AppCompatActivity {
   public static final String TAG = "RescheduleOrCancelActivity";
   private static final String CURRENT_BOOKING_EXTRA ="FROMTRACKHOLDER";
+  final long NEXT_TWO_DAYS = MaterialDatePicker.todayInUtcMilliseconds() + 2 * (86400000);
   private Toolbar toolbar;
 
   private Button changeDate;
@@ -69,7 +72,11 @@ public class RescheduleOrCancelActivity extends AppCompatActivity {
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
     materialDateBuilder.setTitleText("Select New date for appointment");
 
-    final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+    final MaterialDatePicker materialDatePicker =
+            materialDateBuilder
+                    .setCalendarConstraints(
+                            new CalendarConstraints.Builder()
+                                    .setValidator(DateValidatorPointForward.from(NEXT_TWO_DAYS)).build()).build();
 
     changeDate.setOnClickListener(
         v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));

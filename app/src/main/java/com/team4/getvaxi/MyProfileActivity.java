@@ -1,11 +1,5 @@
 package com.team4.getvaxi;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +8,12 @@ import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,7 +26,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Person;
 import com.team4.getvaxi.recycle.ChildViewAdapter;
-import com.team4.getvaxi.recycle.VaccineAdapter;
 
 import java.io.Serializable;
 
@@ -36,7 +35,6 @@ public class MyProfileActivity extends AppCompatActivity {
   final ChildViewAdapter childAdapter = new ChildViewAdapter();
 
   private Toolbar toolbar;
-
 
   // Firebase Declarations
   private FirebaseAuth mAuth;
@@ -67,47 +65,49 @@ public class MyProfileActivity extends AppCompatActivity {
 
     toolbar.setTitle(Commons.getActivityName(getClass().getSimpleName()));
     toolbar.inflateMenu(R.menu.top_app_bar);
-    toolbar.setOnMenuItemClickListener(item -> {
-      switch (item.getItemId()){
-        case R.id.appbar_home:
-          startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-          finish();
-          return true;
-      }
-      return false; });
+    toolbar.setOnMenuItemClickListener(
+        item -> {
+          switch (item.getItemId()) {
+            case R.id.appbar_home:
+              startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+              finish();
+              return true;
+          }
+          return false;
+        });
 
     mAuth = mAuth = FirebaseAuth.getInstance();
     user = mAuth.getCurrentUser();
 
-     listOfChildren = findViewById(R.id.myprofile_childList);
+    listOfChildren = findViewById(R.id.myprofile_childList);
 
     editTextFirstName = findViewById(R.id.account_FirstNameUA);
     editTextEmail = findViewById(R.id.account_EmailUA);
     editTextPhoneNumber = findViewById(R.id.account_phoneNo);
     editTextspousename = findViewById(R.id.account_spousename);
-   // editTextInsuranceNum = findViewById(R.id.account_InsuranceNo);
+    // editTextInsuranceNum = findViewById(R.id.account_InsuranceNo);
     buttonUpdate = findViewById(R.id.but_updateUA);
     buttonAddChild = findViewById(R.id.but_addChild);
 
     getUserData();
 
-     buttonUpdate.setOnClickListener(v -> {
-       try {
-         updateDetails();
-       } catch (ClassNotFoundException e) {
-         e.printStackTrace();
-       }
-     });
+    buttonUpdate.setOnClickListener(
+        v -> {
+          try {
+            updateDetails();
+          } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+          }
+        });
     buttonAddChild.setOnClickListener(v -> updateChildDetails());
   }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.top_app_bar,menu);
+    inflater.inflate(R.menu.top_app_bar, menu);
     return true;
   }
-
 
   private void updateChildDetails() {
 
@@ -116,36 +116,26 @@ public class MyProfileActivity extends AppCompatActivity {
     Intent intent = new Intent(getApplicationContext(), AddNewChildActivity.class);
     intent.putExtras(b);
     startActivity(intent);
-
   }
 
   private void updateDetails() throws ClassNotFoundException {
-//    Person updatePerson = new Person();
-//    updatePerson.setPersonName(String.valueOf(editTextFirstName.getText()));
-//    updatePerson.setPersonPhoneNum(String.valueOf(editTextPhoneNumber.getText()));
-//    updatePerson.setPersonChildInfo(personCurrent.getPersonChildInfo());
-//    updatePerson.setProfileCompletionStatus(true);
-//    updatePerson.setPersonCommonLawPartnerName(editTextspousename.getText().toString());
-
     personCurrent.setPersonCommonLawPartnerName(editTextspousename.getText().toString());
     personCurrent.setPersonPhoneNum(String.valueOf(editTextPhoneNumber.getText()));
     personCurrent.setPersonName(String.valueOf(editTextFirstName.getText()));
     db.collection("person").document(personCurrent.getPersonUUID()).set(personCurrent);
 
-    toastAndNextActivity(personCurrent.getPersonName() + " details have been updated", "HomeActivity");
-
-
-
+    toastAndNextActivity(
+        personCurrent.getPersonName() + " details have been updated", "HomeActivity");
   }
 
   private void toastAndNextActivity(String message, String nextActivity)
-          throws ClassNotFoundException {
+      throws ClassNotFoundException {
 
     Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
     toast.show();
 
     Intent nextActivityRequested =
-            new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + nextActivity));
+        new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + nextActivity));
     startActivity(nextActivityRequested);
   }
 
@@ -157,21 +147,18 @@ public class MyProfileActivity extends AppCompatActivity {
     docRef
         .get()
         .addOnCompleteListener(
-            new OnCompleteListener<DocumentSnapshot>() {
-              @Override
-              public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                  DocumentSnapshot document = task.getResult();
-                  if (document.exists()) {
-                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    personCurrent = document.toObject(Person.class);
-                    mapUserData(personCurrent);
-                  } else {
-                    Log.d(TAG, "No such document");
-                  }
+            task -> {
+              if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                  Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                  personCurrent = document.toObject(Person.class);
+                  mapUserData(personCurrent);
                 } else {
-                  Log.d(TAG, "get failed with ", task.getException());
+                  Log.d(TAG, "No such document");
                 }
+              } else {
+                Log.d(TAG, "get failed with ", task.getException());
               }
             });
   }
@@ -192,19 +179,7 @@ public class MyProfileActivity extends AppCompatActivity {
     db.collection("person")
         .document(user.getUid())
         .set(p)
-        .addOnSuccessListener(
-            new OnSuccessListener<Void>() {
-              @Override
-              public void onSuccess(Void aVoid) {
-                Log.d(TAG, "Document Snapshot successfully written!");
-              }
-            })
-        .addOnFailureListener(
-            new OnFailureListener() {
-              @Override
-              public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error writing document", e);
-              }
-            });
+        .addOnSuccessListener(aVoid -> Log.d(TAG, "Document Snapshot successfully written!"))
+        .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e));
   }
 }

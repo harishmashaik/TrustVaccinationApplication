@@ -1,17 +1,17 @@
 package com.team4.getvaxi;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,9 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.team4.getvaxi.models.Booking;
 import com.team4.getvaxi.models.Message;
-import com.team4.getvaxi.models.Vaccine;
 import com.team4.getvaxi.recycle.QuestionsAdapter;
 
 import java.time.LocalDateTime;
@@ -82,11 +80,11 @@ public class AskQuestionsActivity extends AppCompatActivity {
   @RequiresApi(api = Build.VERSION_CODES.O)
   private void sendMessage() {
     if (isAdmin) {
-      uploadMessages(currentMessage.getUserId(), "ADMIN","ADMIN");
+      uploadMessages(currentMessage.getUserId(), "ADMIN", "ADMIN");
     } else {
-        int index = mAuth.getCurrentUser().getEmail().indexOf("@gmail.com");
-        String sName = (mAuth.getCurrentUser().getEmail().substring(0, index));
-      uploadMessages(mAuth.getCurrentUser().getUid(), "USER",sName);
+      int index = mAuth.getCurrentUser().getEmail().indexOf("@gmail.com");
+      String sName = (mAuth.getCurrentUser().getEmail().substring(0, index));
+      uploadMessages(mAuth.getCurrentUser().getUid(), "USER", sName);
     }
   }
 
@@ -96,10 +94,10 @@ public class AskQuestionsActivity extends AppCompatActivity {
     messageSender.setUserId(uid);
     messageSender.setMessage(txtMessage.getText().toString());
     messageSender.setUserType(type);
-    if(isAdmin){
+    if (isAdmin) {
       messageSender.setMessageRepliedDateTime(LocalDateTime.now().toString());
       messageSender.setMessageDateTime(currentMessage.getMessageDateTime());
-    }else{
+    } else {
       messageSender.setMessageDateTime(LocalDateTime.now().toString());
     }
 
@@ -108,69 +106,53 @@ public class AskQuestionsActivity extends AppCompatActivity {
     db.collection("questions")
         .add(messageSender)
         .addOnSuccessListener(
-            new OnSuccessListener<DocumentReference>() {
-              @Override
-              public void onSuccess(DocumentReference documentReference) {
-                Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                postMessageSend();
-              }
+            documentReference -> {
+              Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+              postMessageSend();
             })
-        .addOnFailureListener(
-            new OnFailureListener() {
-              @Override
-              public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error adding document", e);
-              }
-            });
+        .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
   }
 
   private void postMessageSend() {
     txtMessage.setText("");
 
-    //if (!isAdmin) {
-      loaduserMessages();
-  // }
- //   else{
-      //loadAdminMessages();
-   // }
+    loaduserMessages();
   }
 
-  private void loadAdminMessages(){
+  private void loadAdminMessages() {
     ArrayList<Message> userMessageList = new ArrayList<>();
     db.collection("questions")
-            .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
-            .get()
-            .addOnCompleteListener(
-                    new OnCompleteListener<QuerySnapshot>() {
-                      @RequiresApi(api = Build.VERSION_CODES.O)
-                      @Override
-                      public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                          for (QueryDocumentSnapshot document : task.getResult()) {
-                            String tempID = document.getId();
-                            Message m = document.toObject(Message.class);
+        .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
+        .get()
+        .addOnCompleteListener(
+            new OnCompleteListener<QuerySnapshot>() {
+              @RequiresApi(api = Build.VERSION_CODES.O)
+              @Override
+              public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                  for (QueryDocumentSnapshot document : task.getResult()) {
+                    String tempID = document.getId();
+                    Message m = document.toObject(Message.class);
 
-                            Log.i(TAG, document.getId() + " => " + m.toString());
-                            // Log.i(TAG, "temp is " + " => " + temp);
+                    Log.i(TAG, document.getId() + " => " + m.toString());
+                    // Log.i(TAG, "temp is " + " => " + temp);
 
-                            userMessageList.add(m);
-                          }
-                          questionsAdapter.setMessagesList(userMessageList);
-                        } else {
-                          Log.i(TAG, "Error getting documents: ", task.getException());
-                        }
-                      }
-                    });
+                    userMessageList.add(m);
+                  }
+                  questionsAdapter.setMessagesList(userMessageList);
+                } else {
+                  Log.i(TAG, "Error getting documents: ", task.getException());
+                }
+              }
+            });
   }
 
   private void loaduserMessages() {
     String tempUUid;
 
-    if(mAuth.getCurrentUser()!=null)
-    {
+    if (mAuth.getCurrentUser() != null) {
       tempUUid = mAuth.getCurrentUser().getUid();
-    }
-    else{
+    } else {
       tempUUid = currentMessage.getUserId();
     }
 
@@ -186,11 +168,9 @@ public class AskQuestionsActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                   for (QueryDocumentSnapshot document : task.getResult()) {
                     String tempID = document.getId();
-                     Message m = document.toObject(Message.class);
+                    Message m = document.toObject(Message.class);
 
                     Log.i(TAG, document.getId() + " => " + m.toString());
-                   // Log.i(TAG, "temp is " + " => " + temp);
-
                     userMessageList.add(m);
                   }
                   questionsAdapter.setMessagesList(userMessageList);

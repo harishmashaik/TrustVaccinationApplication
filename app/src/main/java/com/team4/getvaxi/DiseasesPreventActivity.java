@@ -1,21 +1,16 @@
 package com.team4.getvaxi;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -73,27 +68,20 @@ public class DiseasesPreventActivity extends AppCompatActivity {
     docRef
         .get()
         .addOnCompleteListener(
-            new OnCompleteListener<DocumentSnapshot>() {
-              @RequiresApi(api = Build.VERSION_CODES.N)
-              @Override
-              public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                  DocumentSnapshot document = task.getResult();
-                  if (document.exists()) {
-                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    final ArrayList<String> diseasesPrevented =
-                        (ArrayList<String>) document.get("diseasesPrevented");
-                      diseasesAdapter.setDiseases(diseasesPrevented);
-                   // System.out.println(diseasesPrevented);
-
-                    // dies.forEach(System.out::println);
+                task -> {
+                  if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                      Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                      final ArrayList<String> diseasesPrevented =
+                          (ArrayList<String>) document.get("diseasesPrevented");
+                        diseasesAdapter.setDiseases(diseasesPrevented);
+                    } else {
+                      Log.d(TAG, "No such document");
+                    }
                   } else {
-                    Log.d(TAG, "No such document");
+                    Log.d(TAG, "get failed with ", task.getException());
                   }
-                } else {
-                  Log.d(TAG, "get failed with ", task.getException());
-                }
-              }
-            });
+                });
     }
 }

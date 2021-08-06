@@ -6,8 +6,6 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.time.LocalDate;
-
 public class MainActivity extends AppCompatActivity {
 
   @Override

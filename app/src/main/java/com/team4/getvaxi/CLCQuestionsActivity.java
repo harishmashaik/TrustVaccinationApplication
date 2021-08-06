@@ -1,18 +1,14 @@
 package com.team4.getvaxi;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.team4.getvaxi.models.Message;
 import com.team4.getvaxi.recycle.CLCQuestionsAdapter;
 
@@ -49,27 +45,17 @@ public class CLCQuestionsActivity extends AppCompatActivity {
                 .whereEqualTo("userType", "USER")
                 .get()
                 .addOnCompleteListener(
-                        new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        String tempID = document.getId();
-                                        Message m = document.toObject(Message.class);
-//                                        Message m= new Message();
-//                                        m.setMessage(document.get("message").toString());
-//                                        m.setUserId(document.get("userId").toString());
-//                                        m.setUserType(document.get("userType").toString());
-//                                        m.setSenderName(document.get("senderName").toString());
-
-                                        //   b.setFbDocID(tempID);
-                                        Log.i(TAG, document.getId() + " => " + m.toString());
-                                        userMessageList.add(m);
-                                    }
-                                    questionsAdapterCLC.setMessages(userMessageList);
-                                } else {
-                                    Log.i(TAG, "Error getting documents: ", task.getException());
+                        task -> {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String tempID = document.getId();
+                                    Message m = document.toObject(Message.class);//
+                                    Log.i(TAG, document.getId() + " => " + m.toString());
+                                    userMessageList.add(m);
                                 }
+                                questionsAdapterCLC.setMessages(userMessageList);
+                            } else {
+                                Log.i(TAG, "Error getting documents: ", task.getException());
                             }
                         });
     }

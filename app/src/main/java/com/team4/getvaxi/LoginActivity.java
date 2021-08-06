@@ -2,16 +2,16 @@ package com.team4.getvaxi;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.Map;
@@ -69,11 +68,6 @@ public class LoginActivity extends AppCompatActivity {
 
   // login with email and password
   private void login() {
-    Log.i(TAG, "the bool is " + clcSwitch);
-    Log.i(TAG, "the bool is checked " + isCLchecked.isChecked());
-    Log.i(TAG, "the bool is enabled " + isCLchecked.isEnabled());
-    Log.i(TAG, "the bool is selected" + isCLchecked.isSelected());
-
     if (isCLchecked.isChecked()) {
 
       clcLogin();
@@ -117,8 +111,6 @@ public class LoginActivity extends AppCompatActivity {
     }
   }
 
-  // this method will navigate the user to forgot password activity.
-
   private void forgotPassword() {
     Intent intent = new Intent(context, ForgotpasswordActivity.class);
     startActivity(intent);
@@ -130,39 +122,35 @@ public class LoginActivity extends AppCompatActivity {
     db.collection("clcusers")
         .get()
         .addOnCompleteListener(
-            new OnCompleteListener<QuerySnapshot>() {
-              @RequiresApi(api = Build.VERSION_CODES.N)
-              @Override
-              public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                  for (QueryDocumentSnapshot document : task.getResult()) {
-                    Log.i(TAG, document.getId() + " => " + document.getData());
-                    List<Map<String, String>> usersList =
-                        (List<Map<String, String>>) document.getData().get("clcu");
-                    System.out.println(usersList);
-                    usersList.forEach(
-                        li -> {
-                          System.out.println(li.get("email"));
+                task -> {
+                  if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                      Log.i(TAG, document.getId() + " => " + document.getData());
+                      List<Map<String, String>> usersList =
+                          (List<Map<String, String>>) document.getData().get("clcu");
+                      System.out.println(usersList);
+                      usersList.forEach(
+                          li -> {
+                            System.out.println(li.get("email"));
 
-                          if (text_loginName.getText().toString().equals(li.get("email"))) {
-                            System.out.println("the mail is " + li.get("email"));
-                            if (text_loginPass.getText().toString().equals(li.get("password"))) {
-                              //
-                              Intent intent = new Intent(context, CLCHomeActivity.class);
-                              startActivity(intent);
-                              finish();
+                            if (text_loginName.getText().toString().equals(li.get("email"))) {
+                              System.out.println("the mail is " + li.get("email"));
+                              if (text_loginPass.getText().toString().equals(li.get("password"))) {
+                                //
+                                Intent intent = new Intent(context, CLCHomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                              }
+                              // checkfor pass
+                            } else {
+                              // no clc user
                             }
-                            // checkfor pass
-                          } else {
-                            // no clc user
-                          }
-                        });
+                          });
+                    }
+                  } else {
+                    Log.i(TAG, "Error getting documents: ", task.getException());
                   }
-                } else {
-                  Log.i(TAG, "Error getting documents: ", task.getException());
-                }
-              }
-            });
+                });
   }
 
   private void signUp() {

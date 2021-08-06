@@ -90,8 +90,6 @@ public class ChildInfoActivity extends AppCompatActivity {
       c1.setDateOfBirth(childInfoAge.getText().toString());
 
       childArrayList.add(c1);
-      System.out.println(childArrayList.size());
-      System.out.println(person.getPersonKids());
 
       if (childArrayList.size() != person.getPersonKids()) {
         prepareChildViewsandGetData(childArrayList.size() + 1);
@@ -101,38 +99,24 @@ public class ChildInfoActivity extends AppCompatActivity {
       }
 
     } else {
-      System.out.println(childInfoName.getText().toString());
-      System.out.println(childInfoAge.getText().toString());
       showToast("Fields should not be empty");
     }
   }
 
   private void updateUsersProfile() {
-    System.out.println("Inside the updateUsersProfile");
+
     person.setPersonChildInfo(childArrayList);
     person.setProfileCompletionStatus(true);
-
-    System.out.println(person.toString());
-
     db.collection("person")
         .document(person.getPersonUUID())
         .set(person)
         .addOnSuccessListener(
-            new OnSuccessListener<Void>() {
-              @Override
-              public void onSuccess(Void aVoid) {
-                Log.i(TAG, "Profile Updated successfully");
-                Intent intentHomeActivity = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intentHomeActivity);
-              }
+            aVoid -> {
+              Log.i(TAG, "Profile Updated successfully");
+              Intent intentHomeActivity = new Intent(getApplicationContext(), HomeActivity.class);
+              startActivity(intentHomeActivity);
             })
-        .addOnFailureListener(
-            new OnFailureListener() {
-              @Override
-              public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error Updating profile", e);
-              }
-            });
+        .addOnFailureListener(e -> Log.w(TAG, "Error Updating profile", e));
   }
 
   private void prepareChildViewsandGetData(int a) {
@@ -179,42 +163,16 @@ public class ChildInfoActivity extends AppCompatActivity {
           }
         });
 
-    //    materialDatePicker.addOnPositiveButtonClickListener(
-    //        new MaterialPickerOnPositiveButtonClickListener() {
-    //          @Override
-    //          public void onPositiveButtonClick(Object selection) {
-    //
-    //            DateFormat targetFormat = new SimpleDateFormat("dd MMM yyyy");
-    //            DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
-    //            try {
-    //              Date date = originalFormat.parse(materialDatePicker.getHeaderText());
-    //
-    //              System.out.println(" teh date is from exp " + date);
-    //            } catch (ParseException e) {
-    //              System.out.println("the exception");
-    //              e.printStackTrace();
-    //            }
-    //
-    //            childInfoAge.setText(materialDatePicker.getHeaderText());
-    //          }
-    //        });
-
     materialDatePicker.addOnPositiveButtonClickListener(
         new MaterialPickerOnPositiveButtonClickListener() {
           @SuppressLint("SetTextI18n")
           @Override
           public void onPositiveButtonClick(Object selection) {
 
-            // selected date
             childInfoAge.setText(materialDatePicker.getHeaderText());
-
-            // in the above statement, getHeaderText
-            // is the selected date preview from the
-            // dialog
           }
         });
 
-    // Add EditText to LinearLayout
     if (linearLayout != null) {
       linearLayout.addView(childInfoName);
       linearLayout.addView(childInfoAge);
@@ -224,14 +182,9 @@ public class ChildInfoActivity extends AppCompatActivity {
     Button btnShow = findViewById(R.id.btnShow);
     if (btnShow != null) {
       btnShow.setOnClickListener(
-          new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              // Toast.makeText(MainActivity.this, editText.getText(), Toast.LENGTH_LONG).show();
-
-              Log.i(TAG, childInfoName.getText().toString());
-              Log.i(TAG, childInfoAge.getText().toString());
-            }
+          v -> {
+            Log.i(TAG, childInfoName.getText().toString());
+            Log.i(TAG, childInfoAge.getText().toString());
           });
     }
   }
@@ -241,23 +194,6 @@ public class ChildInfoActivity extends AppCompatActivity {
     String dobDay = dob.substring(4, 6);
     String dobMonth = dob.substring(0, 3);
     String dobYear = dob.substring(8, 12);
-
-    //    String dateofBir = dobDay+"-"+dobMonth+"-"+dobYear;
-    //
-    //    DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MMM-yyyy",Locale.US);
-    //    LocalDate dateDOB = LocalDate.parse(dateofBir,df);
-    //    //LocalDate dateDOB =
-    // LocalDate.of(Integer.parseInt(dobYear),Integer.parseInt(dobMonth),Integer.parseInt(dobDay));
-    //    LocalDate localToday =LocalDate.now();
-    //
-    //    Period diff = Period.between(dateDOB, localToday);
-    //    System.out.println("the age is "+ diff.getYears());
-    //
-    //    return diff.getYears();
-
-    System.out.println(
-        "The year is the diff " + (LocalDate.now().getYear() - Integer.parseInt(dobYear)));
-
     return (LocalDate.now().getYear() - Integer.parseInt(dobYear));
   }
 

@@ -82,35 +82,30 @@ public class TrackBookingActivity extends AppCompatActivity {
   }
 
   private void loadUserBookings() throws ClassNotFoundException {
-    // System.out.println("inside load bookings");
-
     ArrayList<Booking> userBookingList = new ArrayList<>();
     db.collection("bookings")
         .whereEqualTo("userId", mAuth.getCurrentUser().getUid())
         .get()
         .addOnCompleteListener(
-            new OnCompleteListener<QuerySnapshot>() {
-              @Override
-              public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                  for (QueryDocumentSnapshot document : task.getResult()) {
-                    String tempID = document.getId();
-                    Booking b = document.toObject(Booking.class);
-                    b.setFbDocID(tempID);
-                    Log.i(TAG, document.getId() + " => " + b.toString());
-                    userBookingList.add(b);
-                  }
-                  trackbookingsAdapter.setBookings(userBookingList);
-                  if (userBookingList.size() == 0) {
-                    try {
-                      toastAndNextActivity("Sorry You dont have any bookings", "HomeActivity");
-                    } catch (ClassNotFoundException e) {
-                      e.printStackTrace();
-                    }
-                  }
-                } else {
-                  Log.i(TAG, "Error getting documents: ", task.getException());
+            task -> {
+              if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                  String tempID = document.getId();
+                  Booking b = document.toObject(Booking.class);
+                  b.setFbDocID(tempID);
+                  Log.i(TAG, document.getId() + " => " + b.toString());
+                  userBookingList.add(b);
                 }
+                trackbookingsAdapter.setBookings(userBookingList);
+                if (userBookingList.size() == 0) {
+                  try {
+                    toastAndNextActivity("Sorry You dont have any bookings", "HomeActivity");
+                  } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                  }
+                }
+              } else {
+                Log.i(TAG, "Error getting documents: ", task.getException());
               }
             });
   }

@@ -130,11 +130,9 @@ public class BookVaccineActivity extends AppCompatActivity {
           personChildInfo.forEach(
               c -> {
                 if (dropdownChildList.getText().toString().equals(c.getChildName())) {
-                  // text_childAge.setText(Integer.toString(c.getChildAge()));
                   text_childAge.setText(c.getDateOfBirth());
                 }
               });
-          System.out.println("Asa");
         });
 
     bookAppointment.setOnClickListener(
@@ -172,25 +170,17 @@ public class BookVaccineActivity extends AppCompatActivity {
       db.collection("bookings")
           .add(newBooking)
           .addOnSuccessListener(
-              new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                  Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                  try {
-                    toastAndNextActivity(
-                        "Booking Completed: Wait for Confirmation", "HomeActivity");
-                  } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                  }
-                }
-              })
+                  documentReference -> {
+                    Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    try {
+                      toastAndNextActivity(
+                          "Booking Completed: Wait for Confirmation", "HomeActivity");
+                    } catch (ClassNotFoundException e) {
+                      e.printStackTrace();
+                    }
+                  })
           .addOnFailureListener(
-              new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                  Log.w(TAG, "Error adding document", e);
-                }
-              });
+                  e -> Log.w(TAG, "Error adding document", e));
 
     } else {
       toastAndNextActivity("Validation Failed : Try again", "HomeActivity");
@@ -253,7 +243,6 @@ public class BookVaccineActivity extends AppCompatActivity {
 
     System.out.println("the details are " + personDetails[0].toString());
 
-    // return personDetails;
   }
 
   @RequiresApi(api = Build.VERSION_CODES.N)

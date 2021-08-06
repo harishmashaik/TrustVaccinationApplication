@@ -1,30 +1,20 @@
 package com.team4.getvaxi;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.team4.getvaxi.models.Booking;
-import com.team4.getvaxi.models.ProgressLoader;
 import com.team4.getvaxi.models.Vaccine;
-import com.team4.getvaxi.recycle.BookingsAdapter;
 import com.team4.getvaxi.recycle.VaccineStoreAdapter;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 
 public class CLCVaccineStoreActivity extends AppCompatActivity {
@@ -63,28 +53,19 @@ public class CLCVaccineStoreActivity extends AppCompatActivity {
         db.collection("vaccinestore")
                 .get()
                 .addOnCompleteListener(
-                        new OnCompleteListener<QuerySnapshot>() {
-                            @RequiresApi(api = Build.VERSION_CODES.N)
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        String tempID = document.getId();
-                                        Vaccine v = document.toObject(Vaccine.class);
-                                        HashMap<String,Vaccine> curMap = new HashMap<>();
-                                        curMap.put(tempID,v);
-
-
-                                        //b.setFbDocID(tempID);
-                                        //Log.i(TAG, document.getId() + " => " + v.toString());
-                                        //vaccineList.add(v);
-                                        vaccineMapList.add(curMap);
-                                    }
-                                   // vaccineList.sort(Comparator.comparing(Vaccine::getVaccineStock));
-                                    vaccineStoreAdapter.setVaccinesInStore(vaccineMapList);
-                                } else {
-                                    Log.i(TAG, "Error getting documents: ", task.getException());
+                        task -> {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String tempID = document.getId();
+                                    Vaccine v = document.toObject(Vaccine.class);
+                                    HashMap<String,Vaccine> curMap = new HashMap<>();
+                                    curMap.put(tempID,v);
+                                    vaccineMapList.add(curMap);
                                 }
+                               // vaccineList.sort(Comparator.comparing(Vaccine::getVaccineStock));
+                                vaccineStoreAdapter.setVaccinesInStore(vaccineMapList);
+                            } else {
+                                Log.i(TAG, "Error getting documents: ", task.getException());
                             }
                         });
     }
