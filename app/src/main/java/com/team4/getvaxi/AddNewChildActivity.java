@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointBackward;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Child;
@@ -68,12 +70,11 @@ public class AddNewChildActivity extends AppCompatActivity {
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
     materialDateBuilder.setTitleText("Select date Of Birth of Child");
 
-
     final MaterialDatePicker materialDatePicker =
         materialDateBuilder
             .setCalendarConstraints(
                 new CalendarConstraints.Builder()
-                    .setEnd(MaterialDatePicker.todayInUtcMilliseconds())
+                    .setValidator(DateValidatorPointBackward.now())
                     .build())
             .build();
 

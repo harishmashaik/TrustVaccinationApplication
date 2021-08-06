@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +42,7 @@ import java.util.stream.Collectors;
 public class BookVaccineActivity extends AppCompatActivity {
 
   public static final String TAG = "BookVaccineActivity";
+  final long NEXT_TWO_DAYS = MaterialDatePicker.todayInUtcMilliseconds() + 2 * (86400000);
   private Toolbar toolbar;
 
   private FirebaseAuth mAuth;
@@ -97,18 +100,6 @@ public class BookVaccineActivity extends AppCompatActivity {
 
     getUserDetails();
 
-    // final ArrayList<Child> personChildInfo = personDetails.getPersonChildInfo();
-    //    System.out.println("I am here " + personChildInfo.size());
-
-    //    List<String> field1List =
-    //        personChildInfo.stream().map(Child::getChildName).collect(Collectors.toList());
-    //
-    //    ArrayAdapter<String> adapter =
-    //        new ArrayAdapter(
-    //            BookVaccineActivity.this, R.layout.booking_confirm_hoslist_layout, field1List);
-    //
-    //    dropdownChildList.setAdapter(adapter);
-
     Intent i = getIntent();
 
     if (i.hasExtra("vaccineDetails")) {
@@ -120,7 +111,11 @@ public class BookVaccineActivity extends AppCompatActivity {
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
     materialDateBuilder.setTitleText("Select an Appointment date");
 
-    final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+    final MaterialDatePicker materialDatePicker =
+            materialDateBuilder
+                    .setCalendarConstraints(
+                            new CalendarConstraints.Builder()
+                                    .setValidator(DateValidatorPointForward.from(NEXT_TWO_DAYS)).build()).build();
 
     pickDateOoAppointment.setOnClickListener(
         v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));

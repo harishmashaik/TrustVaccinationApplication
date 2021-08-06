@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.team4.getvaxi.models.Person;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -35,6 +36,7 @@ public class Commons extends Activity {
     public static final String BOOOKING_STATUS_CONFIRM="CONFM";
     public static final String BOOOKING_STATUS_DECLINE="DECL";
 
+    public static final BigDecimal BOOOKING_FROM_NEXT_48HRS= BigDecimal.valueOf(2 * (86400000));
 
 
     AlertDialog.Builder builder;

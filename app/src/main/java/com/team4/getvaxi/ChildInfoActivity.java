@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointBackward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -69,38 +71,6 @@ public class ChildInfoActivity extends AppCompatActivity {
     prepareChildViewsandGetData(1);
 
     but_next.setOnClickListener(v -> buttonNextHandler());
-    //
-    //        MaterialDatePicker.Builder materialDateBuilder =
-    // MaterialDatePicker.Builder.datePicker();
-    //
-    //        materialDateBuilder.setTitleText("SELECT A DATE");
-    //
-    //        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
-    //
-    //        but_PickDate.setOnClickListener(
-    //                new View.OnClickListener() {
-    //                    @Override
-    //                    public void onClick(View v) {
-    //                        materialDatePicker.show(getSupportFragmentManager(),
-    // "MATERIAL_DATE_PICKER");
-    //                    }
-    //                });
-    //        materialDatePicker.addOnPositiveButtonClickListener(
-    //                new MaterialPickerOnPositiveButtonClickListener() {
-    //                    @SuppressLint("SetTextI18n")
-    //                    @Override
-    //                    public void onPositiveButtonClick(Object selection) {
-    //
-    //                        // if the user clicks on the positive
-    //                        // button that is ok button update the
-    //                        // selected date
-    //                        text_child_dob.setText(materialDatePicker.getHeaderText());
-    //                        // in the above statement, getHeaderText
-    //                        // is the selected date preview from the
-    //                        // dialog
-    //                    }
-    //                });
-
   }
 
   private void getBundleData() {
@@ -171,9 +141,14 @@ public class ChildInfoActivity extends AppCompatActivity {
 
     materialDateBuilder.setTitleText("SELECT A DATE");
 
-    final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+    final MaterialDatePicker materialDatePicker =
+        materialDateBuilder
+            .setCalendarConstraints(
+                new CalendarConstraints.Builder()
+                    .setValidator(DateValidatorPointBackward.now())
+                    .build())
+            .build();
 
-    // Create EditText
     childInfoName = new EditText(this);
     childInfoName.setHint("Enter Child " + a + " Name");
     childInfoName.setLayoutParams(
@@ -188,7 +163,7 @@ public class ChildInfoActivity extends AppCompatActivity {
     childInfoAge.setLayoutParams(
         new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-    childInfoAge.setPadding(20,   80, 20, 40);
+    childInfoAge.setPadding(20, 80, 20, 40);
 
     final Button datePickButton = new Button(this);
     datePickButton.setText("Pickdate");
