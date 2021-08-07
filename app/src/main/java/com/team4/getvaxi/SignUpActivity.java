@@ -78,19 +78,19 @@ public class SignUpActivity extends AppCompatActivity {
                                     //Log.i(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
 
-//                                    user.sendEmailVerification()
-//                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                @Override
-//                                                public void onComplete(@NonNull Task<Void> task) {
-//                                                    if (task.isSuccessful()) {
-//                                                        Log.i("SignUp Activity", "Email sent.");
-//                                                    }
-//                                                    else
-//                                                    {
-//                                                        Log.i("SignUp Activity", task.getException().toString());
-//                                                    }
-//                                                }
-//                                            });
+                                    user.sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Log.i("SignUp Activity", "Email sent.");
+                                                    }
+                                                    else
+                                                    {
+                                                        Log.i("SignUp Activity", task.getException().toString());
+                                                    }
+                                                }
+                                            });
 
                                     Intent intent = new Intent(context,ProfileCompleteActivity.class);
                                     Bundle b = new Bundle();

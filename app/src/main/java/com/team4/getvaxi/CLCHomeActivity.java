@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseUser;
+import com.team4.getvaxi.CLC.CLCAddHospitalActivity;
 import com.team4.getvaxi.models.ProgressLoader;
 
 public class CLCHomeActivity extends AppCompatActivity {
 
   MaterialCardView newBookings;
+  MaterialCardView newHospitals;
   MaterialCardView confirmedBookings;
   MaterialCardView vaccineStore;
   MaterialCardView clcLogout;
@@ -38,6 +40,7 @@ public class CLCHomeActivity extends AppCompatActivity {
     vaccineStore = findViewById(R.id.clc_card_vaccine_stock);
     newQuestions = findViewById(R.id.clc_card_questions);
     clcLogout = findViewById(R.id.clc_card_logout);
+    newHospitals = findViewById(R.id.clc_card_hospitals);
 
     proload = new ProgressLoader(CLCHomeActivity.this);
     builder = new AlertDialog.Builder(this);
@@ -97,6 +100,14 @@ public class CLCHomeActivity extends AppCompatActivity {
               v -> {
                   Intent newBookingsActivity =
                           new Intent(getApplicationContext(), CLCQuestionsActivity.class);
+                  newBookingsActivity.putExtra("TYPE", "confirmed");
+                  startActivity(newBookingsActivity);
+              });
+
+      newHospitals.setOnClickListener(
+              v -> {
+                  Intent newBookingsActivity =
+                          new Intent(getApplicationContext(), CLCAddHospitalActivity.class);
                   newBookingsActivity.putExtra("TYPE", "confirmed");
                   startActivity(newBookingsActivity);
               });

@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +30,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@RequiresApi(api = Build.VERSION_CODES.R)
 public class Commons extends Activity {
 
 
@@ -41,7 +44,7 @@ public class Commons extends Activity {
 
     AlertDialog.Builder builder;
 
-    public static List<String> listOfProvinces = Arrays.asList("Ontario","Qubec","British Columbia");
+    public static List<String> listOfProvinces = List.of("Quebec","Ontario","British Columbia","Nova Scotia","Alberta","Monitoba","Nunavut","Prince Edward Island","Saskatchewan","Yukon");
 
     private static FirebaseAuth mAuth;
   private static FirebaseUser currentUser;

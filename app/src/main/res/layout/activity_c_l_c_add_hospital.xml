@@ -6,4 +6,96 @@
     android:layout_height="match_parent"
     tools:context=".CLC.CLCAddHospitalActivity">
 
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="407dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/clc_add_hospital_new"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="324dp"
+        android:layout_height="89dp"
+        android:hint="Hospital Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.128">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/clc_add_hospital_new_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/clc_add_hospital_prov"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="322dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clc_add_hospital_new"
+        app:layout_constraintVertical_bias="0.106">
+
+        <AutoCompleteTextView
+            android:id="@+id/clc_add_hospital_provnin_list_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/clc_add_hospital_address"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="321dp"
+        android:layout_height="121dp"
+        android:hint="Hospital Address"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clc_add_hospital_prov"
+        app:layout_constraintVertical_bias="0.202">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/clc_add_hospital_new_address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/clc_add_hospital_new_button"
+        android:layout_width="340dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="80dp"
+        android:text="Add Hospital"
+        android:textColor="#FFFFFF"
+        app:icon="@drawable/outline_vaccines_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.879" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

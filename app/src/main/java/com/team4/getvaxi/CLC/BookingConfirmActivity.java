@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,6 +28,8 @@ import com.team4.getvaxi.HomeActivity;
 import com.team4.getvaxi.R;
 import com.team4.getvaxi.SampleTestActivity;
 import com.team4.getvaxi.models.Booking;
+import com.team4.getvaxi.models.Hospital;
+import com.team4.getvaxi.models.Person;
 import com.team4.getvaxi.models.Vaccine;
 import com.team4.getvaxi.recycle.BookingViewHolder;
 
@@ -34,6 +38,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BookingConfirmActivity extends AppCompatActivity {
@@ -48,9 +54,12 @@ public class BookingConfirmActivity extends AppCompatActivity {
   EditText txtchildAge;
   EditText txtDateOfAppointment;
   Button appointmentLocked;
+  Map<String, Object> hospitalMap;
+  List<Hospital> provincelistofHospitals = new ArrayList<>();
 
   Booking eachBooking = new Booking();
 
+  @RequiresApi(api = Build.VERSION_CODES.N)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -62,13 +71,6 @@ public class BookingConfirmActivity extends AppCompatActivity {
     txtchildName = findViewById(R.id.bookingCon_childname);
     txtDateOfAppointment = findViewById(R.id.bookingCon_appoDate);
     appointmentLocked = findViewById(R.id.bookingconfirmAC_button);
-
-    List<String> items = Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4");
-    ArrayAdapter<String> adapter =
-        new ArrayAdapter(
-            BookingConfirmActivity.this, R.layout.booking_confirm_hoslist_layout, items);
-
-    dropdownCenterList.setAdapter(adapter);
 
     dropdownCenterList.getText().toString();
 
@@ -82,6 +84,7 @@ public class BookingConfirmActivity extends AppCompatActivity {
       txtchildAge.setText(eachBooking.getAge());
       txtDateOfAppointment.setText(eachBooking.getAppointmentDate());
     }
+    getHospitalDetails();
 
     appointmentLocked.setOnClickListener(v -> setConfirmAppointment());
   }
@@ -91,7 +94,7 @@ public class BookingConfirmActivity extends AppCompatActivity {
     dropdownCenterList.getText();
     HashMap<String, String> tempCenter = new HashMap<>();
     tempCenter.put(
-        dropdownCenterList.getText().toString(), dropdownCenterList.getText().toString());
+        "Name&Addr", dropdownCenterList.getText().toString());
     eachBooking.setVaccinationCenterDetails(tempCenter);
     eachBooking.setBookingReviewed(true);
     eachBooking.setBoookingStatus(Commons.BOOOKING_STATUS_CONFIRM);
@@ -118,6 +121,88 @@ public class BookingConfirmActivity extends AppCompatActivity {
                 Log.w(TAG, "Error writing document", e);
               }
             });
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.N)
+  private void getHospitalDetails(){
+    final List<HashMap<String,String>>[] temProvList = new List[]{new ArrayList<>()};
+    System.out.println("inside ht eget hos dwtaisl");
+
+    DocumentReference docRef = db.collection("hospitals").document("Aj59QU6ygI9V6MItVnVu");
+
+    docRef
+        .get()
+        .addOnCompleteListener(
+            task -> {
+              if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                  Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                  hospitalMap = document.getData();
+//                  Log.d(
+//                      TAG,
+//                      "DocumentSnapshot data: " + hospitalMap.get(eachBooking.getUserProvince()));
+//                  Log.d(TAG, "DocumentSnapshot data: " + eachBooking.getUserProvince());
+
+                  //hospitalMap = document.toObject(HashMap.class);
+                  temProvList[0] = (List<HashMap<String, String>>) hospitalMap.get(eachBooking.getUserProvince());
+
+                  mappingMethod(temProvList[0]);
+//                  ArrayAdapter<String> adapter =
+//                      new ArrayAdapter(
+//                          BookingConfirmActivity.this,
+//                          R.layout.booking_confirm_hoslist_layout,
+//                          temProvList[0]);
+//
+//                  dropdownCenterList.setAdapter(adapter);
+                } else {
+                  Log.d(TAG, "No such document");
+                }
+              } else {
+                Log.d(TAG, "get failed with ", task.getException());
+              }
+            });
+
+    System.out.println(provincelistofHospitals);
+
+
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.N)
+  private void mappingMethod(List<HashMap<String,String>> lis) {
+    List<String> combines = new ArrayList<>();
+    for(HashMap<String,String > h1 : lis){
+      System.out.println(h1.keySet());
+      combines.add(h1.get("hospitalName") +", "+ h1.get("hospitalAddress"));
+    }
+
+
+
+//    this.provincelistofHospitals.addAll(lis);
+//    System.out.println("The prov is " + this.provincelistofHospitals);
+
+//    System.out.println("the tyepe is"+ lis.getClass());
+//
+//    final Hospital hospital = lis.get(0);
+//
+//
+////    for(HashMap<String,Hospital> h1 : lis)
+//    {
+//      combines.add(h1.getHospitalName() + h1.getHospitalAddress());
+//    }
+
+//    this.provincelistofHospitals.
+//            forEach(hospital -> {
+//              combines.add(hospital.getHospitalName() + " "+ hospital.getHospitalAddress());
+//            });
+
+
+    ArrayAdapter<String> adapter =
+            new ArrayAdapter(
+                    BookingConfirmActivity.this, R.layout.booking_confirm_hoslist_layout, combines);
+
+    dropdownCenterList.setAdapter(adapter);
+
   }
 
   private void updateVaccineStore() {

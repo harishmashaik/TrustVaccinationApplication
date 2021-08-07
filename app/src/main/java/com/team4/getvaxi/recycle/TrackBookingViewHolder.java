@@ -17,9 +17,7 @@ import com.team4.getvaxi.models.Booking;
 
 import java.io.Serializable;
 
-import static android.graphics.Color.rgb;
-
-;
+import static android.graphics.Color.rgb;;
 
 public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
 
@@ -52,23 +50,24 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
 
     cancelButton.setOnClickListener(
         v -> {
-            Intent i = new Intent(layoutView.getContext(), RescheduleOrCancelActivity.class);
-            Bundle b = new Bundle();
-            b.putSerializable("FROMTRACKHOLDER", (Serializable) user);
-            i.putExtras(b);
-            layoutView.getContext().startActivity(i);
+          Intent i = new Intent(layoutView.getContext(), RescheduleOrCancelActivity.class);
+          Bundle b = new Bundle();
+          b.putSerializable("FROMTRACKHOLDER", (Serializable) user);
+          i.putExtras(b);
+          layoutView.getContext().startActivity(i);
 
-//          System.out.println("insid ethe cancel");
-//          System.out.println(user.toString());
-//
-//          user.setBoookingStatus("CANCELBYUS");
-//          user.setBookingReviewed(true);
-//
-//          db.collection("bookings").document(user.getFbDocID()).set(user);
-//          Toast toast = Toast.makeText(v.getContext(), "Appointment Cancelled", Toast.LENGTH_LONG);
-//          toast.show();
-//          Intent i = new Intent(layoutView.getContext(), HomeActivity.class);
-//          layoutView.getContext().startActivity(i);
+          //          System.out.println("insid ethe cancel");
+          //          System.out.println(user.toString());
+          //
+          //          user.setBoookingStatus("CANCELBYUS");
+          //          user.setBookingReviewed(true);
+          //
+          //          db.collection("bookings").document(user.getFbDocID()).set(user);
+          //          Toast toast = Toast.makeText(v.getContext(), "Appointment Cancelled",
+          // Toast.LENGTH_LONG);
+          //          toast.show();
+          //          Intent i = new Intent(layoutView.getContext(), HomeActivity.class);
+          //          layoutView.getContext().startActivity(i);
         });
   }
 
@@ -76,33 +75,30 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     this.user = booking;
     this.adapter = adapter;
     vaccineName.setText(booking.getVaccineName());
-    childNameAndAGe.setText(booking.getName() + " " + booking.getAge());
-    dateofBooking.setText(booking.getAppointmentDate());
+    childNameAndAGe.setText("Name: " +booking.getName() + " , DOB: " + booking.getAge());
+    dateofBooking.setText("Appointement Date: " +booking.getAppointmentDate());
     if (booking.getBoookingStatus().equals("CONFM")) {
       statusOfBooking.setText("Confirmed");
-      if(booking.getVaccinationCenterDetails()!= null) remarksOfBooking.setText(booking.getVaccinationCenterDetails().toString());
+      if (booking.getVaccinationCenterDetails() != null)
+        remarksOfBooking.setText(booking.getVaccinationCenterDetails().get("Name&Addr").toString());
       else remarksOfBooking.setVisibility(View.GONE);
 
-    } else if (booking.getBookingReviewed() == false && booking.getBoookingStatus().equals("PEND")) {
+    } else if (booking.getBookingReviewed() == false
+        && booking.getBoookingStatus().equals("PEND")) {
       statusOfBooking.setText("Pending with CLC");
       materialCardView.setCardBackgroundColor(rgb(238, 255, 230));
 
-    }
-    else if (booking.getBoookingStatus().equals("CANCELBYUS")) {
-        statusOfBooking.setText("Cancelled");
-        // cancelButton.setEnabled(false);
-        cancelButton.setVisibility(View.GONE);
-        materialCardView.setCardBackgroundColor(rgb(238, 215, 230));
+    } else if (booking.getBoookingStatus().equals("CANCELBYUS")) {
+      statusOfBooking.setText("Cancelled");
+      // cancelButton.setEnabled(false);
+      cancelButton.setVisibility(View.GONE);
+      materialCardView.setCardBackgroundColor(rgb(238, 215, 230));
 
-    }
-    else if (booking.getBoookingStatus().equals("DECL")){
+    } else if (booking.getBoookingStatus().equals("DECL")) {
       statusOfBooking.setText("Declined");
-      if(booking.getRemarks() != null) remarksOfBooking.setText(booking.getRemarks());
+      if (booking.getRemarks() != null) remarksOfBooking.setText(booking.getRemarks());
       else remarksOfBooking.setVisibility(View.GONE);
       materialCardView.setCardBackgroundColor(rgb(255, 170, 153));
     }
-
-    // Picasso.get().load(booking.getAvatar_url()).into(userAvatarPic);
-
   }
 }

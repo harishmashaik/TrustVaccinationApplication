@@ -71,7 +71,7 @@
             <ImageView
                 android:id="@+id/vaccineScheduleBelow4Month"
                 android:layout_width="99dp"
-                android:layout_height="wrap_content"
+                android:layout_height="116dp"
                 android:layout_margin="5dp"
                 android:scaleType="center"
                 app:srcCompat="@mipmap/vaccine_age_four_below"

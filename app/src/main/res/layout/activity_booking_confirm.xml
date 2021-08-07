@@ -6,22 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".CLC.BookingConfirmActivity">
 
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/bookingConfirm_AC_vaccinename"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="315dp"
-        android:layout_height="83dp"
+        android:layout_width="323dp"
+        android:layout_height="99dp"
         android:hint="Vaccine Name"
         app:layout_constraintBottom_toTopOf="@+id/bookingConfirm_AC_childname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.649">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/bookingCon_vaccinename"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="83dp"
             android:enabled="false"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -29,19 +31,20 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/bookingConfirm_AC_childname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="315dp"
-        android:layout_height="83dp"
+        android:layout_width="316dp"
+        android:layout_height="70dp"
         android:hint="Child Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166">
+        app:layout_constraintVertical_bias="0.229">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/bookingCon_childname"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="51dp"
             android:enabled="false"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -49,24 +52,23 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/bookingConfirm_AC_childage"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="315dp"
-        android:layout_height="83dp"
+        android:layout_width="314dp"
+        android:layout_height="68dp"
         android:hint="Child Age"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bookingConfirm_AC_childname"
-        app:layout_constraintVertical_bias="0.065">
+        app:layout_constraintVertical_bias="0.061">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/bookingCon_childage"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="58dp"
             android:enabled="false"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/bookingConfirm_AC_appoDate"
@@ -76,10 +78,10 @@
         android:hint="Appointment Date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bookingConfirm_AC_childage"
-        app:layout_constraintVertical_bias="0.127">
+        app:layout_constraintVertical_bias="0.084">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/bookingCon_appoDate"
@@ -92,19 +94,19 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="308dp"
-        android:layout_height="71dp"
+        android:layout_width="328dp"
+        android:layout_height="125dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7">
+        app:layout_constraintVertical_bias="0.765">
 
         <AutoCompleteTextView
             android:id="@+id/Booking_AC_hospital_menu"
-            android:layout_width="303dp"
-            android:layout_height="59dp"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
             android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
