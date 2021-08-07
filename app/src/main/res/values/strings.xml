@@ -60,10 +60,22 @@
     <string name="appointment_date_picker_title">Select an Appointment date</string>
     <string name="date_of_birth_picker_title">Select an Date of Birth</string>
 
-    //signup&login
+    //signuplogin
     <string name="signup_invalid_email_toast">Invalid Email</string>
     <string name="signup_password_mismatch_toast">Password Mismatch</string>
     <string name="signup_password_invalid_phone_number">Invalid Phone Number</string>
+
+    //clsc home activity
+    <string name="clc_home_new_bookings">New Bookings</string>
+    <string name="clc_home_confirmed_bookings">Confirmed Bookings</string>
+    <string name="clc_home_vaccine_stock">Vaccine Stock</string>
+    <string name="clc_home_new_questions">New Questions</string>
+    <string name="clc_home_new_hospital">New Hospital</string>
+    <string name="clc_home_logout">NLog Out</string>
+    <string name="log_out_caution">Do you want to logout from the TrustVaccination ?</string>
+    <string name="log_out_caution_yes">Yes</string>
+    <string name="log_out_caution_no">No</string>
+    <string name="log_out_messgae_signing_out">Signing Out...</string>
 
 
 

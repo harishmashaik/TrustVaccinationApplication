@@ -26,4 +26,20 @@
     <string name="add_new_child_activity_add_child_button">Ajouter un enfant</string>
     <string name="why_vaccinate_des">La vaccination à temps tout au long de l\'enfance est essentielle car elle aide à fournir une immunité avant que les enfants ne soient exposés à des maladies potentiellement mortelles. Les vaccins sont testés pour s\'assurer qu\'ils sont sûrs et efficaces pour les enfants aux âges recommandés.</string>
     <string name="why_vaccine_well_chile_visit">À mesure que les communautés s\'ouvrent, il est important que votre enfant aille pour sa visite de bien-être.</string>
+    <string name="user_track_bookings_activity_review_button">Revoir</string>
+    <string name="user_track_bookings_activity_info_label">Info</string>
+    <string name="booking_status_confirmed">Confid</string>
+    <string name="booking_status_declined">Diminué</string>
+    <string name="booking_status_pending_with_CLSC">En attente Avec CLSC</string>
+    <string name="booking_status_cancelled">Annulé</string>
+    <string name="toast_booking_conpleted_wait_confirmation">" Réservation terminée : attendre la confirmation"</string>
+    <string name="booking_validation_failed">" Échec de la validation : essayez à nouveau"</string>
+    <string name="toast_no_boorkings">" Désolé, vous n'avez aucune réservation"</string>
+    <string name="appointment_rescheduled_confirm">" Le rendez-vous a été reporté"</string>
+    <string name="invalid_date_selection">Date sélectionnée non valide</string>
+    <string name="appointment_date_picker_title">" Sélectionnez une date de rendez-vous"</string>
+    <string name="date_of_birth_picker_title">Sélectionnez une date de naissance</string>
+    <string name="signup_invalid_email_toast">Email invalide</string>
+    <string name="signup_password_mismatch_toast">Non concordance des mots de passe</string>
+    <string name="signup_password_invalid_phone_number">" Numéro de téléphone invalide"</string>
 </resources>

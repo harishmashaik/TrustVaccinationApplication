@@ -117,20 +117,20 @@ public class CLCHomeActivity extends AppCompatActivity {
 
   private void logoutCLC() {
     builder
-        .setMessage("Do you want to logout from the TrustVaccination ?")
+        .setMessage(R.string.log_out_caution)
         .setCancelable(false)
         .setPositiveButton(
-            "Yes",
+            getString(R.string.log_out_caution_yes),
                 (dialog, id) -> {
                   finish();
                   Toast toast =
-                      Toast.makeText(getApplicationContext(), "Signing Out..", Toast.LENGTH_SHORT);
+                      Toast.makeText(getApplicationContext(), getString(R.string.log_out_messgae_signing_out), Toast.LENGTH_SHORT);
                   toast.show();
                   Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                   startActivity(intent);
                 })
         .setNegativeButton(
-            "No",
+            getString(R.string.log_out_caution_no),
                 (dialog, id) -> dialog.cancel());
 
     AlertDialog alert = builder.create();

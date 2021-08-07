@@ -137,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
   private void userSignOut() {
 
     builder
-        .setMessage("Do you want to logout from the TrustVaccination ?")
+        .setMessage(R.string.log_out_caution)
         .setCancelable(false)
         .setPositiveButton(
             "Yes",
@@ -150,7 +150,7 @@ public class HomeActivity extends AppCompatActivity {
                   mAuth.signOut();
                   Toast toast =
                       Toast.makeText(
-                          getApplicationContext(), "User Signed Out", Toast.LENGTH_SHORT);
+                          getApplicationContext(), getString(R.string.log_out_messgae_signing_out), Toast.LENGTH_SHORT);
                   toast.show();
                   Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                   startActivity(intent);
