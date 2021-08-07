@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.team4.getvaxi.models.Booking;
 import com.team4.getvaxi.recycle.TrackBookingAdapter;
+import com.team4.getvaxi.recycle.YourChildVaccineVisitAdapter;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class TrackBookingActivity extends AppCompatActivity {
   private FirebaseAuth mAuth;
   FirebaseUser user;
   FirebaseFirestore db = FirebaseFirestore.getInstance();
-  final TrackBookingAdapter trackbookingsAdapter = new TrackBookingAdapter();
+  final YourChildVaccineVisitAdapter trackbookingsAdapter = new YourChildVaccineVisitAdapter();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

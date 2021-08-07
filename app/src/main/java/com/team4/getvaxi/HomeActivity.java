@@ -51,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     txtAskQuestions = findViewById(R.id.mainAc_AskQuestions);
     txtMyprofile = findViewById(R.id.mainAc_MyProfile);
     txtLogout = findViewById(R.id.mainAc_Logout);
+    txtYourChildVaccineVisit = findViewById(R.id.mainAc_card_yourChildVaccineVisit);
 
     builder = new AlertDialog.Builder(this);
 
@@ -117,7 +118,17 @@ public class HomeActivity extends AppCompatActivity {
           }
         });
 
-    txtLogout.setOnClickListener(v -> userSignOut());
+      txtYourChildVaccineVisit.setOnClickListener(
+              v -> {
+                  try {
+                      nextActivity("YourChildVaccineActivity");
+                  } catch (ClassNotFoundException e) {
+                      e.printStackTrace();
+                  }
+              });
+
+
+      txtLogout.setOnClickListener(v -> userSignOut());
   }
 
   @Override

@@ -104,7 +104,7 @@ If the country you visit requires a yellow fever vaccine, only a limited number 
     <string name="before_u_travel_activity_last_min_travel_dec">When traveling to another country be aware your doctor may not carry a travel vaccine and you may have to visit a medical clinic.
         Many travel vaccines require multiple shots or take time to become fully effective. But some multiple-dose vaccines (like hepatitis A) can still give you partial protection after just one dose. Some can also be given on an “accelerated schedule,” meaning doses are given in a shorter period of time.r</string>
 
-//my profile
+    //my profile
     <string name="my_profile_activity_add_child_button">Add Child</string>
     <string name="my_profile_activity_update_button">Update</string>
     <string name="my_profile_activity_children_info">Children Info...</string>
