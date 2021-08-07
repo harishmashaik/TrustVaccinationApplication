@@ -107,7 +107,7 @@ public class BookVaccineActivity extends AppCompatActivity {
     }
 
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
-    materialDateBuilder.setTitleText("Select an Appointment date");
+    materialDateBuilder.setTitleText(R.string.appointment_date_picker_title);
 
     final MaterialDatePicker materialDatePicker =
             materialDateBuilder
@@ -172,7 +172,7 @@ public class BookVaccineActivity extends AppCompatActivity {
                     Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                     try {
                       toastAndNextActivity(
-                          "Booking Completed: Wait for Confirmation", "HomeActivity");
+                          getString(R.string.toast_booking_conpleted_wait_confirmation), "HomeActivity");
                     } catch (ClassNotFoundException e) {
                       e.printStackTrace();
                     }
@@ -181,7 +181,7 @@ public class BookVaccineActivity extends AppCompatActivity {
                   e -> Log.w(TAG, "Error adding document", e));
 
     } else {
-      toastAndNextActivity("Validation Failed : Try again", "HomeActivity");
+      toastAndNextActivity(getString(R.string.booking_validation_failed), "HomeActivity");
     }
   }
 
@@ -225,9 +225,6 @@ public class BookVaccineActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                   DocumentSnapshot document = task.getResult();
                   if (document.exists()) {
-                    Log.i(TAG, "DocumentSnapshot data: " + document.getData());
-                    Log.i(TAG, "DocumentSnapshot data: " + document.get("personUUID").toString());
-                    Log.i(TAG, "DocumentSnapshot data: " + document.get("personName").toString());
                     personDetails[0] = document.toObject(Person.class);
                     anotherMeth(personDetails[0]);
                   } else {
@@ -250,15 +247,12 @@ public class BookVaccineActivity extends AppCompatActivity {
     personChildInfo = p.getPersonChildInfo();
     personDetails = p;
 
-    System.out.println("I am here " + personChildInfo.size());
-
     List<String> field1List =
         personChildInfo.stream().map(Child::getChildName).collect(Collectors.toList());
 
     ArrayAdapter<String> adapter =
         new ArrayAdapter(
             BookVaccineActivity.this, R.layout.booking_confirm_hoslist_layout, field1List);
-
     dropdownChildList.setAdapter(adapter);
   }
 }

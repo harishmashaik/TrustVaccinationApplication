@@ -71,12 +71,9 @@ public class VaccineByAgeActivity extends AppCompatActivity {
     vaccineByAgeImage = findViewById(R.id.vaccineByAGe_AC_vaccineImage);
     vaccineByAgeVaccineName = findViewById(R.id.vaccineByAGe_AC_vaccineName);
     vaccineByAgeVaccineDesc = findViewById(R.id.vaccineByAGe_AC_vaccineDescription);
-   // updateVVVV();
     getExtras();
 
     getVaccineDetails(ageParam);
-    // mapVaccineData();
-
   }
 
   @Override

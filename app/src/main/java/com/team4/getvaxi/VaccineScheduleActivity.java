@@ -1,9 +1,11 @@
 package com.team4.getvaxi;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +25,7 @@ public class VaccineScheduleActivity extends AppCompatActivity {
   MaterialCardView matCardBelow04Months;
   MaterialCardView matCardBelow06Months;
 
+  @RequiresApi(api = Build.VERSION_CODES.R)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -46,9 +49,6 @@ public class VaccineScheduleActivity extends AppCompatActivity {
     matCardBelow02Months = findViewById(R.id.matCardvaccineSchedulebelow02M);
     matCardBelow04Months = findViewById(R.id.matCardvaccineSchedulebelow04M);
     matCardBelow06Months = findViewById(R.id.matCardvaccineSchedulebelow06M);
-
-
-
     matCardBelow11Months = findViewById(R.id.matCardvaccineSchedulebelow11M);
     matCardBelow3Years = findViewById(R.id.matCardvaccineSchedulebelow3Y);
     matCardBelow6Years = findViewById(R.id.matCardvaccineSchedulebelow6y);

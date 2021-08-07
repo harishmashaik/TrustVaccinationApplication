@@ -30,6 +30,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
   private final TextView dateofBooking;
   private final TextView statusOfBooking;
   private final TextView remarksOfBooking;
+  private final TextView infoOfBooking;
   private final MaterialButton cancelButton;
 
   private final MaterialCardView materialCardView;
@@ -47,6 +48,7 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     materialCardView = layoutView.findViewById(R.id.trackUserBookings_card);
     cancelButton = layoutView.findViewById(R.id.custom_user_track_booking_cancel);
     remarksOfBooking = layoutView.findViewById(R.id.custom_user_track_booking_remarks);
+    infoOfBooking = layoutView.findViewById(R.id.custom_user_track_booking_remarks_label);
 
     cancelButton.setOnClickListener(
         v -> {
@@ -55,19 +57,6 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
           b.putSerializable("FROMTRACKHOLDER", (Serializable) user);
           i.putExtras(b);
           layoutView.getContext().startActivity(i);
-
-          //          System.out.println("insid ethe cancel");
-          //          System.out.println(user.toString());
-          //
-          //          user.setBoookingStatus("CANCELBYUS");
-          //          user.setBookingReviewed(true);
-          //
-          //          db.collection("bookings").document(user.getFbDocID()).set(user);
-          //          Toast toast = Toast.makeText(v.getContext(), "Appointment Cancelled",
-          // Toast.LENGTH_LONG);
-          //          toast.show();
-          //          Intent i = new Intent(layoutView.getContext(), HomeActivity.class);
-          //          layoutView.getContext().startActivity(i);
         });
   }
 
@@ -75,27 +64,28 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     this.user = booking;
     this.adapter = adapter;
     vaccineName.setText(booking.getVaccineName());
-    childNameAndAGe.setText("Name: " +booking.getName() + " , DOB: " + booking.getAge());
-    dateofBooking.setText("Appointement Date: " +booking.getAppointmentDate());
+    childNameAndAGe.setText("Name: " + booking.getName() + " , DOB: " + booking.getAge());
+    dateofBooking.setText("Appointement Date: " + booking.getAppointmentDate());
     if (booking.getBoookingStatus().equals("CONFM")) {
-      statusOfBooking.setText("Confirmed");
+      statusOfBooking.setText(R.string.booking_status_confirmed);
       if (booking.getVaccinationCenterDetails() != null)
         remarksOfBooking.setText(booking.getVaccinationCenterDetails().get("Name&Addr").toString());
       else remarksOfBooking.setVisibility(View.GONE);
 
     } else if (booking.getBookingReviewed() == false
         && booking.getBoookingStatus().equals("PEND")) {
-      statusOfBooking.setText("Pending with CLC");
+      statusOfBooking.setText(R.string.booking_status_pending_with_CLSC);
+      infoOfBooking.setVisibility(View.GONE);
       materialCardView.setCardBackgroundColor(rgb(238, 255, 230));
 
     } else if (booking.getBoookingStatus().equals("CANCELBYUS")) {
-      statusOfBooking.setText("Cancelled");
+      statusOfBooking.setText(R.string.booking_status_cancelled);
       // cancelButton.setEnabled(false);
       cancelButton.setVisibility(View.GONE);
       materialCardView.setCardBackgroundColor(rgb(238, 215, 230));
 
     } else if (booking.getBoookingStatus().equals("DECL")) {
-      statusOfBooking.setText("Declined");
+      statusOfBooking.setText(R.string.booking_status_declined);
       if (booking.getRemarks() != null) remarksOfBooking.setText(booking.getRemarks());
       else remarksOfBooking.setVisibility(View.GONE);
       materialCardView.setCardBackgroundColor(rgb(255, 170, 153));

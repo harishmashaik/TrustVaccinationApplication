@@ -1,10 +1,12 @@
 package com.team4.getvaxi;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -89,6 +91,7 @@ public class ProfileCompleteActivity extends AppCompatActivity {
     but_updateProfile.setOnClickListener(v->updateButtonHandler());
   }
 
+  @RequiresApi(api = Build.VERSION_CODES.R)
   private void updateButtonHandler() {
     personDetails.setResidingAddress(text_address.getText().toString());
     personDetails.setResidingProvince(provincesList.getText().toString());
@@ -100,7 +103,7 @@ public class ProfileCompleteActivity extends AppCompatActivity {
     System.out.println("the perosnla details are");
     System.out.println(personDetails.toString());
     if (Commons.isValidPhoneNumber(text_phone_number.getText().toString())) {
-      showToast("Invalid Phone number");
+      showToast(getString(R.string.signup_password_invalid_phone_number));
     } else {
       personDetails.setPersonPhoneNum(String.valueOf(text_phone_number.getText()));
       Bundle b = new Bundle();

@@ -176,8 +176,6 @@ public class BookingConfirmActivity extends AppCompatActivity {
       combines.add(h1.get("hospitalName") +", "+ h1.get("hospitalAddress"));
     }
 
-
-
 //    this.provincelistofHospitals.addAll(lis);
 //    System.out.println("The prov is " + this.provincelistofHospitals);
 

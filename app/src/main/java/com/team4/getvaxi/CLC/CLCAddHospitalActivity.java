@@ -25,6 +25,7 @@ import com.team4.getvaxi.R;
 import com.team4.getvaxi.models.Hospital;
 import com.team4.getvaxi.models.HospitalByProvince;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,67 +68,89 @@ public class CLCAddHospitalActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     private void addHospital() {
+        final List<HashMap<String,String>>[] temProvList = new List[]{new ArrayList<>()};
+
+      //  DocumentReference docRef = db.collection("hospitals").document("Aj59QU6ygI9V6MItVnVu");
+        Hospital h1 = new Hospital(hospitalName.getText().toString(),hospitalAddress.getText().toString());
+      final Map<String, Object> hosMap = new HashMap<>();
+        hosMap.put(provinceList.getText().toString(),List.of(h1));
+
+//        HashMap<String, List<Hospital>>  hosMap = new HashMap<>();
+//        Hospital h2 = new Hospital("Montreal general hospital","1650 Cedar Ave, Montreal, Quebec H3G 1A4");
+//        hosMap.put("Quebec",List.of(h2));
+//
+//        Hospital h3 = new Hospital("Travel Clinic","790 Bay St. Suite 426, Toronto, ON M5G 1N8");
+//        hosMap.put("Ontario",List.of(h3));
+//
+//        Hospital h4 = new Hospital("BC women's Hospital & Health centre","4500 Oak St, Vancouver, BC V6H 3N1");
+//        hosMap.put("British Columbia",List.of(h4));
+//
+//        Hospital h5 = new Hospital("Queens General hospital","175 School St, Liverpool, NS B0T 1K0");
+//        hosMap.put("Nova Scotia",List.of(h5));
+//
+//        Hospital h6 = new Hospital("Northeast Community Health Centre","14007 50 St NW, Edmonton, AB T5A 5E4");
+//        hosMap.put("Alberta",List.of(h6));
+//
+//        Hospital h7 = new Hospital("Seven oaks general hospital","2300 McPhillips St, Winnipeg, MB R2V 3M3");
+//        hosMap.put("Monitoba",List.of(h7));
+//
+//        Hospital h8 = new Hospital("Qikiqtani General Hospital","Iqaluit,NU");
+//        hosMap.put("Nunavut",List.of(h8));
+//
+//        Hospital h9 = new Hospital("Quinte Health Care","265 Dundas St E, Belleville, ON K8N 5A9");
+//        hosMap.put("Prince Edward Island",List.of(h9));
+//
+//        Hospital h10 = new Hospital("Fort Saskatchewan Community Hospital","9401 86 Ave, Fort Saskatchewan, AB T8L 0C6");
+//        hosMap.put("Saskatchewan",List.of(h10));
+//
+//
+//        Hospital h11 = new Hospital("Whitehorse general hospital","5 Hospital Rd, Whitehorse, YT Y1A 3H7");
+//        hosMap.put("Yukon",List.of(h11));
 
         DocumentReference docRef = db.collection("hospitals").document("Aj59QU6ygI9V6MItVnVu");
-//        Hospital h1 = new Hospital(hospitalName.getText().toString(),hospitalAddress.getText().toString());
-//        HashMap<String, List<Hospital>>  hosMap = new HashMap<>();
-//        hosMap.put(provinceList.getText().toString(),List.of(h1));
 
-        HashMap<String, List<Hospital>>  hosMap = new HashMap<>();
-        Hospital h2 = new Hospital("Montreal general hospital","1650 Cedar Ave, Montreal, Quebec H3G 1A4");
-        hosMap.put("Quebec",List.of(h2));
-
-        Hospital h3 = new Hospital("Travel Clinic","790 Bay St. Suite 426, Toronto, ON M5G 1N8");
-        hosMap.put("Ontario",List.of(h3));
-
-        Hospital h4 = new Hospital("BC women's Hospital & Health centre","4500 Oak St, Vancouver, BC V6H 3N1");
-        hosMap.put("British Columbia",List.of(h4));
-
-        Hospital h5 = new Hospital("Queens General hospital","175 School St, Liverpool, NS B0T 1K0");
-        hosMap.put("Nova Scotia",List.of(h5));
-
-        Hospital h6 = new Hospital("Northeast Community Health Centre","14007 50 St NW, Edmonton, AB T5A 5E4");
-        hosMap.put("Alberta",List.of(h6));
-
-        Hospital h7 = new Hospital("Seven oaks general hospital","2300 McPhillips St, Winnipeg, MB R2V 3M3");
-        hosMap.put("Monitoba",List.of(h7));
-
-        Hospital h8 = new Hospital("Qikiqtani General Hospital","Iqaluit,NU");
-        hosMap.put("Nunavut",List.of(h8));
-
-        Hospital h9 = new Hospital("Quinte Health Care","265 Dundas St E, Belleville, ON K8N 5A9");
-        hosMap.put("Prince Edward Island",List.of(h9));
-
-        Hospital h10 = new Hospital("Fort Saskatchewan Community Hospital","9401 86 Ave, Fort Saskatchewan, AB T8L 0C6");
-        hosMap.put("Saskatchewan",List.of(h10));
-
-
-        Hospital h11 = new Hospital("Whitehorse general hospital","5 Hospital Rd, Whitehorse, YT Y1A 3H7");
-        hosMap.put("Yukon",List.of(h11));
-
-
-
-        db.collection("hospitals")
-                .document("Aj59QU6ygI9V6MItVnVu")
-                .set(hosMap)
-                .addOnSuccessListener(
-                        new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-//                                Log.d(TAG, "Appointment confirmed " + eachBooking.getFbDocID());
-//                                updateVaccineStore();
-                                Intent nextActivity = new Intent(getApplicationContext(), CLCHomeActivity.class);
-                                startActivity(nextActivity);
-                            }
-                        })
-                .addOnFailureListener(
-                        new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writing document", e);
+        docRef.get()
+                .addOnCompleteListener(
+                        task -> {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                    Map<String ,Object> mapOfHospital = document.getData();
+                                    temProvList[0] = (List<HashMap<String, String>>) mapOfHospital.get(provinceList.getText().toString());
+                                    mappingMethod(temProvList[0]);
+                                    mapOfHospital.put(provinceList.getText().toString(),temProvList[0]);
+                                    db.collection("hospitals").document("Aj59QU6ygI9V6MItVnVu").set(mapOfHospital); }
                             }
                         });
 
+//        db.collection("hospitals")
+//                .document("Aj59QU6ygI9V6MItVnVu")
+//                .set(hosMap)
+//                .addOnSuccessListener(
+//                        new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                               Log.d(TAG, "Appointment confirmed " + eachBooking.getFbDocID());
+//                                Intent nextActivity = new Intent(getApplicationContext(), CLCHomeActivity.class);
+//                                startActivity(nextActivity);
+//                            }
+//                        })
+//                .addOnFailureListener(
+//                        new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Log.w(TAG, "Error writing document", e);
+//                            }
+//                        });
+
+    }
+
+    private void mappingMethod(List<HashMap<String, String>> hashMaps) {
+        HashMap<String,String> newHospital = new HashMap<>();
+        newHospital.put("hospitalName",hospitalName.getText().toString());
+        newHospital.put("hospitalAddress",hospitalAddress.getText().toString());
+        hashMaps.add(newHospital);
     }
 
     private void toastAndNextActivity(String message, String nextActivity)

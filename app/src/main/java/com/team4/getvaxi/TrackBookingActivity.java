@@ -99,7 +99,7 @@ public class TrackBookingActivity extends AppCompatActivity {
                 trackbookingsAdapter.setBookings(userBookingList);
                 if (userBookingList.size() == 0) {
                   try {
-                    toastAndNextActivity("Sorry You dont have any bookings", "HomeActivity");
+                    toastAndNextActivity(getString(R.string.toast_no_boorkings), "HomeActivity");
                   } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                   }

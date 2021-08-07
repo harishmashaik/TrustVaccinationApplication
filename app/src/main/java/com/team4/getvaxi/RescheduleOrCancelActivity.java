@@ -70,7 +70,7 @@ public class RescheduleOrCancelActivity extends AppCompatActivity {
     cancelButton = findViewById(R.id.bookVaccinechange_cancel);
 
     MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
-    materialDateBuilder.setTitleText("Select New date for appointment");
+    materialDateBuilder.setTitleText(R.string.appointment_date_picker_title);
 
     final MaterialDatePicker materialDatePicker =
             materialDateBuilder
@@ -117,13 +117,13 @@ public class RescheduleOrCancelActivity extends AppCompatActivity {
           currentBooking.setAppointmentDate(newdate.getText().toString());
           db.collection("bookings").document(currentBooking.getFbDocID()).set(currentBooking);
 
-          Toast toast = Toast.makeText(getApplicationContext(), "Appointment has been rescheduled", Toast.LENGTH_LONG);
+          Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.appointment_rescheduled_confirm), Toast.LENGTH_LONG);
           toast.show();
           Intent i = new Intent(getApplicationContext(), HomeActivity.class);
           startActivity(i);
       }
       else{
-        Toast.makeText(getApplicationContext(), "Invalid Date Selected", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.invalid_date_selection), Toast.LENGTH_LONG).show();
       }
 
   }

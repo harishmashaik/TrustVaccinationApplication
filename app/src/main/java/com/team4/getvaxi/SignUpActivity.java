@@ -74,8 +74,6 @@ public class SignUpActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    //Log.i(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
 
                                     user.sendEmailVerification()
@@ -115,14 +113,13 @@ public class SignUpActivity extends AppCompatActivity {
 
             else
             {
-                Toast toast = Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.signup_invalid_email_toast), Toast.LENGTH_SHORT);
                 toast.show();
             }
       }
-
         else
         {
-            Toast toast = Toast.makeText(getApplicationContext(), "Password Mismatch", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.signup_password_mismatch_toast), Toast.LENGTH_SHORT);
             toast.show();
 
         }

@@ -48,14 +48,14 @@
                 android:id="@+id/textField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="307dp"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:hint="@string/add_new_child_activity_name_hint">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/newchld_childName"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="56dp"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -64,6 +64,7 @@
                 android:id="@+id/linearLayout5"
                 android:layout_width="327dp"
                 android:layout_height="67dp"
+                android:layout_marginTop="3dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

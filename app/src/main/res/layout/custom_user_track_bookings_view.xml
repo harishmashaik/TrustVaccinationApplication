@@ -82,7 +82,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Review" />
+                    android:text="@string/user_track_bookings_activity_review_button" />
             </LinearLayout>
 
            <LinearLayout
@@ -99,7 +99,7 @@
                    android:textAppearance="?attr/textAppearanceBody2"
                    android:textColor="#000000"
                    android:textSize="22sp"
-                   android:text="Info"
+                   android:text="@string/user_track_bookings_activity_info_label"
                    android:textStyle="italic" />
 
                <TextView

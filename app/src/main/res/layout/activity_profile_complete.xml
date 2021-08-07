@@ -51,7 +51,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pro_comple_fullname"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="56dp"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -124,7 +124,7 @@
                 android:id="@+id/textInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="304dp"
-                android:layout_height="51dp"
+                android:layout_height="56dp"
                 app:layout_constraintBottom_toTopOf="@+id/but_update_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -135,7 +135,7 @@
                 <AutoCompleteTextView
                     android:id="@+id/profile_complete_province_list"
                     android:layout_width="match_parent"
-                    android:layout_height="41dp"
+                    android:layout_height="50dp"
                     android:inputType="none" />
 
 
@@ -145,7 +145,7 @@
                 android:id="@+id/textField_address"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="308dp"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:hint="Address"
                 app:layout_constraintBottom_toTopOf="@+id/but_update_profile"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -157,7 +157,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pro_comple_address"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="56dp"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 

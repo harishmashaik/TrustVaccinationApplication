@@ -38,5 +38,34 @@
     <string name="add_new_child_activity_dob_hint">Child Date of Birth</string>
     <string name="add_new_child_activity_add_child_button">Add Child</string>
 
+    //trackbookings view holder
+    <string name="user_track_bookings_activity_review_button">Review</string>
+    <string name="user_track_bookings_activity_info_label">Info</string>
+
+    <string name="booking_status_confirmed">Confimed</string>
+    <string name="booking_status_declined">Declined</string>
+    <string name="booking_status_pending_with_CLSC">Pending With CLSC</string>
+    <string name="booking_status_cancelled"> Cancelled</string>
+
+
+    //toasts
+    <string name="toast_booking_conpleted_wait_confirmation">Booking Completed: Wait for Confirmation</string>
+    <string name="booking_validation_failed">Validation Failed : Try again</string>
+    <string name="toast_no_boorkings">Sorry You dont have any bookings</string>
+    <string name="appointment_rescheduled_confirm">Appointment has been rescheduled</string>
+    <string name="invalid_date_selection">Invalid Date Selected</string>
+
+
+    //datepicker
+    <string name="appointment_date_picker_title">Select an Appointment date</string>
+    <string name="date_of_birth_picker_title">Select an Date of Birth</string>
+
+    //signup&login
+    <string name="signup_invalid_email_toast">Invalid Email</string>
+    <string name="signup_password_mismatch_toast">Password Mismatch</string>
+    <string name="signup_password_invalid_phone_number">Invalid Phone Number</string>
+
+
+
 
 </resources>
