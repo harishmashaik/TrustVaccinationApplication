@@ -42,4 +42,14 @@
     <string name="signup_invalid_email_toast">Email invalide</string>
     <string name="signup_password_mismatch_toast">Non concordance des mots de passe</string>
     <string name="signup_password_invalid_phone_number">" Numéro de téléphone invalide"</string>
+    <string name="clc_home_new_bookings">Nouvelles réservations</string>
+    <string name="clc_home_confirmed_bookings">"Réservations confirmées "</string>
+    <string name="clc_home_vaccine_stock">Stock de vaccins</string>
+    <string name="clc_home_new_questions">Nouvelles questions</string>
+    <string name="clc_home_new_hospital">Nouvel hôpital</string>
+    <string name="clc_home_logout">se déconnecter</string>
+    <string name="log_out_caution">Voulez-vous vous déconnecter de la TrustVaccination ?</string>
+    <string name="log_out_caution_yes">oui</string>
+    <string name="log_out_caution_no">Non</string>
+    <string name="log_out_messgae_signing_out">Déconnexion...</string>
 </resources>

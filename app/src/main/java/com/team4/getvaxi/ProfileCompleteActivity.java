@@ -47,6 +47,7 @@ public class ProfileCompleteActivity extends AppCompatActivity {
   Person personDetails = new Person();
   String userID;
 
+  @RequiresApi(api = Build.VERSION_CODES.R)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -71,20 +72,6 @@ public class ProfileCompleteActivity extends AppCompatActivity {
 
     provincesList.setAdapter(adapter);
 
-//    provincesList.setOnItemClickListener(
-//            (parent, view, position, id) -> {
-//              provincesList.getText().toString();
-//              personChildInfo.forEach(
-//                      c -> {
-//                        if (dropdownChildList.getText().toString().equals(c.getChildName())) {
-//                          // text_childAge.setText(Integer.toString(c.getChildAge()));
-//                          text_childAge.setText(c.getDateOfBirth());
-//                        }
-//                      });
-//              System.out.println("Asa");
-//            });
-
-
     getUserAndBundleDetails();
 
     but_updateProfile = findViewById(R.id.but_update_profile);
@@ -93,19 +80,27 @@ public class ProfileCompleteActivity extends AppCompatActivity {
 
   @RequiresApi(api = Build.VERSION_CODES.R)
   private void updateButtonHandler() {
-    personDetails.setResidingAddress(text_address.getText().toString());
-    personDetails.setResidingProvince(provincesList.getText().toString());
-    personDetails.setPersonName(String.valueOf(text_fullName.getText()));
-    personDetails.setPersonKids(
-            Integer.parseInt(String.valueOf(text_comple_no_of_kids.getText())));
-    personDetails.setPersonCommonLawPartnerName(
-            String.valueOf(text_common_law_partner.getText()));
-    System.out.println("the perosnla details are");
-    System.out.println(personDetails.toString());
-    if (Commons.isValidPhoneNumber(text_phone_number.getText().toString())) {
-      showToast(getString(R.string.signup_password_invalid_phone_number));
+    String address = text_address.getText().toString();
+    String province = provincesList.getText().toString();
+    String name = String.valueOf(text_fullName.getText().toString());
+    String kids = text_comple_no_of_kids.getText().toString();
+    String lawPartner = text_common_law_partner.getText().toString();
+    String phomeNum = text_phone_number.getText().toString();
+    if (checkEmpty(address)
+          && checkEmpty(province)
+          && checkEmpty(name)
+          && checkEmpty(kids)
+          &&checkEmpty(lawPartner)
+          &&checkEmpty(phomeNum)) {
+      showToast(getString(R.string.booking_validation_failed));
     } else {
-      personDetails.setPersonPhoneNum(String.valueOf(text_phone_number.getText()));
+      Commons.isValidPhoneNumber(text_phone_number.getText().toString());
+      personDetails.setResidingAddress(address);
+      personDetails.setResidingProvince(province);
+      personDetails.setPersonName(name);
+      personDetails.setPersonKids(Integer.parseInt(kids));
+      personDetails.setPersonCommonLawPartnerName(String.valueOf(lawPartner));
+      personDetails.setPersonPhoneNum(String.valueOf(phomeNum));
       Bundle b = new Bundle();
       b.putSerializable("personDetails", (Serializable) personDetails);
       Intent intent = new Intent(getApplicationContext(), ChildInfoActivity.class);
@@ -113,6 +108,11 @@ public class ProfileCompleteActivity extends AppCompatActivity {
       startActivity(intent);
     }
 
+  }
+
+  private boolean checkEmpty(String input){
+    if(input.matches("") || input == null) return true;
+    return false;
   }
 
   public void getUserAndBundleDetails(){

@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="Before your Travel"
+                android:text="@string/before_u_travel_label"
                 android:textColor="@color/colorMenuBlue"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -47,11 +47,7 @@
                 style="@style/AppTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Protect your child and family when traveling in the United States or abroad by:
-
-Getting the shots required for all countries you and your family plan to visit during your trip
-Making sure you and your family are up-to-date on all routine U.S. vaccines
-Staying informed about travel notices and alerts and how they can affect your family’s travel plans"
+                android:text="@string/before_u_travel_label_description"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
@@ -61,7 +57,7 @@ Staying informed about travel notices and alerts and how they can affect your fa
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:text="Vaccinate at least a month before you travel"
+                android:text="@string/before_u_travel_activity_month_before"
                 android:textColor="@color/colorMenuBlue"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -71,11 +67,7 @@ Staying informed about travel notices and alerts and how they can affect your fa
                 style="@style/AppTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your body needs time to build up immunity.
-You may need several weeks to get all the doses of the vaccine.
-Your primary doctor may not stock travel vaccines. Visit a travel medical clinic.
-You’ll need time to prepare for your pre-travel appointment.
-If the country you visit requires a yellow fever vaccine, only a limited number of clinics have the vaccine and will probably be some distance from where you live. You must get it at least 10 days before travel."
+                android:text="@string/before_u_tarvel_activity_moth_bfore_description"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 

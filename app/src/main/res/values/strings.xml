@@ -71,11 +71,23 @@
     <string name="clc_home_vaccine_stock">Vaccine Stock</string>
     <string name="clc_home_new_questions">New Questions</string>
     <string name="clc_home_new_hospital">New Hospital</string>
-    <string name="clc_home_logout">NLog Out</string>
+    <string name="clc_home_logout">Log Out</string>
     <string name="log_out_caution">Do you want to logout from the TrustVaccination ?</string>
     <string name="log_out_caution_yes">Yes</string>
     <string name="log_out_caution_no">No</string>
     <string name="log_out_messgae_signing_out">Signing Out...</string>
+
+    //before you travel
+    <string name="before_u_travel_label">Before your Travel</string>
+    <string name="before_u_travel_label_description">Protect your child and family when traveling in the United States or abroad by:
+        Getting the shots required for all countries you and your family plan to visit during your trip Making sure you and your family are up-to-date on all routine U.S. vaccines Staying informed about travel notices and alerts and how they can affect your family’s travel plans</string>
+    <string name="before_u_travel_activity_month_before">Vaccinate at least a month before you travel</string>
+    <string name="before_u_tarvel_activity_moth_bfore_description">Your body needs time to build up immunity.
+You may need several weeks to get all the doses of the vaccine.
+Your primary doctor may not stock travel vaccines. Visit a travel medical clinic.
+You’ll need time to prepare for your pre-travel appointment.
+If the country you visit requires a yellow fever vaccine, only a limited number of clinics have the vaccine and will probably be some distance from where you live. You must get it at least 10 days before travel.</string>
+    <string name="before_u_travel_activity_last_min_travel_label">Vaccinate at least a month before you travel</string>
 
 
 
