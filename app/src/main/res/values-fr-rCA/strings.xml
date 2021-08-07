@@ -52,4 +52,23 @@
     <string name="log_out_caution_yes">oui</string>
     <string name="log_out_caution_no">Non</string>
     <string name="log_out_messgae_signing_out">Déconnexion...</string>
+    <string name="why_vaccine_acctivity_head_label">" Pourquoi vacciner"</string>
+    <string name="why_vaccine_acctivity_more_details">Plus de détails</string>
+    <string name="why_vaccine_activity_vaccine_decison">Prendre la décision vaccinale</string>
+    <string name="why_vaccine_activity_learn_about">Apprenez tout sur les vaccins et l\'immunité, de quoi sont faits les vaccins et comment ils sont protégés.</string>
+    <string name="user_track_bookings_name_label">" Nom"</string>
+    <string name="user_track_bookings_dob_label">Date de naissance</string>
+    <string name="user_track_bookings_appointment_date_label">" Date de rendez-vous"</string>
+    <string name="clc_add_hospital_hospital_name">Nom de l\'hôpital</string>
+    <string name="clc_add_hospital_hospital_address">" Adresse de l'hôpital"</string>
+    <string name="clc_add_hospital_add_hospital_button">" Ajouter un hôpital"</string>
+    <string name="before_u_travel_label">Avant votre voyage</string>
+    <string name="before_u_travel_label_description">Protégez votre enfant et votre famille lorsque vous voyagez aux États-Unis ou à l\'étranger en :         Obtenir les vaccins requis pour tous les pays que vous et votre famille prévoyez de visiter pendant votre voyage S\'assurer que vous et votre famille êtes à jour sur tous les vaccins de routine aux États-Unis Rester informé des avis et alertes de voyage et de la façon dont ils peuvent affecter les projets de voyage de votre famille</string>
+    <string name="before_u_travel_activity_month_before">Vaccinez au moins un mois avant votre départ</string>
+    <string name="before_u_tarvel_activity_moth_bfore_description">Votre corps a besoin de temps pour développer son immunité. Vous pourriez avoir besoin de plusieurs semaines pour recevoir toutes les doses du vaccin. Votre médecin traitant peut ne pas stocker de vaccins de voyage. Visitez une clinique médicale de voyage. Vous aurez besoin de temps pour préparer votre rendez-vous avant le voyage. Si le pays que vous visitez nécessite un vaccin contre la fièvre jaune, seul un nombre limité de cliniques disposent du vaccin et seront probablement à une certaine distance de votre lieu de résidence. Vous devez l\'obtenir au moins 10 jours avant le voyage.</string>
+    <string name="before_u_travel_activity_last_min_travel_label">Voyageurs de dernière minute</string>
+    <string name="before_u_travel_activity_last_min_travel_dec">Lorsque vous voyagez dans un autre pays, sachez que votre médecin peut ne pas avoir de vaccin de voyage et que vous devrez peut-être vous rendre dans une clinique médicale.         De nombreux vaccins de voyage nécessitent plusieurs injections ou prennent du temps pour devenir pleinement efficaces. Mais certains vaccins à doses multiples (comme l\'hépatite A) peuvent encore vous offrir une protection partielle après une seule dose. Certains peuvent également être administrés selon un « programme accéléré », ce qui signifie que les doses sont administrées sur une période de temps plus courte.r</string>
+    <string name="my_profile_activity_add_child_button">Ajouter un enfant</string>
+    <string name="my_profile_activity_update_button">Mettre à jour</string>
+    <string name="my_profile_activity_children_info">Infos enfants...</string>
 </resources>

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="12dp"
-                android:text="Why Vaccinate"
+                android:text="@string/why_vaccine_acctivity_head_label"
                 android:textColor="#292424"
                 android:textSize="30sp"
                 android:textStyle="bold">
@@ -109,7 +109,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="More Details"
+                            android:text="@string/why_vaccine_acctivity_more_details"
                             android:textSize="10sp" />
 
                     </LinearLayout>
@@ -165,7 +165,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="More Details"
+                            android:text="@string/why_vaccine_acctivity_more_details"
                             android:textSize="10sp" />
 
 
@@ -182,14 +182,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Making the Vaccine Decision"
+                            android:text="@string/why_vaccine_activity_vaccine_decison"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Learn all about vaccines and immunity, what vaccines are made of, and how they are kept safe."
+                            android:text="@string/why_vaccine_activity_learn_about"
                             android:textAppearance="?attr/textAppearanceBody2"
                             android:textColor="?android:attr/textColorSecondary" />
 

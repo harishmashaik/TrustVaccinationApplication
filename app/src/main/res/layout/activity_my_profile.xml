@@ -95,7 +95,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
-                android:text="Children Info.."
+                android:text="@string/my_profile_activity_children_info"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -126,7 +126,7 @@
             android:id="@+id/but_addChild"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:text="Add Child"
+            android:text="@string/my_profile_activity_add_child_button"
             android:backgroundTint="@color/colorPrimaryDark"
             android:clickable="true"
             android:textColor="#FFFFFF"
@@ -139,7 +139,7 @@
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:text="Update"
+            android:text="@string/my_profile_activity_update_button"
             android:layout_margin="5dp"
             android:textColor="#FFFFFF"
             android:visibility="visible"

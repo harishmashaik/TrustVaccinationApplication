@@ -64,8 +64,8 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     this.user = booking;
     this.adapter = adapter;
     vaccineName.setText(booking.getVaccineName());
-    childNameAndAGe.setText("Name: " + booking.getName() + " , DOB: " + booking.getAge());
-    dateofBooking.setText("Appointement Date: " + booking.getAppointmentDate());
+    childNameAndAGe.setText(R.string.user_track_bookings_name_label+": " + booking.getName() + " ,  " +R.string.user_track_bookings_dob_label+": " + booking.getAge());
+    dateofBooking.setText(R.string.user_track_bookings_appointment_date_label+": " + booking.getAppointmentDate());
     if (booking.getBoookingStatus().equals("CONFM")) {
       statusOfBooking.setText(R.string.booking_status_confirmed);
       if (booking.getVaccinationCenterDetails() != null)

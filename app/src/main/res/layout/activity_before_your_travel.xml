@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:text="Last-minute travelers"
+                android:text="@string/before_u_travel_activity_last_min_travel_label"
                 android:textColor="@color/colorMenuBlue"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -87,9 +87,7 @@
                 style="@style/AppTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="When traveling to another country be aware your doctor may not carry a travel vaccine and you may have to visit a medical clinic.
-
-Many travel vaccines require multiple shots or take time to become fully effective. But some multiple-dose vaccines (like hepatitis A) can still give you partial protection after just one dose. Some can also be given on an “accelerated schedule,” meaning doses are given in a shorter period of time."
+                android:text="@string/before_u_travel_activity_last_min_travel_dec"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 

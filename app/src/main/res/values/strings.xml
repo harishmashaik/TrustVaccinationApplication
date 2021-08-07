@@ -10,6 +10,11 @@
 
     <string name="why_vaccinate_des">On-time vaccination throughout childhood is essential because it helps provide immunity before children are exposed to potentially life-threatening diseases. Vaccines are tested to ensure that they are safe and effective for children to receive at the recommended ages.</string>
     <string name="why_vaccine_well_chile_visit">As communities open up, it’s important your child goes in for their well-child visit.</string>
+    <string name="why_vaccine_acctivity_head_label">Why Vaccinate</string>
+    <string name="why_vaccine_acctivity_more_details">More details</string>
+    <string name="why_vaccine_activity_vaccine_decison">Making the Vaccine Decision</string>
+    <string name="why_vaccine_activity_learn_about">Learn all about vaccines and immunity, what vaccines are made of, and how they are kept safe.</string>
+
 
     <string name="view_bookings_confirm">Confirm</string>
     <string name="view_bookings_decline">Decline</string>
@@ -41,6 +46,10 @@
     //trackbookings view holder
     <string name="user_track_bookings_activity_review_button">Review</string>
     <string name="user_track_bookings_activity_info_label">Info</string>
+
+    <string name="user_track_bookings_name_label">Name</string>
+    <string name="user_track_bookings_dob_label">DOB</string>
+    <string name="user_track_bookings_appointment_date_label">Appointment Date</string>
 
     <string name="booking_status_confirmed">Confimed</string>
     <string name="booking_status_declined">Declined</string>
@@ -77,6 +86,10 @@
     <string name="log_out_caution_no">No</string>
     <string name="log_out_messgae_signing_out">Signing Out...</string>
 
+    <string name="clc_add_hospital_hospital_name">Hospital Name</string>
+    <string name="clc_add_hospital_hospital_address">Hospital Address</string>
+    <string name="clc_add_hospital_add_hospital_button">Add Hospital</string>
+
     //before you travel
     <string name="before_u_travel_label">Before your Travel</string>
     <string name="before_u_travel_label_description">Protect your child and family when traveling in the United States or abroad by:
@@ -87,9 +100,13 @@ You may need several weeks to get all the doses of the vaccine.
 Your primary doctor may not stock travel vaccines. Visit a travel medical clinic.
 You’ll need time to prepare for your pre-travel appointment.
 If the country you visit requires a yellow fever vaccine, only a limited number of clinics have the vaccine and will probably be some distance from where you live. You must get it at least 10 days before travel.</string>
-    <string name="before_u_travel_activity_last_min_travel_label">Vaccinate at least a month before you travel</string>
+    <string name="before_u_travel_activity_last_min_travel_label">Last-minute travelers</string>
+    <string name="before_u_travel_activity_last_min_travel_dec">When traveling to another country be aware your doctor may not carry a travel vaccine and you may have to visit a medical clinic.
+        Many travel vaccines require multiple shots or take time to become fully effective. But some multiple-dose vaccines (like hepatitis A) can still give you partial protection after just one dose. Some can also be given on an “accelerated schedule,” meaning doses are given in a shorter period of time.r</string>
 
-
-
+//my profile
+    <string name="my_profile_activity_add_child_button">Add Child</string>
+    <string name="my_profile_activity_update_button">Update</string>
+    <string name="my_profile_activity_children_info">Children Info...</string>
 
 </resources>
