@@ -51,7 +51,9 @@
     <string name="user_track_bookings_dob_label">DOB</string>
     <string name="user_track_bookings_appointment_date_label">Appointment Date</string>
 
-    <string name="booking_status_confirmed">Confimed</string>
+    <string name="booking_status_confirmed">Confirmed</string>
+    <string name="booking_status_vacinated">Your Child has Vaccinated at </string>
+    <string name="booking_status_completed">Completed</string>
     <string name="booking_status_declined">Declined</string>
     <string name="booking_status_pending_with_CLSC">Pending With CLSC</string>
     <string name="booking_status_cancelled"> Cancelled</string>

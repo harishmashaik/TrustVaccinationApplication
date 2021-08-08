@@ -41,6 +41,7 @@ public class YourChildVaccineVisitViewHolder extends RecyclerView.ViewHolder {
   private String nameLabel;
   private String ageLabel;
   private String appDateLabel;
+  private String vaccinatedLabel;
 
   private Booking user;
   private YourChildVaccineVisitAdapter adapter;
@@ -60,28 +61,34 @@ public class YourChildVaccineVisitViewHolder extends RecyclerView.ViewHolder {
     nameLabel = layoutView.getContext().getString(R.string.user_track_bookings_name_label);
     ageLabel = layoutView.getContext().getString(R.string.user_track_bookings_dob_label);
     appDateLabel = layoutView.getContext().getString(R.string.user_track_bookings_appointment_date_label);
+    vaccinatedLabel = layoutView.getContext().getString(R.string.booking_status_vacinated);
 
-    cancelButton.setOnClickListener(
-        v -> {
-          Intent i = new Intent(layoutView.getContext(), RescheduleOrCancelActivity.class);
-          Bundle b = new Bundle();
-          b.putSerializable("FROMTRACKHOLDER", (Serializable) user);
-          i.putExtras(b);
-          layoutView.getContext().startActivity(i);
-        });
+//    cancelButton.setOnClickListener(
+//        v -> {
+//          Intent i = new Intent(layoutView.getContext(), RescheduleOrCancelActivity.class);
+//          Bundle b = new Bundle();
+//          b.putSerializable("FROMTRACKHOLDER", (Serializable) user);
+//          i.putExtras(b);
+//          layoutView.getContext().startActivity(i);
+//        });
   }
 
   public void bind(Booking booking, YourChildVaccineVisitAdapter adapter) {
     this.user = booking;
     this.adapter = adapter;
     vaccineName.setText(booking.getVaccineName());
+  StringBuilder remarks = new StringBuilder();
+  remarks.append(vaccinatedLabel +" ");
+  remarks.append(booking.getVaccinationCenterDetails().get("Name&Addr").toString());
+  remarks.append(", on " + booking.getAppointmentDate());
 
     childNameAndAGe.setText(nameLabel+": " + booking.getName() + " ,  " +ageLabel+": " + booking.getAge());
     dateofBooking.setText(appDateLabel+": " + booking.getAppointmentDate());
     if (booking.getBoookingStatus().equals("CONFM")) {
-      statusOfBooking.setText(R.string.booking_status_confirmed);
+      cancelButton.setVisibility(View.GONE);
+      statusOfBooking.setText(R.string.booking_status_completed);
       if (booking.getVaccinationCenterDetails() != null)
-        remarksOfBooking.setText(booking.getVaccinationCenterDetails().get("Name&Addr").toString());
+       remarksOfBooking.setText(remarks);
       else remarksOfBooking.setVisibility(View.GONE);
 
     } else if (booking.getBookingReviewed() == false
