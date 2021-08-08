@@ -35,6 +35,11 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
 
   private final MaterialCardView materialCardView;
 
+  private String nameLabel;
+  private String ageLabel;
+  private String appDateLabel;
+  private String vaccinatedLabel;
+
   private Booking user;
   private TrackBookingAdapter adapter;
 
@@ -50,6 +55,11 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     remarksOfBooking = layoutView.findViewById(R.id.custom_user_track_booking_remarks);
     infoOfBooking = layoutView.findViewById(R.id.custom_user_track_booking_remarks_label);
 
+    nameLabel = layoutView.getContext().getString(R.string.user_track_bookings_name_label);
+    ageLabel = layoutView.getContext().getString(R.string.user_track_bookings_dob_label);
+    appDateLabel = layoutView.getContext().getString(R.string.user_track_bookings_appointment_date_label);
+    vaccinatedLabel = layoutView.getContext().getString(R.string.booking_status_vacinated);
+
     cancelButton.setOnClickListener(
         v -> {
           Intent i = new Intent(layoutView.getContext(), RescheduleOrCancelActivity.class);
@@ -64,8 +74,8 @@ public class TrackBookingViewHolder extends RecyclerView.ViewHolder {
     this.user = booking;
     this.adapter = adapter;
     vaccineName.setText(booking.getVaccineName());
-    childNameAndAGe.setText(R.string.user_track_bookings_name_label+": " + booking.getName() + " ,  " +R.string.user_track_bookings_dob_label+": " + booking.getAge());
-    dateofBooking.setText(R.string.user_track_bookings_appointment_date_label+": " + booking.getAppointmentDate());
+    childNameAndAGe.setText(nameLabel+": " + booking.getName() + " ,  " +ageLabel+": " + booking.getAge());
+    dateofBooking.setText(appDateLabel+": " + booking.getAppointmentDate());
     if (booking.getBoookingStatus().equals("CONFM")) {
       statusOfBooking.setText(R.string.booking_status_confirmed);
       if (booking.getVaccinationCenterDetails() != null)

@@ -60,7 +60,7 @@ public class ProfileCompleteActivity extends AppCompatActivity {
     personDetails.setPersonEmail(user.getEmail());
 
     text_fullName = findViewById(R.id.pro_comple_fullname);
-    text_comple_no_of_kids = findViewById(R.id.pro_comple_no_of_kids);
+    //text_comple_no_of_kids = findViewById(R.id.pro_comple_no_of_kids);
     text_common_law_partner = findViewById(R.id.pro_comple_fullname_law_partner);
     text_phone_number = findViewById(R.id.pro_comple_PhoneNumber);
     provincesList = findViewById(R.id.profile_complete_province_list);
@@ -83,13 +83,12 @@ public class ProfileCompleteActivity extends AppCompatActivity {
     String address = text_address.getText().toString();
     String province = provincesList.getText().toString();
     String name = String.valueOf(text_fullName.getText().toString());
-    String kids = text_comple_no_of_kids.getText().toString();
+//    String kids = text_comple_no_of_kids.getText().toString();
     String lawPartner = text_common_law_partner.getText().toString();
     String phomeNum = text_phone_number.getText().toString();
     if (checkEmpty(address)
           && checkEmpty(province)
           && checkEmpty(name)
-          && checkEmpty(kids)
           &&checkEmpty(lawPartner)
           &&checkEmpty(phomeNum)) {
       showToast(getString(R.string.booking_validation_failed));
@@ -98,7 +97,7 @@ public class ProfileCompleteActivity extends AppCompatActivity {
       personDetails.setResidingAddress(address);
       personDetails.setResidingProvince(province);
       personDetails.setPersonName(name);
-      personDetails.setPersonKids(Integer.parseInt(kids));
+      //personDetails.setPersonKids(Integer.parseInt(kids));
       personDetails.setPersonCommonLawPartnerName(String.valueOf(lawPartner));
       personDetails.setPersonPhoneNum(String.valueOf(phomeNum));
       Bundle b = new Bundle();

@@ -111,4 +111,13 @@ If the country you visit requires a yellow fever vaccine, only a limited number 
     <string name="my_profile_activity_update_button">Update</string>
     <string name="my_profile_activity_children_info">Children Info...</string>
 
+    //profile compelte
+    <string name="profile_complete_child_additional_info">Info: Minimum one child information is required here, You can add more children inside the Myprofile section.</string>
+    //hints
+    <string name="profile_complete_name">Full Name</string>
+    <string name="profile_complete_law_partner_name">Common Law Partner name</string>
+    <string name="profile_complete_law_phone_number">Phone Number</string>
+    <string name="profile_complete_law_province">Please Select Province</string>
+    <string name="profile_complete_law_address">Address</string>
+    <string name="profile_complete_law_button_update">Update Profile</string>
 </resources>

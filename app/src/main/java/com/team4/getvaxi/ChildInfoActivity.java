@@ -56,6 +56,7 @@ public class ChildInfoActivity extends AppCompatActivity {
 
   EditText childInfoName;
   EditText childInfoAge;
+  TextView childAddInfo;
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   @Override
@@ -66,6 +67,8 @@ public class ChildInfoActivity extends AppCompatActivity {
     but_next = findViewById(R.id.childInfoAC_nextbutton);
 
     linearLayout = findViewById(R.id.editTextContainer);
+    childAddInfo = findViewById(R.id.child_activity_info);
+    childAddInfo.setText(getString(R.string.profile_complete_child_additional_info));
 
     getBundleData();
     prepareChildViewsandGetData(1);
@@ -90,13 +93,7 @@ public class ChildInfoActivity extends AppCompatActivity {
       c1.setDateOfBirth(childInfoAge.getText().toString());
 
       childArrayList.add(c1);
-
-      if (childArrayList.size() != person.getPersonKids()) {
-        prepareChildViewsandGetData(childArrayList.size() + 1);
-
-      } else {
-        updateUsersProfile();
-      }
+      updateUsersProfile();
 
     } else {
       showToast("Fields should not be empty");
@@ -187,14 +184,6 @@ public class ChildInfoActivity extends AppCompatActivity {
             Log.i(TAG, childInfoAge.getText().toString());
           });
     }
-  }
-
-  @RequiresApi(api = Build.VERSION_CODES.O)
-  private int getAge(String dob) {
-    String dobDay = dob.substring(4, 6);
-    String dobMonth = dob.substring(0, 3);
-    String dobYear = dob.substring(8, 12);
-    return (LocalDate.now().getYear() - Integer.parseInt(dobYear));
   }
 
   private void showToast(String messageToast) {

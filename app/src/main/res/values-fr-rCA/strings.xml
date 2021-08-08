@@ -71,4 +71,6 @@
     <string name="my_profile_activity_add_child_button">Ajouter un enfant</string>
     <string name="my_profile_activity_update_button">Mettre à jour</string>
     <string name="my_profile_activity_children_info">Infos enfants...</string>
+    <string name="booking_status_vacinated">" Votre enfant a été vacciné à"</string>
+    <string name="booking_status_completed">" Terminé"</string>
 </resources>

@@ -63,14 +63,6 @@ public class YourChildVaccineVisitViewHolder extends RecyclerView.ViewHolder {
     appDateLabel = layoutView.getContext().getString(R.string.user_track_bookings_appointment_date_label);
     vaccinatedLabel = layoutView.getContext().getString(R.string.booking_status_vacinated);
 
-//    cancelButton.setOnClickListener(
-//        v -> {
-//          Intent i = new Intent(layoutView.getContext(), RescheduleOrCancelActivity.class);
-//          Bundle b = new Bundle();
-//          b.putSerializable("FROMTRACKHOLDER", (Serializable) user);
-//          i.putExtras(b);
-//          layoutView.getContext().startActivity(i);
-//        });
   }
 
   public void bind(Booking booking, YourChildVaccineVisitAdapter adapter) {

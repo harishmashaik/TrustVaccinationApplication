@@ -39,7 +39,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="307dp"
                 android:layout_height="60dp"
-                android:hint="Full Name"
+                android:hint="@string/profile_complete_name"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -61,7 +61,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="308dp"
                 android:layout_height="67dp"
-                android:hint="Common law Partner Name"
+                android:hint="@string/profile_complete_law_partner_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,26 +75,6 @@
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_no_of_kids"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="308dp"
-                android:layout_height="60dp"
-
-                android:hint="Number of Kids"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField_law_partner"
-                app:layout_constraintVertical_bias="0.0">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/pro_comple_no_of_kids"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,12 +82,12 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="308dp"
                 android:layout_height="60dp"
-                android:hint="Phone Number"
+                android:hint="@string/profile_complete_law_phone_number"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField_no_of_kids"
+                app:layout_constraintTop_toBottomOf="@+id/textField_law_partner"
                 app:layout_constraintVertical_bias="0.0">
 
 
@@ -125,6 +105,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="304dp"
                 android:layout_height="56dp"
+                android:hint="@string/profile_complete_law_province"
                 app:layout_constraintBottom_toTopOf="@+id/but_update_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -146,7 +127,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="308dp"
                 android:layout_height="62dp"
-                android:hint="Address"
+                android:hint="@string/profile_complete_law_address"
                 app:layout_constraintBottom_toTopOf="@+id/but_update_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -165,7 +146,7 @@
                 android:id="@+id/but_update_profile"
                 android:layout_width="340dp"
                 android:layout_height="56dp"
-                android:text="Update Profile"
+                android:text="@string/profile_complete_law_button_update"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
