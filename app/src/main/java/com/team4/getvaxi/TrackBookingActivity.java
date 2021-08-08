@@ -34,7 +34,7 @@ public class TrackBookingActivity extends AppCompatActivity {
   private FirebaseAuth mAuth;
   FirebaseUser user;
   FirebaseFirestore db = FirebaseFirestore.getInstance();
-  final YourChildVaccineVisitAdapter trackbookingsAdapter = new YourChildVaccineVisitAdapter();
+  final TrackBookingAdapter trackbookingsAdapter = new TrackBookingAdapter();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

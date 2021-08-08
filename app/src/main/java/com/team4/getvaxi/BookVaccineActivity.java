@@ -110,10 +110,12 @@ public class BookVaccineActivity extends AppCompatActivity {
     materialDateBuilder.setTitleText(R.string.appointment_date_picker_title);
 
     final MaterialDatePicker materialDatePicker =
-            materialDateBuilder
-                    .setCalendarConstraints(
-                            new CalendarConstraints.Builder()
-                                    .setValidator(DateValidatorPointForward.from(NEXT_TWO_DAYS)).build()).build();
+        materialDateBuilder
+            .setCalendarConstraints(
+                new CalendarConstraints.Builder()
+                    .setValidator(DateValidatorPointForward.from(NEXT_TWO_DAYS))
+                    .build())
+            .build();
 
     pickDateOoAppointment.setOnClickListener(
         v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));
@@ -168,17 +170,17 @@ public class BookVaccineActivity extends AppCompatActivity {
       db.collection("bookings")
           .add(newBooking)
           .addOnSuccessListener(
-                  documentReference -> {
-                    Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                    try {
-                      toastAndNextActivity(
-                          getString(R.string.toast_booking_conpleted_wait_confirmation), "HomeActivity");
-                    } catch (ClassNotFoundException e) {
-                      e.printStackTrace();
-                    }
-                  })
-          .addOnFailureListener(
-                  e -> Log.w(TAG, "Error adding document", e));
+              documentReference -> {
+                Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                try {
+                  toastAndNextActivity(
+                      getString(R.string.toast_booking_conpleted_wait_confirmation),
+                      "HomeActivity");
+                } catch (ClassNotFoundException e) {
+                  e.printStackTrace();
+                }
+              })
+          .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
 
     } else {
       toastAndNextActivity(getString(R.string.booking_validation_failed), "HomeActivity");
@@ -188,7 +190,8 @@ public class BookVaccineActivity extends AppCompatActivity {
   private boolean validateBooking(Booking booking) {
 
     if (booking.getVaccineName() != null
-        && booking.getAppointmentDate() != null && booking.getAppointmentDate().length()>8
+        && booking.getAppointmentDate() != null
+        && booking.getAppointmentDate().length() > 8
         && booking.getAge() != null
         && booking.getName() != null
         && booking.getName().length() >= 3
@@ -237,7 +240,6 @@ public class BookVaccineActivity extends AppCompatActivity {
             });
 
     System.out.println("the details are " + personDetails[0].toString());
-
   }
 
   @RequiresApi(api = Build.VERSION_CODES.N)

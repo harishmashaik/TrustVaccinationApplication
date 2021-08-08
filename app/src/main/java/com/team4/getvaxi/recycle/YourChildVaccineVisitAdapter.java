@@ -13,7 +13,8 @@ import com.team4.getvaxi.models.Booking;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YourChildVaccineVisitAdapter extends RecyclerView.Adapter<YourChildVaccineVisitViewHolder> {
+public class YourChildVaccineVisitAdapter
+    extends RecyclerView.Adapter<YourChildVaccineVisitViewHolder> {
 
   private List<Booking> bookings;
 
@@ -28,10 +29,12 @@ public class YourChildVaccineVisitAdapter extends RecyclerView.Adapter<YourChild
 
   @NonNull
   @Override
-  public YourChildVaccineVisitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public YourChildVaccineVisitViewHolder onCreateViewHolder(
+      @NonNull ViewGroup parent, int viewType) {
     final View customView =
         LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
-    YourChildVaccineVisitViewHolder userViewHolder = new YourChildVaccineVisitViewHolder(customView);
+    YourChildVaccineVisitViewHolder userViewHolder =
+        new YourChildVaccineVisitViewHolder(customView);
     return userViewHolder;
   }
 

@@ -6,4 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".YourChildVaccineActivity">
 
+
+    <include
+        android:id="@+id/user_bookingTrack_include"
+        layout="@layout/toolbar"
+        android:layout_width="409dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_child_vaccine_visit"
+        android:layout_width="406dp"
+        android:layout_height="575dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_bookingTrack_include"
+        app:layout_constraintVertical_bias="0.783" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
