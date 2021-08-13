@@ -132,7 +132,7 @@ public class YourChildVaccineActivity extends AppCompatActivity {
     collectConfirmed.forEach(
         booking -> {
           final String appointmentDate = booking.getAppointmentDate();
-          String dobDay = appointmentDate.substring(5, 7);
+          String dobDay = appointmentDate.substring(4, 6);
           String dobMonth = appointmentDate.substring(0, 3);
           String dobYear = appointmentDate.substring(8);
 
