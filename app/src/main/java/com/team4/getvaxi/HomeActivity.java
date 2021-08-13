@@ -3,6 +3,8 @@ package com.team4.getvaxi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,7 +40,11 @@ public class HomeActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    //  if(!isConnected(HomeActivity.this)) buildDialog(HomeActivity.this).show();
+    //  else {
+    //   Toast.makeText(HomeActivity.this,"Welcome", Toast.LENGTH_SHORT).show();
     setContentView(R.layout.activity_home);
+    // }
 
     mAuth = FirebaseAuth.getInstance();
 
@@ -118,17 +124,48 @@ public class HomeActivity extends AppCompatActivity {
           }
         });
 
-      txtYourChildVaccineVisit.setOnClickListener(
-              v -> {
-                  try {
-                      nextActivity("YourChildVaccineActivity");
-                  } catch (ClassNotFoundException e) {
-                      e.printStackTrace();
-                  }
-              });
+    txtYourChildVaccineVisit.setOnClickListener(
+        v -> {
+          try {
+            nextActivity("YourChildVaccineActivity");
+          } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+          }
+        });
 
+    txtLogout.setOnClickListener(v -> userSignOut());
+  }
 
-      txtLogout.setOnClickListener(v -> userSignOut());
+  public boolean isConnected(Context context) {
+    ConnectivityManager cm =
+        (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo netinfo = cm.getActiveNetworkInfo();
+    if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+      android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+      android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+      if ((mobile != null && mobile.isConnectedOrConnecting())
+          || (wifi != null && wifi.isConnectedOrConnecting())) return true;
+      else return false;
+    } else return false;
+  }
+
+  public AlertDialog.Builder buildDialog(Context c) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(c);
+    builder.setTitle("No Internet Connection");
+
+    builder.setMessage("You need to have Mobile Data or wifi to access this. Press ok to Exit");
+    builder.setPositiveButton(
+        "Ok",
+        new DialogInterface.OnClickListener() {
+
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+
+            finish();
+          }
+        });
+
+    return builder;
   }
 
   @Override
@@ -139,10 +176,13 @@ public class HomeActivity extends AppCompatActivity {
   }
 
   public void nextActivity(String str) throws ClassNotFoundException {
-
-    Intent nextActivityRequested =
-        new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + str));
-    startActivity(nextActivityRequested);
+    if (isConnected(HomeActivity.this)) {
+      Intent nextActivityRequested =
+          new Intent(getApplicationContext(), Class.forName("com.team4.getvaxi." + str));
+      startActivity(nextActivityRequested);
+    } else {
+      buildDialog(HomeActivity.this).show();
+    }
   }
 
   private void userSignOut() {
@@ -161,7 +201,9 @@ public class HomeActivity extends AppCompatActivity {
                   mAuth.signOut();
                   Toast toast =
                       Toast.makeText(
-                          getApplicationContext(), getString(R.string.log_out_messgae_signing_out), Toast.LENGTH_SHORT);
+                          getApplicationContext(),
+                          getString(R.string.log_out_messgae_signing_out),
+                          Toast.LENGTH_SHORT);
                   toast.show();
                   Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                   startActivity(intent);

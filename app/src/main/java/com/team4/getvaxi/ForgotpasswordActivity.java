@@ -1,6 +1,7 @@
 package com.team4.getvaxi;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,10 +20,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+@RequiresApi(api = Build.VERSION_CODES.R)
 public class ForgotpasswordActivity extends AppCompatActivity {
 
     public static final String TAG = "ForgotpasswordActivity";
     private Toolbar toolbar;
+    Commons commonsObj = new Commons();
 
 
     //declaring the firebase auth instance
@@ -87,26 +91,34 @@ public class ForgotpasswordActivity extends AppCompatActivity {
 
         if(emailAddress.length()>8) //checking email validation, with minimum characters length
         {
-            Log.i(TAG, emailAddress);
-            mAuth.sendPasswordResetEmail(emailAddress)  //from the auth instance invoking setresetpassword method.
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Log.i("mesg", "Email sent.");
-                                Toast toast = Toast.makeText(getApplicationContext(), "Email Send - Please check your Inbox", Toast.LENGTH_SHORT);
-                                toast.show();
-                                Intent routeToLoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(routeToLoginActivity);
+
+            if(commonsObj.isConnected(ForgotpasswordActivity.this)){
+                Log.i(TAG, emailAddress);
+                mAuth.sendPasswordResetEmail(emailAddress)  //from the auth instance invoking setresetpassword method.
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.i("mesg", "Email sent.");
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Email Send - Please check your Inbox", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                    Intent routeToLoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                                    startActivity(routeToLoginActivity);
+                                }
+                                else
+                                {
+                                    Log.i(TAG,    task.getException() + " "+ task.getResult());
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Email not send : Error Occurred", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
                             }
-                            else
-                            {
-                             Log.i(TAG,    task.getException() + " "+ task.getResult());
-                                Toast toast = Toast.makeText(getApplicationContext(), "Email not send : Error Occurred", Toast.LENGTH_SHORT);
-                                toast.show();
-                            }
-                        }
-                    });
+                        });
+            }
+            else{
+                //np internet connection
+                commonsObj.buildDialog(ForgotpasswordActivity.this).show();
+            }
+
 
         }
 

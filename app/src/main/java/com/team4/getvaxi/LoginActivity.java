@@ -2,6 +2,7 @@ package com.team4.getvaxi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,12 +25,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.List;
 import java.util.Map;
 
+@RequiresApi(api = Build.VERSION_CODES.R)
 public class LoginActivity extends AppCompatActivity {
   public static final String TAG = "LoginActivity";
 
   // declaring the firebase auth variable
   private FirebaseAuth mAuth;
   FirebaseFirestore db = FirebaseFirestore.getInstance();
+  Commons commonObj = new Commons();
   Boolean clcSwitch = false;
 
   // declaring the variables
@@ -68,46 +72,50 @@ public class LoginActivity extends AppCompatActivity {
 
   // login with email and password
   private void login() {
-    if (isCLchecked.isChecked()) {
-
-      clcLogin();
-    } else {
-      String email =
-          String.valueOf(
-              text_loginName.getText()); // getting details of email & password from the edittext
-      String password = String.valueOf(text_loginPass.getText());
-      Log.i("The mail is", email);
-      Log.i("the pass is ", password);
-
-      if (email.length() > 5 && password.length() > 5) {
-        mAuth
-            .signInWithEmailAndPassword(
-                email, password) // involking signin method with firebase auth instance.
-            .addOnCompleteListener(
-                this,
-                new OnCompleteListener<AuthResult>() {
-                  @Override
-                  public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-
-                      FirebaseUser user =
-                          mAuth.getCurrentUser(); // if logged in navigate to the home activity
-                      Intent intent = new Intent(context, HomeActivity.class);
-                      startActivity(intent);
-
-                    } else {
-                      Toast toast =
-                          Toast.makeText(
-                              getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
-                      toast.show();
-                    }
-                  }
-                });
+    if (commonObj.isConnected(LoginActivity.this)) {
+      if (isCLchecked.isChecked()) {
+        clcLogin();
       } else {
-        Toast toast =
-            Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
-        toast.show();
+        String email =
+            String.valueOf(
+                text_loginName.getText()); // getting details of email & password from the edittext
+        String password = String.valueOf(text_loginPass.getText());
+        Log.i("The mail is", email);
+        Log.i("the pass is ", password);
+
+        if (email.length() > 5 && password.length() > 5) {
+          mAuth
+              .signInWithEmailAndPassword(
+                  email, password) // involking signin method with firebase auth instance.
+              .addOnCompleteListener(
+                  this,
+                  new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                      if (task.isSuccessful()) {
+
+                        FirebaseUser user =
+                            mAuth.getCurrentUser(); // if logged in navigate to the home activity
+                        Intent intent = new Intent(context, HomeActivity.class);
+                        startActivity(intent);
+
+                      } else {
+                        Toast toast =
+                            Toast.makeText(
+                                getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
+                        toast.show();
+                      }
+                    }
+                  });
+        } else {
+          Toast toast =
+              Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
+          toast.show();
+        }
       }
+
+    } else {
+      commonObj.buildDialog(LoginActivity.this).show();
     }
   }
 
@@ -118,44 +126,47 @@ public class LoginActivity extends AppCompatActivity {
 
   private void clcLogin() {
     System.out.println("clc login");
-
     db.collection("clcusers")
         .get()
         .addOnCompleteListener(
-                task -> {
-                  if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                      Log.i(TAG, document.getId() + " => " + document.getData());
-                      List<Map<String, String>> usersList =
-                          (List<Map<String, String>>) document.getData().get("clcu");
-                      System.out.println(usersList);
-                      usersList.forEach(
-                          li -> {
-                            System.out.println(li.get("email"));
+            task -> {
+              if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                  Log.i(TAG, document.getId() + " => " + document.getData());
+                  List<Map<String, String>> usersList =
+                      (List<Map<String, String>>) document.getData().get("clcu");
+                  System.out.println(usersList);
+                  usersList.forEach(
+                      li -> {
+                        System.out.println(li.get("email"));
 
-                            if (text_loginName.getText().toString().equals(li.get("email"))) {
-                              System.out.println("the mail is " + li.get("email"));
-                              if (text_loginPass.getText().toString().equals(li.get("password"))) {
-                                //
-                                Intent intent = new Intent(context, CLCHomeActivity.class);
-                                startActivity(intent);
-                                finish();
-                              }
-                              // checkfor pass
-                            } else {
-                              // no clc user
-                            }
-                          });
-                    }
-                  } else {
-                    Log.i(TAG, "Error getting documents: ", task.getException());
-                  }
-                });
+                        if (text_loginName.getText().toString().equals(li.get("email"))) {
+                          System.out.println("the mail is " + li.get("email"));
+                          if (text_loginPass.getText().toString().equals(li.get("password"))) {
+                            //
+                            Intent intent = new Intent(context, CLCHomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                          }
+                          // checkfor pass
+                        } else {
+                          // no clc user
+                        }
+                      });
+                }
+              } else {
+                Log.i(TAG, "Error getting documents: ", task.getException());
+              }
+            });
   }
 
   private void signUp() {
-    Intent intent = new Intent(context, SignUpActivity.class);
-    startActivity(intent);
+    if (commonObj.isConnected(LoginActivity.this)) {
+      Intent intent = new Intent(context, SignUpActivity.class);
+      startActivity(intent);
+    } else {
+      commonObj.buildDialog(LoginActivity.this).show();
+    }
   }
 
   private void checkUserLogin() {
