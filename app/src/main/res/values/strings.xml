@@ -120,4 +120,8 @@ If the country you visit requires a yellow fever vaccine, only a limited number 
     <string name="profile_complete_law_province">Please Select Province</string>
     <string name="profile_complete_law_address">Address</string>
     <string name="profile_complete_law_button_update">Update Profile</string>
+
+    //hospirtal add activity
+    <string name="clsc_add_hospital_activity_hosital_added">Hospital has  been added Successfully</string>
+
 </resources>

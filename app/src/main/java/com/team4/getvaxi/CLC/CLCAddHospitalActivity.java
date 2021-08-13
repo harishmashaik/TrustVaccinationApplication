@@ -120,7 +120,13 @@ public class CLCAddHospitalActivity extends AppCompatActivity {
                                     temProvList[0] = (List<HashMap<String, String>>) mapOfHospital.get(provinceList.getText().toString());
                                     mappingMethod(temProvList[0]);
                                     mapOfHospital.put(provinceList.getText().toString(),temProvList[0]);
-                                    db.collection("hospitals").document("Aj59QU6ygI9V6MItVnVu").set(mapOfHospital); }
+                                    db.collection("hospitals").document("Aj59QU6ygI9V6MItVnVu").set(mapOfHospital);
+                                    try {
+                                        toastAndNextActivity(getString(R.string.clsc_add_hospital_activity_hosital_added),"CLCHomeActivity");
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
                             }
                         });
 
