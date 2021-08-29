@@ -1,17 +1,25 @@
 # TrustVaccinationApplication
+
 <img src: https://github.com/harishmashaik/TrustVaccinationApplication/blob/master/app/src/main/ic_launcher_logo-playstore.png
+
+
 Android Based Project
 
 Admin Id(CLS): harishmashaikk@gmail.com
+
 Password: harishma123
 
 User Id: harishmashaikk@gmail.com
 Password:harishma123
 
 Firebase credentials:
+
 https://console.firebase.google.com/u/4/project/getvaxinated/firestore/data/~2Fvaccinationcenters~2Ff5lAMXuG4a74n941vAvc
+
 Email id: shaikharishmaa@gmail.com
+
 Password: harishma0519
+
 Software:
   - Android Studio
   - Firebase
@@ -20,6 +28,7 @@ Software:
 Technologies:
   - Java
   - XML
+  - 
 About Project:
 
 Vaccination application is an online application which helps users to book appointments for 1-2months to 18 years old people ,
