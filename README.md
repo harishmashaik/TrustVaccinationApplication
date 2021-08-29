@@ -1,6 +1,6 @@
 # TrustVaccinationApplication
 
-<img src: "https://github.com/harishmashaik/TrustVaccinationApplication/blob/master/app/src/main/ic_launcher_logo-playstore.png"
+<img src="https://github.com/harishmashaik/TrustVaccinationApplication/blob/master/app/src/main/ic_launcher_logo-playstore.png"
 width="300" height="300">
 
 
